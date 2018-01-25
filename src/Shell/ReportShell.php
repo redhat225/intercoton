@@ -9,6 +9,7 @@ use \Exception as MainException;
 use Cake\Filesystem\Folder;
 use Cake\Filesystem\File;
 use Cake\Http\Client;
+use Cake\Utility\Text;
 
 class ReportShell extends Shell
 {
