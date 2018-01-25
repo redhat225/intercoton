@@ -15,7 +15,7 @@ class ReportShell extends Shell
 
   public function main()
   {
-    // $this->listen();
+    $this->listen();
   }
 
   public function initialize()
