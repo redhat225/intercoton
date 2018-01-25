@@ -27,6 +27,7 @@ use Cake\ORM\TableRegistry;
 use Cake\Utility\Text;
 use Cake\Cache\Cache;
 use Cake\Filesystem\Folder;
+use Pheanstalk\Pheanstalk;
 use Cake\Filesystem\File;
 use Cake\Http\Client;
 /**
