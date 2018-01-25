@@ -47,7 +47,7 @@ class ReportShell extends Shell
   }
 
   public function upload($payload){
-       foreach ($payload->image as $key => $value) {
+       foreach ($payload['image'] as $key => $value) {
                               try{
                                             $upload = true;
                                             $main_image_candidate_path = "/cooperatives/reports"."/".Text::uuid().".".$value;
@@ -99,7 +99,7 @@ class ReportShell extends Shell
                                                             $pattern = "/dl=0/";
                                                             $link_main_photo_candidate = preg_replace($pattern, "dl=1", $link);
 
-                                                            $indexed_report = $this->Reports->get($payload->report_id);
+                                                            $indexed_report = $this->Reports->get($payload['report_id']);
                                                             $report_content = json_decode($indexed_report->report_content);
                                                             foreach ($report_content as $y => $z) {
                                                                 $z->$key = $link_main_photo_candidate;
