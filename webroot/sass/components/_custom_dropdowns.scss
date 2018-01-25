@@ -1,0 +1,10 @@
+	a.navbar-item:hover, a.navbar-item.is-active, a.navbar-link:hover, a.navbar-link.is-active{
+		background-color: transparent !important;
+	}
+
+	.navbar-dropdown a.navbar-item:hover{
+		background-color: map-get($colors,'intercoton-skygreen') !important;
+	}
+	.navbar-item.has-dropdown:hover .navbar-link{
+		background-color: transparent !important;
+	}

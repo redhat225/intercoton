@@ -1,0 +1,36 @@
+$boxes: 10
+$durationAll: .8s
+$duration: - $durationAll / $boxes
+$color: black
+
+.wrapper
+  position: absolute
+  width: 200px
+  height: 2px
+  left: 0
+  right: 0
+  bottom: 0
+  top: 0
+  margin: auto
+  
+  
+.loader
+  height: 100%
+  display: flex
+  transform: translateZ(0)
+  
+  div
+    flex: 1
+    background: #{$color}
+    animation: go #{$durationAll} infinite alternate ease
+    box-shadow: 0 0 20px #{$color}
+    
+    @for $i from 1 through $boxes
+      &:nth-child(#{$i})
+        animation-delay: $duration * ($boxes - $i)
+    
+@keyframes go
+  100%
+    background: transparent
+    flex: 10
+    box-shadow: 0 0 0 transparent

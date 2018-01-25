@@ -1,0 +1,57 @@
+//colors initialization
+@each $color-name, $color-value in $colors{
+	@for $i from 1 through length($colors){
+		@if ($i == 1){
+				.#{$color-name} {
+					color: $color-value !important;
+				}
+			}@else{
+				.#{$color-name}-b{
+					background: $color-value !important;
+				}
+			}
+	}
+}
+
+//boxes initializations
+@each $side, $side-alias in map-get($sizes, 'sides'){
+	@if($side == 'line-height' or $side =='width' or $side == 'height' or $side=="font-size"){
+			@for $i from 0 through 500{
+				 .is-#{$side-alias}-#{$i} {
+					#{$side}: #{$i}px !important;
+				 }
+			}
+	}@else{
+			@each $orientation, $orientation-alias in map-get($sizes, 'orientations'){
+					@for $i from 0 through 500{
+						@if ($orientation == 'full'){
+								.is-#{$side-alias}-#{$orientation-alias}-#{$i}{
+									#{$side}: #{$i}px !important;
+								}
+							}@else{
+								.is-#{$side-alias}-#{$orientation-alias}-#{$i}{
+									#{$side}-#{$orientation}: #{$i}px !important;
+								}
+							}
+
+					}
+			}
+	}
+}
+
+
+//fonts initialization
+@each $font-weight in $fonts-weight{
+	.is-font-#{$font-weight} {
+		font-weight: $font-weight !important;
+	}
+}
+
+//font family initialization
+@each $rank, $family in $fonts-family{
+	.is-family-#{$rank} {
+		font-family: '#{$family}';
+	}
+}
+
+

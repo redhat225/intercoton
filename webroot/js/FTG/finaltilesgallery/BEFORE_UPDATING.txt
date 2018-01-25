@@ -1,0 +1,22 @@
+Thank you for purchasing jQuery Final Tiles Grid Gallery.
+
+If this is your first time with jQuery Final Tiles Grid Gallery then just enjoy it!
+
+Otherwise please read the following notes:
+
+
+==== IMPORTANT 1 ====
+
+This version has some changes in CSS and HTML markup so if you have customised 
+your galleries be sure to make a backup before updating the plugin.
+
+
+==== IMPORTANT 2 ====
+
+ALWAYS test changes before updating a live site :)
+
+Cheers
+Diego - GreenTreeLabs
+
+https://www.greentreelabs.net
+https://www.final-tiles-gallery.com

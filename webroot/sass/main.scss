@@ -1,0 +1,15 @@
+// import configuration
+@import "config/colors";
+@import "config/boxes";
+@import "config/fonts";
+//Custom import
+@import "config/adjustements";
+// import initial
+@import "initial/init";
+@import "initial/helpers";
+// import layout
+// import components
+@import "components/custom-forms";
+@import "components/custom_dropdowns";
+// import patterns
+@import "patterns/buttons";

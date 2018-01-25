@@ -1,0 +1,24 @@
+{
+  "name": "webroot",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "redhat225 <riehlemm@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-ui-tinymce": "^0.0.19",
+    "tinymce": "^4.7.5"
+  },
+  "resolutions": {
+    "tinymce": "~4.5.1"
+  }
+}
