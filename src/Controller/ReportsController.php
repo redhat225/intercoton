@@ -128,9 +128,9 @@ class  ReportsController extends AppController
                                         'report_id' => $report->id,
                                         'session_id' => $report->session_id
                                     ];
-                                    // $pheanstalk = new Pheanstalk('127.0.0.1');
-                                    // $pheanstalk->useTube('ReportTube')
-                                    // $pheanstalk->put(json_encode($payload));
+                                    $pheanstalk = new Pheanstalk('127.0.0.1');
+                                    $pheanstalk->useTube('ReportTube')
+                                    $pheanstalk->put(json_encode($payload));
                                 }
                             }
                             $response = ['message'=>'ok'];
