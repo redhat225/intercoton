@@ -130,7 +130,7 @@ class  ReportsController extends AppController
                                         'session_id' => $report->session_id
                                     ];
                                     $pheanstalk = new Pheanstalk('127.0.0.1');
-                                    $pheanstalk->useTube('ReportTube')
+                                    $pheanstalk->useTube('ReportTube');
                                     $pheanstalk->put(json_encode($payload));
                                 }
                             }
