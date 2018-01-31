@@ -4,7 +4,7 @@
 					<nav class="breadcrumb" aria-label="breadcrumbs">
 					  <ul>
 					    <li><a ui-sref="admins.dashboard">Dashboard</a></li>
-					    <li ui-sref="admins.zones"><a >Zones</a></li>
+					    <li ui-sref="admins.zones({page_id:1})"><a >Zones</a></li>
 					    <li class="is-active"><a >Créer une zone</a></li>
 					  </ul>
 					</nav>
@@ -72,7 +72,7 @@
 						<button class="button is-intercoton-green has-text-weight-bold" ng-disabled="createZoneForm.$invalid || is_loading" type="submit">Valider</button>
 					</div>
 					<div class="control">
-						<button class="button is-warning has-text-weight-bold" type="reset" ui-sref="admins.zones">Annuler</button>
+						<button class="button is-warning has-text-weight-bold" type="reset" ng-click="reset_zones()">Annuler</button>
 					</div>
 				</div>
 			</div>

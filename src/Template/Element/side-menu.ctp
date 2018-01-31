@@ -22,7 +22,7 @@
 				<span class="has-weight-semibold is-pad-lft-15 menu-text">Dashboard</span>	
 			</a>
 		</div>
-		<div class="menu-item-wrapper has-text-left is-pad-top-10 is-pad-bot-10" ui-sref-active="is-active" ui-sref="admins.sessions">
+		<div class="menu-item-wrapper has-text-left is-pad-top-10 is-pad-bot-10" ui-sref-active="is-active" ui-sref="admins.sessions({page_id:1})">
 			<a class="menu-item is-pad-lft-25">
 				<span class="icon is-ft-sz-17">
 					<i class="fa fa-binoculars menu-icon"></i>
@@ -45,7 +45,7 @@
 
 				 <div class="dropdown-menu" id="dropdown-menu" role="menu">
 				    <div class="dropdown-content">
-				      <a ui-sref="admins.cooperatives" class="dropdown-item">
+				      <a ui-sref="admins.cooperatives({page_id:1})" class="dropdown-item">
 				        Vue d'ensemble
 				      </a>
 				      <a ui-sref="admins.cooperatives.create"  class="dropdown-item">
@@ -69,7 +69,7 @@
 
 				 <div class="dropdown-menu" id="dropdown-menu" role="menu">
 				    <div class="dropdown-content">
-				      <a ui-sref="admins.zones" class="dropdown-item">
+				      <a ui-sref="admins.zones({page_id:1})" class="dropdown-item">
 				        Vue d'ensemble
 				      </a>
 				      <a ui-sref="admins.zones.create"  class="dropdown-item">
@@ -89,7 +89,7 @@
 				<span class="has-weight-semibold is-pad-lft-15 menu-text" >Paramètres</span>	
 			</a>
 		</div>
-
+		<?php if($role_denomination != "auditor"): ?>
 		<div class="menu-item-wrapper has-text-left is-pad-top-10 is-pad-bot-10" ui-sref-active="is-active">
 			<div class="dropdown is-hoverable">
 				<a class="dropdown-trigger menu-item is-pad-lft-25">
@@ -104,17 +104,17 @@
 
 				 <div class="dropdown-menu" id="dropdown-menu" role="menu">
 				    <div class="dropdown-content">
-				      <a ui-sref="admins.auditors" class="dropdown-item">
+				      <a ui-sref="admins.auditors({page_id:1})" class="dropdown-item">
 				        Vue ensemble
 				      </a>
-				      <a ui-sref="admins.auditors.create"  class="dropdown-item">
+				      <a ui-sref="admins.auditors.create({page_id:1})"  class="dropdown-item">
 				        créer un utilisateur
 				      </a>
 				    </div>
 				  </div>
 			</div>
 		</div>
-
+	<?php endif; ?>
 		<div class="menu-item-wrapper has-text-left is-pad-top-10 is-pad-bot-10" ui-sref-active="is-active">
 			<a class="menu-item is-pad-lft-25" href="/admins/logout" target="_self">
 				<span class="icon is-ft-sz-20">

@@ -208,8 +208,10 @@ class AuditorAccountsTable extends Table
         return $rules;
     }
     public function findAuth(Query $query, array $options){
-        $query->select(['id','account_username','account_password'])
-        ->where(['account_is_active' => 1]);
+        $query->select(['id','account_username','account_password','role_id'])
+              ->contain(['Roles.RoleContents'])
+              ->autoFields(true)
+              ->where(['account_is_active' => 1]);
         return $query;
     }
 

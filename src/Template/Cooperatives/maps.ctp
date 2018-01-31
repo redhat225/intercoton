@@ -63,6 +63,7 @@
               url:'/cooperatives/maps',
               type:'get',
               data:{action: 'get-geodata'},
+              headers:{authorization:'Bearer '+localStorage.getItem('token')},
               dataType:'json',
               success: function(resp){
                   var cooperatives = resp.cooperatives;

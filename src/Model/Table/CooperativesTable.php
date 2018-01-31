@@ -80,21 +80,20 @@ class CooperativesTable extends Table
                 //create a zone if not Exist
                 if(isset($data['zone_unavailable']))
                 {
-                  if($data['zone_unavailable'])
+                  if($data['zone_unavailable'] == false)
                   {
                       $zones = TableRegistry::get('Zones');
                           $zone_data =['zone_denomination'=>strtoupper($data['zone_denomination']),'created_by'=>$data['created_by']];
 
                             try{
                                  $zone = $zones->newEntity($zone_data);
-
                                 if($zones->save($zone))
                                   $data['zone_id'] = $zone->id;
                                 else
-                                  throw new Exception\BadRequestException(__('error'));
+                                  throw new Exception\BadRequestException(__('error1'));
 
                             }catch(MainException $e){
-                                throw new Exception\BadRequestException(__('error'));
+                                throw new Exception\BadRequestException(__('error2'));
                         }
                   }
 

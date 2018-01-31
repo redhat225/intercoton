@@ -26,6 +26,9 @@ class ReportsTableTest extends TestCase
     public $fixtures = [
         'app.reports',
         'app.auditor_accounts',
+        'app.auditors',
+        'app.roles',
+        'app.role_contents',
         'app.cooperatives',
         'app.zones',
         'app.sessions'

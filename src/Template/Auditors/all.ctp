@@ -32,6 +32,36 @@
 						</button>
 				</div>
 			</div>
+
+	    <!-- Pagintaion module -->
+     	<div class="level is-mobile is-pad-bot-30">
+     		<div class="level-left">
+				<div class="field has-addons level-item">
+				  <p class="control">
+				    <a class="button is-intercoton-green" ng-click="previous_page()" ng-disabled="is_loading">
+				      <span class="icon is-small">
+				        <i class="fa fa-chevron-left"></i>
+				      </span>
+				      <span class="has-text-weight-semibold">Précédent</span>
+				    </a>
+				  </p>
+				  <p class="control">
+				    <a class="button is-static is-disabled">
+				      <span ng-bind="pagination.current_page" ng-hide="is_loading">1</span> sur <span ng-bind="pagination.all_pages" ng-hide="is_loading">45</span>
+				    </a>
+				  </p>
+				  <p class="control">
+				    <a class="button is-intercoton-green" ng-click="next_page()" ng-disabled="is_loading">
+				      <span class="has-text-weight-semibold">Suivant</span>
+				      <span class="icon is-small">
+				        <i class="fa fa-chevron-right"></i>
+				      </span>
+				    </a>
+				  </p>
+				</div>
+     		</div>
+     	</div>
+
 			<!-- Table -->
 			<table class="table is-fullwidth is-striped is-hoverable ">
 				<thead>
@@ -47,7 +77,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="auditor in $root.auditors | orderBy:default_auditor_order | filter:filter_keys">
+					<tr ng-repeat="auditor in $root.auditors | orderBy:default_auditor_order | filter:filter_keys" ng-class="get_state_auditor(auditor.auditor_accounts[0].account_is_active)">
 							<th> {{auditor.id}}</th>
 							<td>
 								<img ng-src="/img/assets/admins/photo/{{auditor.auditor_photo}}" width="80px" alt="">
@@ -90,5 +120,34 @@
 						</tr>
 				</tbody>
 			</table>
+	    <!-- Pagintaion module -->
+     	<div class="level is-mobile is-pad-bot-30">
+     		<div class="level-left">
+				<div class="field has-addons level-item">
+				  <p class="control">
+				    <a class="button is-intercoton-green" ng-click="previous_page()" ng-disabled="is_loading">
+				      <span class="icon is-small">
+				        <i class="fa fa-chevron-left"></i>
+				      </span>
+				      <span class="has-text-weight-semibold">Précédent</span>
+				    </a>
+				  </p>
+				  <p class="control">
+				    <a class="button is-static is-disabled">
+				      <span ng-bind="pagination.current_page" ng-hide="is_loading">1</span> sur <span ng-bind="pagination.all_pages" ng-hide="is_loading">45</span>
+				    </a>
+				  </p>
+				  <p class="control">
+				    <a class="button is-intercoton-green" ng-click="next_page()" ng-disabled="is_loading">
+				      <span class="has-text-weight-semibold">Suivant</span>
+				      <span class="icon is-small">
+				        <i class="fa fa-chevron-right"></i>
+				      </span>
+				    </a>
+				  </p>
+				</div>
+     		</div>
+     	</div>
+
 	</section>
 

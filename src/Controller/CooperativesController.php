@@ -50,6 +50,7 @@ class  CooperativesController extends AppController
         if($this->request->is('ajax')){
             if($this->request->is('post')){
                 $data = $this->request->data;
+
                     //create $cooperative
                     $data['cooperative']['action'] = 'create'; 
                     $session = $this->request->session();
@@ -58,6 +59,7 @@ class  CooperativesController extends AppController
 
                     $cooperative = $this->Cooperatives->newEntity($data['cooperative']);
                     // upload images first
+
                     try{
                         $upload = true;
                         $main_image_candidate_path = "/cooperatives"."/".Text::uuid().".".strtolower(pathinfo($data['cooperative']['main_photo_candidate']['name'],PATHINFO_EXTENSION));
@@ -142,11 +144,29 @@ class  CooperativesController extends AppController
             if($this->request->is('get')){
                 if(isset($this->request->query['action']))
                 {
-                    $cooperatives = $this->Cooperatives->find()
-                                                       ->contain(['Zones']);
+
+                    if(isset($this->request->query['page'])){
+                        $page = $this->request->query['page'];
+                        $cooperatives = $this->Cooperatives->find()
+                                                           ->contain(['Zones'])
+                                                           ->limit(30)
+                                                           ->page($page);
+
+                    }else
+                    {
+                         $cooperatives = $this->Cooperatives->find()
+                                                           ->contain(['Zones']);
+                    }
+
+                        $cooperatives_all = $this->Cooperatives->find()
+                                                                ->count();
+                        $cooperatives_pages = ceil($cooperatives_all/30);
+
+                    
+
                     $this->RequestHandler->renderAs($this, 'json');
-                    $this->set(compact('cooperatives'));
-                    $this->set('_serialize',['cooperatives']); 
+                    $this->set(compact('cooperatives','cooperatives_pages','cooperatives_all'));
+                    $this->set('_serialize',['cooperatives','cooperatives_pages','cooperatives_all']); 
                 }
 
             }
@@ -160,6 +180,13 @@ class  CooperativesController extends AppController
                 $data['cooperative']['action'] = 'modify';
 
                 $cooperative_old = $this->Cooperatives->get($data['cooperative']['id']);
+
+                $role = $this->request->session()->read('Auth.User.role.role_denomination');
+                    if($role == "auditor"){
+                        if($cooperative_old->created_by != $this->request->session()->read('Auth.User.id'))
+                            throw new Exception\ForbiddenException(__('forbidden'));
+                }
+
                 $cooperative  = $this->Cooperatives->patchEntity($cooperative_old, $data['cooperative']); 
                 $cooperative->deleted = $cooperative_old->deleted;
 
@@ -257,8 +284,7 @@ class  CooperativesController extends AppController
 
                    if(isset($upload))
                    {    
-                      if(!$upload)
-                      {}
+                      if(!$upload){}
                      //open a pipe here for image (save it before)
                    }
 

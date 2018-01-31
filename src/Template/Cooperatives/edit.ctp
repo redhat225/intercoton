@@ -4,7 +4,7 @@
 					<nav class="breadcrumb" aria-label="breadcrumbs">
 					  <ul>
 					    <li><a ui-sref="admins.dashboard">Dashboard</a></li>
-					    <li><a ui-sref="admins.cooperatives">Coopératives</a></li>
+					    <li><a ui-sref="admins.cooperatives({page_id:1})">Coopératives</a></li>
 					    <li class="is-active"><a >Modifier une coopérative</a></li>
 					  </ul>
 					</nav>

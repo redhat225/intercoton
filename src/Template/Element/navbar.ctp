@@ -21,31 +21,34 @@
 						Dashboard
 					</span>
 				</button>
-			</a>
-			<a class="navbar-item">
+			</a>	
+			
+			<a class="navbar-item" ui-sref="admins.sessions({page_id:1})">
 				<span class="icon has-text-intercoton-green">
-					<i class="fa fa-binoculars" aria-hidden="true"></i>
-					<b class="is-mar-lft-5">0</b>
+					<i class="fa fa-sticky-note" aria-hidden="true"></i>
+					<b class="is-mar-lft-5">{{$root.brief_stats.reports_count}}</b>
 				</span>
 			</a>
-			<a class="navbar-item">
-				<span class="icon has-text-intercoton-green">
-					<i class="fa fa-bank" aria-hidden="true"></i>
-					<b class="is-mar-lft-5">1</b>
-				</span>
-			</a>
-			<a class="navbar-item">
-				<span class="icon has-text-intercoton-green">
-					<i class="fa fa-globe" aria-hidden="true"></i>
-					<b class="is-mar-lft-5">0</b>
-				</span>
-			</a>
-			<a class="navbar-item">
-				<span class="icon has-text-intercoton-green">
-					<i class="fa fa-users" aria-hidden="true"></i>
-					<b class="is-mar-lft-5">0</b>
-				</span>
-			</a>
+			<?php if($role_denomination != "auditor"): ?>
+					<a class="navbar-item" ui-sref="admins.cooperatives({page_id:1})">
+						<span class="icon has-text-intercoton-green">
+							<i class="fa fa-bank" aria-hidden="true"></i>
+							<b class="is-mar-lft-5">{{$root.brief_stats.cooperatives_count}}</b>
+						</span>
+					</a>
+					<a class="navbar-item" ui-sref="admins.zones({page_id:1})">
+						<span class="icon has-text-intercoton-green">
+							<i class="fa fa-globe" aria-hidden="true"></i>
+							<b class="is-mar-lft-5">{{$root.brief_stats.zones_count}}</b>
+						</span>
+					</a>
+					<a class="navbar-item" ui-sref="admins.auditors({page_id:1})">
+						<span class="icon has-text-intercoton-green">
+							<i class="fa fa-users" aria-hidden="true"></i>
+							<b class="is-mar-lft-5">{{$root.brief_stats.auditor_accounts_count}}</b>
+						</span>
+					</a>
+		    <?php endif; ?>
 			<div class="navbar-item has-dropdown is-hoverable" class="account-dropdown">
 				<a class="navbar-link has-text-intercoton-green" >
 					<span class="has-text-weight-semibold has-text-intercoton-green">{{$root.root_profile.account_username}}</span>
@@ -65,7 +68,7 @@
 			</div>
 
 			<a  class="navbar-item" href="/admins/logout" target="_self">
-				<button class="button is-intercoton-darkblue">
+				<button class="button is-danger">
 					<span class="icon">
 						<i class="fa fa-power-off has-text-white"></i>
 					</span>

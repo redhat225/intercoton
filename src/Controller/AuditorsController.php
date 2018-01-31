@@ -49,11 +49,31 @@ class  AuditorsController extends AppController
 
             if($this->request->is('get')){
                 if(isset($this->request->query['action'])){
-                    $auditors = $this->Auditors->find()
-                                               ->contain(['AuditorAccounts.Roles']);
+
+                    if(isset($this->request->query['page'])){
+                        $page = $this->request->query['page'];
+                        $auditors = $this->Auditors->find()
+                                                   ->contain(['AuditorAccounts.Roles'])
+                                                   ->limit(30)
+                                                   ->page($page)
+                                                   ->map(function($row){
+                                                      if($row->auditor_accounts[0]->deleted == null)
+                                                        return $row;
+                                                   });
+                    }else{
+                        $auditors = $this->Auditors->find()
+                                                   ->contain(['AuditorAccounts.Roles'])
+                                                   ->map(function($row){
+                                                      if($row->auditor_accounts[0]->deleted == null)
+                                                        return $row;
+                                                   });
+                    }
+                    $auditor_all = $this->Auditors->find()->count();
+                    $auditor_pages = ceil($auditor_all/30); 
+
                     $this->RequestHandler->renderAs($this, 'json');
-                    $this->set(compact('auditors','roles_all'));
-                    $this->set('_serialize',['auditors','roles_all']); 
+                    $this->set(compact('auditors','roles_all','auditor_pages'));
+                    $this->set('_serialize',['auditors','roles_all','auditor_pages']); 
                 }
             }
         }

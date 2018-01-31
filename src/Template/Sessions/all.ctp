@@ -32,6 +32,34 @@
 						</button>
 				</div>
 			</div>
+	    <!-- Pagintaion module -->
+     	<div class="level is-mobile is-pad-bot-30">
+     		<div class="level-left">
+				<div class="field has-addons level-item">
+				  <p class="control">
+				    <a class="button is-intercoton-green" ng-click="previous_page()" ng-disabled="is_loading">
+				      <span class="icon is-small">
+				        <i class="fa fa-chevron-left"></i>
+				      </span>
+				      <span class="has-text-weight-semibold">Précédent</span>
+				    </a>
+				  </p>
+				  <p class="control">
+				    <a class="button is-static is-disabled">
+				      <span ng-bind="pagination.current_page" ng-hide="is_loading">1</span> sur <span ng-bind="pagination.all_pages" ng-hide="is_loading">45</span>
+				    </a>
+				  </p>
+				  <p class="control">
+				    <a class="button is-intercoton-green" ng-click="next_page()" ng-disabled="is_loading">
+				      <span class="has-text-weight-semibold">Suivant</span>
+				      <span class="icon is-small">
+				        <i class="fa fa-chevron-right"></i>
+				      </span>
+				    </a>
+				  </p>
+				</div>
+     		</div>
+     	</div>
 			<!-- Table -->
 			<table class="table is-fullwidth is-striped is-hoverable ">
 				<thead>
@@ -70,7 +98,7 @@
 								  </div>
 								  <div class="dropdown-menu" id="dropdown-menu" role="menu">
 								    <div class="dropdown-content">
-										  <a ui-sref="admins.reports({session_id:session.id})" class="dropdown-item">
+										  <a ng-if="session.count_reports > 0" ui-sref="admins.reports({session_id:session.id, page_id:1})" class="dropdown-item">
 								            	Voir les rapports
 										  </a>
 										  <a ui-sref="admins.reports.create({session_id:session.id})" class="dropdown-item">
@@ -86,5 +114,33 @@
 						</tr>
 				</tbody>
 			</table>
+		    <!-- Pagintaion module -->
+	     	<div class="level is-mobile is-pad-bot-30">
+	     		<div class="level-left">
+					<div class="field has-addons level-item">
+					  <p class="control">
+					    <a class="button is-intercoton-green" ng-click="previous_page()" ng-disabled="is_loading">
+					      <span class="icon is-small">
+					        <i class="fa fa-chevron-left"></i>
+					      </span>
+					      <span class="has-text-weight-semibold">Précédent</span>
+					    </a>
+					  </p>
+					  <p class="control">
+					    <a class="button is-static is-disabled">
+					      <span ng-bind="pagination.current_page" ng-hide="is_loading">1</span> sur <span ng-bind="pagination.all_pages" ng-hide="is_loading">45</span>
+					    </a>
+					  </p>
+					  <p class="control">
+					    <a class="button is-intercoton-green" ng-click="next_page()" ng-disabled="is_loading">
+					      <span class="has-text-weight-semibold">Suivant</span>
+					      <span class="icon is-small">
+					        <i class="fa fa-chevron-right"></i>
+					      </span>
+					    </a>
+					  </p>
+					</div>
+	     		</div>
+	     	</div>
 	</section>
 

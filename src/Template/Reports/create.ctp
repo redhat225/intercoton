@@ -4,7 +4,7 @@
 					<nav class="breadcrumb" aria-label="breadcrumbs">
 					  <ul>
 					    <li><a ui-sref="admins.dashboard">Dashboard</a></li>
-					    <li ui-sref="admins.sessions"><a >Sessions</a></li>
+					    <li ui-sref="admins.sessions({page_id:1})"><a >Sessions</a></li>
 					    <li class="is-active"><a >Rédiger un rapport</a></li>
 					  </ul>
 					</nav>
@@ -14,6 +14,27 @@
 
 	<h3 class="subtitle">Formulaire rédaction rapport</h3>
 	<form name="createReportForm" ng-submit="create()">
+		<!-- Set title -->
+		<div class="field is-horizontal" id="cooperatives_select">
+			<div class="field-label">
+				<label for="report_title" class="label">Titre Rapport</label>
+			</div>
+			<div class="field-body">
+				<div class="field">
+					<div class="control has-icons-left has-icons-right">
+						<input type="text" name="report_title" class="input" ng-model="report.report_title" required ng-minlength="10" ng-maxlength="300">
+						<span class="icon is-small is-left">
+							<i class="fa fa-sticky-note"></i>
+						</span>
+						<span class="icon is-small is-right" ng-show="createReportForm.report_title.$valid">
+							<i class="fa fa-check has-text-intercoton-green"></i>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
 		<!-- Coopérative select -->
 		<div class="field is-horizontal" id="cooperatives_select">
 			<div class="field-label">
@@ -32,7 +53,7 @@
 				</div>
 				<div class="field">
 					<div class="control is-expanded is-fullwidth">
-						<button class="button is-intercoton-green" ng-click="addItemReport()">
+						<button class="button is-intercoton-green" type="button" ng-click="addItemReport()">
 							<span class="icon">
 								<i class="fa fa-plus"></i>
 							</span>
@@ -56,17 +77,20 @@
 					<div class="field-body">
 						<div class="field">
 							<div class="control">
-								<div class="level">
+								<div class="level is-mobile">
 									<div class="level-left">
 										<?php $values=['a','b','c','d','e']; ?>
 										<?php foreach ($values as $value) :?>
 										   <div class="level-item">
-											     <div ng-if="!report.reports.item00.evidence00<?= $value ?>" ngf-drop ngf-select ngf-max-size="3MB" ng-model="report.reports.item00.evidence00<?= $value ?>" class="drop-box button is-hgt-130 is-wth-130">
+											     <div ng-if="!report.reports.item00.evidences.evidence00<?= $value ?>" ngf-drop ngf-select ngf-max-size="3MB" ng-model="report.reports.item00.evidences.evidence00<?= $value ?>" class="drop-box button is-hgt-130 is-wth-130">
 													<img src="/img/assets/forms/image_upload_drag_area.png" alt="">
 												</div>
-						  						<figure ng-if="report.reports.item00.evidence00<?= $value ?>" class="image is-hgt-130 is-wth-130"> 
-						  							 <img ngf-thumbnail="report.reports.item00.evidence00<?= $value ?>" >
+						  						<figure ng-if="report.reports.item00.evidences.evidence00<?= $value ?>" class="image is-hgt-130 is-wth-130"> 
+						  							 <img ngf-thumbnail="report.reports.item00.evidences.evidence00<?= $value ?>" >
 						  						</figure>
+									           <!-- change photo -->
+												<button type="button" class="button is-danger is-mar-bot-95" ng-show="report.reports.item00.evidences.evidence00<?= $value ?>" ng-click="report.reports.item00.evidences.evidence00<?= $value ?> = null"><span class="icon"><i class="fa fa-close"></i></span>
+												</button>
 						  					</div>
 										<?php endforeach; ?>
 									</div>
@@ -75,9 +99,9 @@
 								</div>
 
 							</div>
-					</div>
-				</div>
-
+					   </div>
+				  </div>
+  
 				<div class="field is-horizontal">
 					<div class="field-label">
 						<label for="" class="label">problèmes rencontrés</label>
@@ -86,7 +110,7 @@
 					<div class="field-body">
 						<div class="field">
 							<div class="control">
-								<textarea ui-tinymce="tinymceOptions" required ng-model="report.reports.item00.report_item_problem_00" class="textarea"></textarea>
+								<textarea ui-tinymce="tinymceOptions" required ng-model="report.reports.item00.contents.report_item_problem_00" class="textarea"></textarea>
 							</div>
 						</div>
 					</div>
@@ -101,7 +125,7 @@
 					<div class="field-body">
 						<div class="field">
 							<div class="control">
-								<textarea ui-tinymce="tinymceOptions" required ng-model="report.reports.item00.report_item_recommandation_00" class="textarea"></textarea>
+								<textarea ui-tinymce="tinymceOptions" required ng-model="report.reports.item00.contents.report_item_recommandation_00" class="textarea"></textarea>
 							</div>
 						</div>
 					</div>
@@ -118,7 +142,7 @@
 						<button class="has-text-weight-bold button is-intercoton-green" ng-disabled="createReportForm.$invalid || is_loading">
 							Valider							
 						</button>
-						<button type="reset" ui-sref="admins.reports({session_id:report.session_id})" class="button is-warning has-text-weight-bold ">Annuler</button>
+						<button type="reset" ng-click="reinit_reports()" class="button is-warning has-text-weight-bold ">Annuler</button>
 					</div>
 				</div>
 			</div>

@@ -7,6 +7,7 @@ use Cake\ORM\Entity;
  * Report Entity
  *
  * @property int $id
+ * @property string $report_title
  * @property string $report_code
  * @property string $report_content
  * @property \Cake\I18n\FrozenTime $created
@@ -33,6 +34,7 @@ class Report extends Entity
      * @var array
      */
     protected $_accessible = [
+        'report_title' => true,
         'report_code' => true,
         'report_content' => true,
         'created' => true,

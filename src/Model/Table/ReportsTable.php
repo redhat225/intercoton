@@ -69,6 +69,11 @@ class ReportsTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
+            ->scalar('report_title')
+            ->requirePresence('report_title', 'create')
+            ->notEmpty('report_title');
+
+        $validator
             ->scalar('report_code')
             ->maxLength('report_code', 100)
             ->requirePresence('report_code', 'create')

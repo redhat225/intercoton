@@ -4,7 +4,7 @@
 					<nav class="breadcrumb" aria-label="breadcrumbs">
 					  <ul>
 					    <li><a ui-sref="admins.dashboard">Dashboard</a></li>
-					    <li ui-sref="admins.sessions"><a >Sessions</a></li>
+					    <li ui-sref="admins.sessions({page_id:1})"><a >Sessions</a></li>
 					    <li class="is-active"><a >Créer une session</a></li>
 					  </ul>
 					</nav>

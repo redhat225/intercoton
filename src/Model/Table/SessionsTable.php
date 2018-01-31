@@ -160,22 +160,10 @@ class SessionsTable extends Table
                         }
 
                         if($valid){
-                            if($begin_date<$now_date)
-                            {
-                                throw new Exception\BadRequestException(__('error'));
-                            }else
-                            {
                                 if($begin_date>$end_date)
                                    throw new Exception\BadRequestException(__('error'));
-                                else
-                                {
-
-                                }
-                            }
-                            
-
                         }else
-                            throw new Exception\BadRequestException(__('error'));
+                            throw new Exception\BadRequestException(__('error3'));
                 break;
 
                 default:

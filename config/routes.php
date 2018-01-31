@@ -58,6 +58,7 @@ Router::scope('/reports', function (RouteBuilder $routes) {
     $routes->connect('/', ['controller' => 'Reports', 'action' => 'all']);
     $routes->connect('/create', ['controller' => 'Reports', 'action' => 'create']);
     $routes->connect('/edit', ['controller' => 'Reports', 'action' => 'edit']);
+    $routes->connect('/view', ['controller' => 'Reports', 'action' => 'view']);
     $routes->connect('/add-item-report', ['controller' => 'Reports', 'action' => 'addItemReport']);
 });
 
@@ -87,6 +88,7 @@ Router::scope('/zones', function (RouteBuilder $routes) {
     $routes->connect('/', ['controller' => 'Zones', 'action' => 'all']);
     $routes->connect('/create', ['controller' => 'Zones', 'action' => 'create']);
     $routes->connect('/edit', ['controller' => 'Zones', 'action' => 'edit']);
+    $routes->connect('/get_stats', ['controller' => 'Zones', 'action' => 'getStats']);
     $routes->connect('/create-zone-template', ['controller' => 'Zones', 'action' => 'createZoneTemplate']);
 });
 
@@ -97,30 +99,32 @@ Router::scope('/admins', function (RouteBuilder $routes) {
     $routes->connect('/logout', ['controller' => 'Admins', 'action' => 'logout']);
     $routes->connect('/create', ['controller' => 'Admins', 'action' => 'create']);
     $routes->connect('/dashboard', ['controller' => 'Admins', 'action' => 'dashboard']);
+    $routes->connect('/brief-stats', ['controller' => 'Admins', 'action' => 'briefStats']);
 
     // Spa's routing
-    $routes->connect('/auditors',['controller'=>'Admins', 'action'=>'index']);
-    $routes->connect('/auditors/create',['controller'=>'Admins', 'action'=>'index']);
-    $routes->connect('/auditors/edit/:id',['controller'=>'Admins', 'action'=>'index']);
+    $routes->connect('/auditors/:page',['controller'=>'Admins', 'action'=>'index'],['page'=>'[0-9]*']);
+    $routes->connect('/auditors/:page/create',['controller'=>'Admins', 'action'=>'index']);
+    $routes->connect('/auditors/:page/edit/:id',['controller'=>'Admins', 'action'=>'index']);
 
-    $routes->connect('/zones',['controller'=>'Admins', 'action'=>'index']);
-    $routes->connect('/zones/create',['controller'=>'Admins', 'action'=>'index']);
-    $routes->connect('/zones/edit/:id',['controller'=>'Admins', 'action'=>'index']);
+    $routes->connect('/zones/:page',['controller'=>'Admins', 'action'=>'index'],['page'=>'[0-9]*']);
+    $routes->connect('/zones/:page/create',['controller'=>'Admins', 'action'=>'index']);
+    $routes->connect('/zones/:page/edit/:id',['controller'=>'Admins', 'action'=>'index']);
 
-    $routes->connect('/cooperatives',['controller'=>'Admins', 'action'=>'index']);
-    $routes->connect('/cooperatives/create',['controller'=>'Admins', 'action'=>'index']);
-    $routes->connect('/cooperatives/edit/:id',['controller'=>'Admins', 'action'=>'index']);
+    $routes->connect('/cooperatives/:page',['controller'=>'Admins', 'action'=>'index'],['page'=>'[0-9]*']);
+    $routes->connect('/cooperatives/:page/create',['controller'=>'Admins', 'action'=>'index']);
+    $routes->connect('/cooperatives/:page/edit/:id',['controller'=>'Admins', 'action'=>'index']);
     $routes->connect('/cooperatives/maps', ['controller' => 'Cooperatives', 'action' => 'maps']);
 
     $routes->connect('/profile', ['controller' => 'Admins', 'action' => 'index']);
 
-    $routes->connect('/sessions', ['controller' => 'Admins', 'action' => 'index']);
-    $routes->connect('/sessions/create', ['controller' => 'Admins', 'action' => 'index']);
-    $routes->connect('/sessions/edit/:id', ['controller' => 'Admins', 'action' => 'index']);
+    $routes->connect('/sessions/:page', ['controller' => 'Admins', 'action' => 'index'],['page'=>'[0-9]*']);
+    $routes->connect('/sessions/:page/create', ['controller' => 'Admins', 'action' => 'index']);
+    $routes->connect('/sessions/:page/edit/:id', ['controller' => 'Admins', 'action' => 'index']);
 
-    $routes->connect('/reports/:session_id', ['controller' => 'Admins', 'action' => 'index']);
+    $routes->connect('/reports/:session_id', ['controller' => 'Admins', 'action' => 'index'],['page'=>'[0-9]*']);
     $routes->connect('/reports/:session_id/create', ['controller' => 'Admins', 'action' => 'index']);
     $routes->connect('/reports/:session_id/edit/:id', ['controller' => 'Admins', 'action' => 'index']);
+    $routes->connect('/reports/:session_id/view/:id', ['controller' => 'Admins', 'action' => 'index']);
 
 });
 

@@ -43,13 +43,61 @@
 		<div class="column">
 				<div class="tabs">
 				  <ul>
-				    <li class="tabs-cooperative-link is-active"><a ng-click="currenTab='tabular'" class="tabs-cooperative-item">Tableau</a></li>
-				    <li class="tabs-cooperative-link"><a ng-click="currenTab='cards'" class="tabs-cooperative-item">Carte</a></li>
-				    <li class="tabs-cooperative-link"><a ng-click="currenTab='maps'" class="tabs-cooperative-item">Maps</a></li>
+				    <li class="tabs-cooperative-link is-active"><a ng-click="currenTab='tabular'" class="tabs-cooperative-item button">
+					<span class="icon">
+						<i class="fa fa-table"></i>
+					</span>
+					<span>Tableau</span>
+				    </a></li>
+				    <li class="tabs-cooperative-link"><a ng-click="currenTab='cards'" class="tabs-cooperative-item button">
+				      <span class="icon">
+				      	<i class="fa fa-object-group"></i>
+				      </span> 
+						<span>fluid</span>
+				       </a></li>
+				    <li class="tabs-cooperative-link"><a ng-click="currenTab='maps'" class="tabs-cooperative-item button">
+  						<span class="icon">
+  							<i class="fa fa-map-marker"></i>
+  						</span>
+  						<span>Maps</span>
+				       </a></li>
 				  </ul>
 				</div>
 		</div>
 	</div>
+	<!-- Pagintaion module -->
+     	<div class="level is-mobile is-pad-bot-30" ng-hide="currenTab == 'maps'">
+     		<div class="level-left">
+     			<div class="span level-item">
+     				&nbsp;
+     			</div>
+     		</div>
+     		<div class="level-right">
+				<div class="field has-addons level-item">
+				  <p class="control">
+				    <a class="button is-intercoton-green" ng-click="previous_page()" ng-disabled="is_loading">
+				      <span class="icon is-small">
+				        <i class="fa fa-chevron-left"></i>
+				      </span>
+				      <span class="has-text-weight-semibold">Précédent</span>
+				    </a>
+				  </p>
+				  <p class="control">
+				    <a class="button is-static is-disabled">
+				      <span ng-bind="pagination.current_page" ng-hide="is_loading">1</span> sur <span ng-bind="pagination.all_pages" ng-hide="is_loading">45</span>
+				    </a>
+				  </p>
+				  <p class="control">
+				    <a class="button is-intercoton-green" ng-click="next_page()" ng-disabled="is_loading">
+				      <span class="has-text-weight-semibold">Suivant</span>
+				      <span class="icon is-small">
+				        <i class="fa fa-chevron-right"></i>
+				      </span>
+				    </a>
+				  </p>
+				</div>
+     		</div>
+     	</div>
 
 	<!-- Switch Wrapper -->
 	<div ng-switch="currenTab">
@@ -91,7 +139,7 @@
 											  </div>
 											  <div class="dropdown-menu" id="dropdown-menu" role="menu">
 											    <div class="dropdown-content">
-													 <a ui-sref="admins.cooperatives.edit({cooperative_id:cooperative.id})" class="dropdown-item">
+													 <a ui-sref="admins.cooperatives.edit({cooperative_id:cooperative.id,page_id:1})" class="dropdown-item">
 											            	Modifier la coopérative
 													 </a>
 
@@ -110,7 +158,7 @@
 				</table>
 		</div>
 		<div ng-switch-when="cards">
-			<div class="columns is-multilined">
+			<div class="columns is-multilined" style="overflow-x:auto; overflow-y: hidden;">
 				<div class="column is-4" ng-repeat="cooperative in cooperatives| orderBy:default_cooperative_order | filter:filter_keys">
 					<div class="card hvr-float-shadow is-pointer">
 					  <div class="card-image">
@@ -170,6 +218,39 @@
 			<div ng-include="'/admins/cooperatives/maps'"></div>
 		</div>
 	</div>
+	<!-- Pagintaion module -->
+     	<div class="level is-mobile is-pad-bot-30"  ng-hide="currenTab == 'maps'">
+     		<div class="level-left">
+     			<div class="span level-item">
+     				&nbsp;
+     			</div>
+     		</div>
+     		<div class="level-right">
+				<div class="field has-addons level-item">
+				  <p class="control">
+				    <a class="button is-intercoton-green" ng-click="previous_page()" ng-disabled="is_loading">
+				      <span class="icon is-small">
+				        <i class="fa fa-chevron-left"></i>
+				      </span>
+				      <span class="has-text-weight-semibold">Précédent</span>
+				    </a>
+				  </p>
+				  <p class="control">
+				    <a class="button is-static is-disabled">
+				      <span ng-bind="pagination.current_page" ng-hide="is_loading">1</span> sur <span ng-bind="pagination.all_pages" ng-hide="is_loading">45</span>
+				    </a>
+				  </p>
+				  <p class="control">
+				    <a class="button is-intercoton-green" ng-click="next_page()" ng-disabled="is_loading">
+				      <span class="has-text-weight-semibold">Suivant</span>
+				      <span class="icon is-small">
+				        <i class="fa fa-chevron-right"></i>
+				      </span>
+				    </a>
+				  </p>
+				</div>
+     		</div>
+     	</div>
 
 <script>
 	    $('.tabs-cooperative-link').on('click', function(){

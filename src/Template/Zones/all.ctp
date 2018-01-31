@@ -34,6 +34,42 @@
 		</div>
 	</div>
 
+<div>
+	<!-- Pagintaion module -->
+     	<div class="level is-mobile is-pad-bot-30">
+     		<div class="level-left">
+     			<div class="span level-item">
+     				&nbsp;
+     			</div>
+     		</div>
+     		<div class="level-right">
+				<div class="field has-addons level-item">
+				  <p class="control">
+				    <a class="button is-intercoton-green" ng-click="previous_page()" ng-disabled="is_loading">
+				      <span class="icon is-small">
+				        <i class="fa fa-chevron-left"></i>
+				      </span>
+				      <span class="has-text-weight-semibold">Précédent</span>
+				    </a>
+				  </p>
+				  <p class="control">
+				    <a class="button is-static is-disabled">
+				      <span ng-bind="pagination.current_page" ng-hide="is_loading">1</span> sur <span ng-bind="pagination.all_pages" ng-hide="is_loading">45</span>
+				    </a>
+				  </p>
+				  <p class="control">
+				    <a class="button is-intercoton-green" ng-click="next_page()" ng-disabled="is_loading">
+				      <span class="has-text-weight-semibold">Suivant</span>
+				      <span class="icon is-small">
+				        <i class="fa fa-chevron-right"></i>
+				      </span>
+				    </a>
+				  </p>
+				</div>
+     		</div>
+     	</div>
+</div>
+
 	<table class="table is-striped is-hoverable is-fullwidth">
 	  <thead>
 	    <tr class="intercoton-skygreen-b">
@@ -46,10 +82,16 @@
 	    </tr>
 	  </thead>
 	  <tbody>
-	  		<tr ng-repeat="zone in $root.zones | orderBy: default_zone_order | filter:filter_keys">
+	  		<tr ng-repeat="zone in $root.zones | orderBy: default_zone_order | filter:filter_keys" ng-class="get_zone_state(zone.deleted)">
 	  			<th>{{zone.id}}</th>
 	  			<td>{{zone.zone_denomination}}</td>
-	  			<td>{{zone.zone_denomination}}</td>
+	  			<td >
+	  			   <span> {{zone.count_cooperatives}} </span>  
+	  			   <span class="icon" ng-click="show_zone_cooperatives(zone.cooperatives,zone.zone_denomination)" ng-if="zone.count_cooperatives > 0">
+	  			   	<i class="fa fa-info-circle"></i>
+	  			   </span>
+	  			</td>
+
 	  			<td>{{zone.created | date:'dd/MM/yyyy HH:mm:ss' }}</td>
 	  			<td>{{zone.modified | date:'dd/MM/yyyy HH:mm:ss'}}</td>
 	  			<td>
@@ -80,4 +122,79 @@
 	  		</tr>
 	  </tbody>
 	 </table>
+	<!-- Pagintaion module -->
+     	<div class="level is-mobile is-pad-bot-30">
+     		<div class="level-left">
+     			<div class="span level-item">
+     				&nbsp;
+     			</div>
+     		</div>
+     		<div class="level-right">
+				<div class="field has-addons level-item">
+				  <p class="control">
+				    <a class="button is-intercoton-green" ng-click="previous_page()" ng-disabled="is_loading">
+				      <span class="icon is-small">
+				        <i class="fa fa-chevron-left"></i>
+				      </span>
+				      <span class="has-text-weight-semibold">Précédent</span>
+				    </a>
+				  </p>
+				  <p class="control">
+				    <a class="button is-static is-disabled">
+				      <span ng-bind="pagination.current_page" ng-hide="is_loading">1</span> sur <span ng-bind="pagination.all_pages" ng-hide="is_loading">45</span>
+				    </a>
+				  </p>
+				  <p class="control">
+				    <a class="button is-intercoton-green" ng-click="next_page()" ng-disabled="is_loading">
+				      <span class="has-text-weight-semibold">Suivant</span>
+				      <span class="icon is-small">
+				        <i class="fa fa-chevron-right"></i>
+				      </span>
+				    </a>
+				  </p>
+				</div>
+     		</div>
+     	</div>
+
+     	<!-- Modal linked cooperatives -->
+     	<div class="modal {{is_active_zone_modal}}">
+		  <div class="modal-background"></div>
+		  <div class="modal-card">
+		    <header class="modal-card-head intercoton-green-b">
+		      <p class="modal-card-title has-text-white">Coopératives rattachées - {{modal_zone}}</p>
+		      <button class="delete" aria-label="close" ng-click="close_modal_linked()"></button>
+		    </header>
+		    <section class="modal-card-body">
+				<!-- Tabular view -->
+				<table class=" table is-fullwidth is-hoverable is-striped">
+					<thead>
+						<tr class="intercoton-skygreen-b">
+							<th>Dénomination</th>
+							<th>Sigle</th>
+							<th>Localisation</th>
+							<th><abbr title="Sous-préfecture">S/P</abbr></th>
+							<th>Date création</th>
+							<th>Dernière modification</th>
+							<th>Date Suppression</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="cooperative in modal_cooperatives" class="">
+							<td>{{cooperative.cooperative_denomination}}</td>
+							<td>{{cooperative.cooperative_sigle}}</td>
+							<td>{{cooperative.cooperative_localisation}}</td>
+							<td ng-if="cooperative.cooperative_sub_prefecture">{{cooperative.cooperative_sub_prefecture}}</td>
+							<td ng-if="!cooperative.cooperative_sub_prefecture">non spécifié</td>
+							<td>{{cooperative.created | date:'dd/MM/yyyy HH:mm:ss' }}</td>
+							<td>{{cooperative.modified | date:'dd/MM/yyyy HH:mm:ss' }}</td>
+							<td>{{cooperative.deleted | date:'dd/MM/yyyy HH:mm:ss' }}</td>
+						</tr>
+					</tbody> 
+				</table>
+		    </section>
+		    <footer class="modal-card-foot">
+		      <button class="button" ng-click="close_modal_linked()">Fermer</button>
+		    </footer>
+		  </div>
+		</div>
 </section>

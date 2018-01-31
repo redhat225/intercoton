@@ -51,17 +51,54 @@ class  ZonesController extends AppController
                 {
                     switch($this->request->query['action']){
                         case 'all':
-                            $zones = $this->Zones->find();
-                            $this->RequestHandler->renderAs($this, 'json');
+                            if(isset($this->request->query['page'])){
+                                $page = $this->request->query['page'];
 
-                            $this->set(compact('zones'));
-                            $this->set('_serialize',['zones']); 
+                                $zones = $this->Zones->find()
+                                                     ->contain(['Cooperatives'])
+                                                     ->limit(30)
+                                                     ->page($page)
+                                                     ->map(function($row){
+                                                        $row->count_cooperatives = count($row->cooperatives);
+                                                        return $row;
+                                                     });
+
+                            }else{
+                                $zones = $this->Zones->find();
+                            }
+                              $zones_all = $this->Zones->find()->count();
+                              $zones_pages = ceil($zones_all/30);  
+
+                            $this->RequestHandler->renderAs($this, 'json');
+                            $this->set(compact('zones','zones_all','zones_pages'));
+                            $this->set('_serialize',['zones','zones_all','zones_pages']); 
                         break;
                     }
 
                 }
 
            }
+        }
+    }
+
+    public function getStats(){
+        if($this->request->is('ajax')){
+            if($this->request->is('get')){
+                $stats = $this->Zones->find()
+                                    ->contain(['Cooperatives'])
+                                    ->map(function($row){
+                                        $row->count_cooperatives = count($row->cooperatives);
+                                        if($row->count_cooperatives>0)
+                                        return $row;
+                                    else
+                                        return false;
+                                    });
+
+                $this->RequestHandler->renderAs($this, 'json');
+                $this->set(compact('stats'));
+                $this->set('_serialize',['stats']);
+
+            }
         }
     }
 
@@ -82,8 +119,7 @@ class  ZonesController extends AppController
                     array_push($zones_array, $zone_item);
                 }
                 $zones  = $this->Zones->newEntities($zones_array);
-                if(!$zones->errors())
-                {
+
                     if($this->Zones->saveMany($zones)){
                         $this->RequestHandler->renderAs($this, 'json');
                         $response = 'ok';
@@ -91,8 +127,7 @@ class  ZonesController extends AppController
                         $this->set('_serialize',['response']);
                     }else
                       throw new Exception\BadRequestException(__('error')); 
-                }else
-                      throw new Exception\BadRequestException(__('error')); 
+
 
 
             }
@@ -104,6 +139,13 @@ class  ZonesController extends AppController
             if($this->request->is('get')){
                 if(isset($this->request->query['action'])){
                     $zone = $this->Zones->get($this->request->query['id']);
+
+                    $role = $this->request->session()->read('Auth.User.role.role_denomination');
+                    if($role == "auditor"){
+                        if($zone->created_by != $this->request->session()->read('Auth.User.id'))
+                            throw new Exception\ForbiddenException(__('forbidden'));
+                    }
+
                     if($zone){
                         $this->RequestHandler->renderAs($this, 'json');
                         $this->set(compact('zone'));
@@ -114,26 +156,31 @@ class  ZonesController extends AppController
             }
             if($this->request->is('post')){
                 $data  = $this->request->data;
-                $zone = $this->Zones->get($data['zone']['id']||$data['zone']);
-                if(!empty($zone))
+                if(isset($data['action']))
                 {
                     switch($data['action']){
                         case 'edit-zone':
                             $data['zone']['action'] = 'edit-zone';
-                            $zone = $this->Zones->patchEntity($zone, $data['zone']);
-                            $zone->deleted = $zone->deleted;
+                            $zone = $this->Zones->get($data['zone']['id']);
+                            $zone->zone_denomination = strtoupper($data['zone']['zone_denomination']);
                         break;
 
                         case 'activate_zone':
+                            $zone = $this->Zones->get($data['zone']);
                             $zone->deleted = null;
+                            $zone->dirty('deleted', true);
                         break;
 
                         case 'desactivate_zone':
-                            $zone->deleted = new  \DateTime('NOW');
+                         $zone = $this->Zones->get($data['zone']);
+                            $zone->deleted = new \DateTime('NOW');
+                            $zone->dirty('deleted', true);
                         break;
                     }
+
                     if($this->Zones->save($zone))
                     {
+                        $response = ['message' => 'ok'];
                         $this->RequestHandler->renderAs($this, 'json');
                         $this->set(compact('response'));
                         $this->set('_serialize',['response']); 

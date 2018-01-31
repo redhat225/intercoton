@@ -47,26 +47,49 @@ class  SessionsController extends AppController
         if($this->request->is('ajax')){
             if($this->request->is('get')){
                 if(isset($this->request->query['action'])){
-                    $auditor_accounts = TableRegistry::get('AuditorAccounts'); 
-                    $sessions = $this->Sessions->find()
-                                                ->contain(['Reports'])
-                                                ->map(function($row) use ($auditor_accounts){
-                                                    $account = $auditor_accounts->find()
-                                                                                ->contain(['Auditors'])
-                                                                                ->where(['AuditorAccounts.id'=>$row->created_by])
-                                                                                ->first();
-                                                    $row->creator = $account->auditor->auditor_fullname;
-                                                    return $row;
-                                                });
+                    $auditor_accounts = TableRegistry::get('AuditorAccounts');
+
+                    if(isset($this->request->query['page'])){
+                        $page = $this->request->query['page'];
+
+
+                        $sessions = $this->Sessions->find()
+                                                    ->contain(['Reports'])
+                                                    ->limit(30)
+                                                    ->page($page)
+                                                    ->map(function($row) use ($auditor_accounts){
+                                                        $account = $auditor_accounts->find()
+                                                                                    ->contain(['Auditors'])
+                                                                                    ->where(['AuditorAccounts.id'=>$row->created_by])
+                                                                                    ->first();
+                                                        $row->creator = $account->auditor->auditor_fullname;
+                                                        return $row;
+                                                    });
+                    }else{
+                        $sessions = $this->Sessions->find()
+                                                    ->contain(['Reports'])
+                                                    ->map(function($row) use ($auditor_accounts){
+                                                        $account = $auditor_accounts->find()
+                                                                                    ->contain(['Auditors'])
+                                                                                    ->where(['AuditorAccounts.id'=>$row->created_by])
+                                                                                    ->first();
+                                                        $row->creator = $account->auditor->auditor_fullname;
+                                                        return $row;
+                                                    });
+                    }
+
 
                     foreach ($sessions as $session) {
                         $count_reports = count($session->reports);
                         $session->count_reports = $count_reports;
                     }
 
+                    $session_all = $this->Sessions->find()->count();
+                    $session_pages = ceil($session_all/30);
+
                     $this->RequestHandler->renderAs($this, 'json');
-                    $this->set(compact('sessions'));
-                    $this->set('_serialize',['sessions']);
+                    $this->set(compact('sessions','session_pages'));
+                    $this->set('_serialize',['sessions','session_pages']);
                 }
             }
         }
@@ -111,7 +134,6 @@ class  SessionsController extends AppController
                 $data['action'] = 'edit';
                 $session = $this->Sessions->get($data['id']);
                 $session = $this->Sessions->patchEntity($session,$data);
-
                 if(!$session->errors())
                 {
                     if($this->Sessions->save($session)){

@@ -4,7 +4,7 @@
 					<nav class="breadcrumb" aria-label="breadcrumbs">
 					  <ul>
 					    <li><a ui-sref="admins.dashboard">Dashboard</a></li>
-					    <li><a ui-sref="admins.zones">Zones</a></li>
+					    <li><a ui-sref="admins.zones({page_id:1})">Zones</a></li>
 					    <li class="is-active"><a >Modifier une zone</a></li>
 					  </ul>
 					</nav>
@@ -14,7 +14,7 @@
 
 	<h3 class="subtitle">Formulaire Modification de zone</h3>
 
-	<form name="createZoneForm" ng-submit="zonescontroller.edit(zonescontroller.zone)">
+	<form name="createZoneForm" ng-submit="edit(zone)">
 		<div class="field is-horizontal">
 			<div class="field-label">
 				<label for="" class="label">
@@ -24,7 +24,7 @@
 			<div class="field-body">
 				<div class="field">
 					<div class="control has-icons-left has-icons-right">
-						<input type="text" name="zone_denomination" class="input is-uppercase" ng-model="zonescontroller.zone.zone_denomination" ng-maxlength="100" required>
+						<input type="text" name="zone_denomination" class="input is-uppercase" ng-model="zone.zone_denomination" ng-maxlength="100" required>
 
 						<span class="icon is-small is-left">
 							<i class="fa fa-globe"></i>
@@ -45,10 +45,10 @@
 			<div class="field-body">
 				<div class="field is-grouped">
 					<div class="control has-icons-left has-icons-right">
-						<button class="button is-intercoton-green has-text-weight-bold" ng-disabled="createZoneForm.$invalid || zonescontroller.is_loading" type="submit">Valider</button>
+						<button class="button is-intercoton-green has-text-weight-bold" ng-disabled="createZoneForm.$invalid || is_loading" type="submit">Valider</button>
 					</div>
 					<div class="control">
-						<button class="button is-warning has-text-weight-bold" type="reset" ui-sref="admins.zones">Annuler</button>
+						<button class="button is-warning has-text-weight-bold" type="reset" ng-click="reset_zones()">Annuler</button>
 					</div>
 				</div>
 			</div>

@@ -4,7 +4,7 @@
 					<nav class="breadcrumb" aria-label="breadcrumbs">
 					  <ul>
 					    <li><a ui-sref="admins.dashboard">Dashboard</a></li>
-					    <li><a ui-sref="admins.cooperatives">Utilisateurs</a></li>
+					    <li><a ui-sref="admins.auditors({page_id:1})">Utilisateurs</a></li>
 					    <li class="is-active"><a >Modifier un utilisateur</a></li>
 					  </ul>
 					</nav>

@@ -16,7 +16,10 @@ namespace App\Controller;
 
 use Cake\Controller\Controller;
 use Cake\Event\Event;
-
+use Cake\Utility\Security;
+use \Firebase\JWT\JWT;
+use \Exception as MainException;
+use Cake\Network\Exception;
 /**
  * Application Controller
  *
@@ -51,12 +54,12 @@ class AppController extends Controller
                         'userModel' => 'AuditorAccounts',
                         'finder' => 'auth'
                     ]
-                ]
+                ],
+                'authorize' => 'Controller'
         ]);
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
         $this->loadComponent('Cookie');
-        // $this->Cookie->delete('WelcomePca');
 
 
         /*
@@ -70,30 +73,32 @@ class AppController extends Controller
 
 
     public function isAuthorized($user = null){
-        return true;
-        // if($this->request->session()->read('Auth'))
-        // {
-        //     // if($this->request->is('ajax'))
-        //     //     $jwt = $this->request->env('HTTP_X_AUTHORIZATION');
-        //     // else
-        //     //     $jwt = $this->request->is('get')?$this->request->getParam('jwt'):$this->request->data['jwt'];
+        if($this->request->is('ajax')){
+                $authorization_header = $this->request->env('HTTP_AUTHORIZATION');
+                $evaluation_jwt = preg_split("/\s/", $authorization_header);
+                $jwt = $evaluation_jwt[1];
+              
+                $decoded_jwt = $this->checking($jwt);
 
-        //     // if($jwt)
-        //     // {
-        //     //     try{
-        //     //          $decoded_jwt = JWT::decode($jwt, Security::salt(), array('HS256'));
-        //     //      }catch(MainException $e){
-        //     //         $decoded_jwt = false;
-        //     //     }
+                if($decoded_jwt == false)
+                  throw new Exception\ForbiddenException(__('forbidden'));
+                else
+                {
+                    return true;
+                }
+        }else
+         return true;
+      }
 
-        //     //     if($decoded_jwt === false)
-        //     //         throw new Exception\ForbiddenException(__('error'));
-        //     // }
-        //     // else
-        //     //     throw new Exception\ForbiddenException(__('error'));
-        //     return true;
-        // }else
-        // return false;
+
+      private function checking($jwt){
+        $key = Security::salt();
+        try{
+             $decoded = JWT::decode($jwt,$key,array('HS256'));
+        }catch(MainException $e){
+            $decoded = false;
+        }
+        return $decoded;
       }
 
 }

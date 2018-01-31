@@ -78,7 +78,39 @@ class  AdminsController extends AppController
     }
 
     public function home(){
+        $role_denomination = $this->request->session()->read('Auth.User.role.role_denomination');
+        $this->set(compact('role_denomination'));
+        $this->set('_serialize',['role_denomination']);
+    }
 
+    public function briefStats(){
+        if($this->request->is('ajax')){
+            if($this->request->is('get')){
+                $cooperatives = TableRegistry::get('Cooperatives');
+                $zones = TableRegistry::get('Zones');
+                $auditor_accounts = TableRegistry::get('AuditorAccounts');
+                $reports = TableRegistry::get('Reports');
+
+                $role = $this->request->session()->read('Auth.User.role.role_denomination');
+                if($role =="auditor"){
+                    $cooperatives_count = 0;
+                    $zones_count = 0;
+                    $auditor_accounts_count = 0;
+                    $reports_count = $reports->find()->Where(['Reports.auditor_account_id'=>$this->request->session()->read('Auth.User.id')])->count();
+                }else
+                {
+                    $cooperatives_count = $cooperatives->find()->count();
+                    $zones_count = $zones->find()->count();
+                    $auditor_accounts_count = $auditor_accounts->find()->count();
+                    $reports_count = $reports->find()->count();
+                }
+
+
+                $this->RequestHandler->renderAs($this, 'json');
+                $this->set(compact('cooperatives_count','zones_count','auditor_accounts_count','reports_count'));
+                $this->set('_serialize',['cooperatives_count','zones_count','auditor_accounts_count','reports_count']);
+            }
+        }
     }
 
     public function login(){
@@ -93,14 +125,16 @@ class  AdminsController extends AppController
                         $this->RequestHandler->renderAs($this, 'json');
                         //generate JWT
                         $key = Security::salt();
+                        $iat = time();
                         $token = [
-                            "iat" =>  new \DateTime('NOW'),
                             "iss" => $this->request->env('SERVER_NAME'),
+                            "iat" =>  $iat,
                             "data" => $auth
                         ];
                         $jwt = JWT::encode($token, $key);
-                        $this->set(compact('jwt'));
-                        $this->set('_serialize',['jwt']);
+
+                        $this->set(compact('jwt','decoded_jwt'));
+                        $this->set('_serialize',['jwt','decoded_jwt']);
 
                     }else
                   throw new Exception\ForbiddenException(__('Forbidden'));
@@ -151,7 +185,9 @@ class  AdminsController extends AppController
     }
 
     public function dashboard(){
-        
+        $role_denomination = $this->request->session()->read('Auth.User.role.role_denomination');
+        $this->set(compact('role_denomination'));
+        $this->set('_serialize',['role_denomination']);
     }
 
 

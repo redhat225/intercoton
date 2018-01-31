@@ -12,12 +12,15 @@
 
 										<?php foreach ($values as $value) :?>
 										   <div class="level-item">
-											     <div ng-if="!report.reports.item<?= $token ?>.evidence<?= $token ?><?= $value ?>" ngf-drop ngf-select ngf-max-size="3MB" ng-model="report.reports.item<?= $token ?>.evidence<?= $token ?><?= $value ?>" class="drop-box button is-hgt-130 is-wth-130">
+											     <div ng-if="!report.reports.item<?= $token ?>.evidences.evidence<?= $token ?><?= $value ?>" ngf-drop ngf-select ngf-max-size="3MB" ng-model="report.reports.item<?= $token ?>.evidences.evidence<?= $token ?><?= $value ?>" class="drop-box button is-hgt-130 is-wth-130">
 													<img src="/img/assets/forms/image_upload_drag_area.png" alt="">
 												</div>
-						  						<figure ng-if="report.reports.item<?= $token ?>.evidence<?= $token ?><?= $value ?>" class="image is-hgt-130 is-wth-130"> 
-						  							 <img ngf-thumbnail="report.reports.item<?= $token ?>.evidence<?= $token ?><?= $value ?>" >
+						  						<figure ng-if="report.reports.item<?= $token ?>.evidences.evidence<?= $token ?><?= $value ?>" class="image is-hgt-130 is-wth-130"> 
+						  							 <img ngf-thumbnail="report.reports.item<?= $token ?>.evidences.evidence<?= $token ?><?= $value ?>" >
 						  						</figure>
+												<!-- change photo -->
+												<button type="button" class="button is-danger is-mar-bot-95" ng-show="report.reports.item<?= $token ?>.evidences.evidence<?= $token ?><?= $value ?>" ng-click="report.reports.item<?= $token ?>.evidences.evidence<?= $token ?><?= $value ?> = null"><span class="icon"><i class="fa fa-close"></i></span>
+												</button>
 						  					</div>
 										<?php endforeach; ?>
 									</div>
@@ -37,7 +40,7 @@
 					<div class="field-body">
 						<div class="field">
 							<div class="control">
-								<textarea name="myName" ui-tinymce="tinymceOptions" required ng-model="report.reports.item<?= $token ?>.report_item_problem_<?= $token ?>" class="textarea"></textarea>
+								<textarea name="myName" ui-tinymce="tinymceOptions" required ng-model="report.reports.item<?= $token ?>.contents.report_item_problem_<?= $token ?>" class="textarea"></textarea>
 							</div>
 						</div>
 					</div>
@@ -52,7 +55,7 @@
 					<div class="field-body">
 						<div class="field">
 							<div class="control">
-								<textarea name="myName" ui-tinymce="tinymceOptions" required ng-model="report.reports.item<?= $token ?>.report_item_recommandation_<?= $token ?>" class="textarea"></textarea>
+								<textarea name="myName" ui-tinymce="tinymceOptions" required ng-model="report.reports.item<?= $token ?>.contents.report_item_recommandation_<?= $token ?>" class="textarea"></textarea>
 							</div>
 						</div>
 					</div>

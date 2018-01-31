@@ -34,10 +34,12 @@ $pageDescription = 'Intercoton: Organisation interprofessionnelle agricole de la
     <?= $this->Html->css('../node_modules/toastr/build/toastr.min') ?>
     <?= $this->Html->css('../node_modules/hover.css/css/hover-min.css') ?>
     <?= $this->Html->css('loading-bar-custom') ?>
+    <?= $this->Html->css('../node_modules/angular-colorbox/themes/dark/colorbox-darktheme') ?>
 
     <?= $this->fetch('css') ?>
     <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
     <?= $this->Html->script('../bower_components/tinymce/tinymce') ?>
+    <?= $this->Html->script('../node_modules/angular-colorbox/bower_components/jquery-colorbox/jquery.colorbox') ?>
     
     <?= $this->Html->script('../node_modules/angular/angular.min') ?>
     <?= $this->Html->script('../node_modules/@uirouter/angularjs/release/angular-ui-router.min') ?>
@@ -46,6 +48,10 @@ $pageDescription = 'Intercoton: Organisation interprofessionnelle agricole de la
     <?= $this->Html->script('../node_modules/ng-file-upload/dist/ng-file-upload-all.min') ?>
     <?= $this->Html->script('../node_modules/angular-loading-bar/src/loading-bar') ?>
     <?= $this->Html->script('../bower_components/angular-ui-tinymce/src/tinymce') ?>
+    <?= $this->Html->script('../node_modules/angular-colorbox/js/angular-colorbox') ?>
+    <?= $this->Html->script('../node_modules/chart.js/dist/Chart.min') ?>
+    <?= $this->Html->script('../node_modules/angular-chart.js/dist/angular-chart.min') ?>
+    
     <base href="/admins/">
 </head>
 <body ng-app="intercoton">
