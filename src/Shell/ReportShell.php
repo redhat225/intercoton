@@ -41,7 +41,7 @@ class ReportShell extends Shell
           }
           else
           {
-            $client->delete($job);
+            $client->bury($job);
             $this->out('Job Burried');
           }
     }
@@ -149,7 +149,7 @@ class ReportShell extends Shell
           }
           else
           {
-            $client_2->delete($job);
+            $client_2->bury($job);
             $this->out('Job Burried');
           }
     }
@@ -229,7 +229,7 @@ class ReportShell extends Shell
           }
           else
           {
-            $client_3->delete($job);
+            $client_3->bury($job);
             $this->out('Job Burried');
           }
     }

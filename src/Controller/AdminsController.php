@@ -192,6 +192,7 @@ class  AdminsController extends AppController
 
 
     public function logout(){
+        $this->Cookie->delete('WelcomePca');
         return $this->redirect($this->Auth->logout());
     }
 }

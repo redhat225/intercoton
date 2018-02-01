@@ -99,6 +99,10 @@ angular.module('intercoton',['ui.router','ngFileUpload','angular-loading-bar','u
 			url: '/edit/:report_id',
 			templateUrl: '/reports/edit',
 			controller: 'ReportsController as reportsctrl'
+		}).state('admins.archives',{
+			url:'archives',
+			templateUrl:'/archives',
+			controller:"ArchivesController as archivesctrl"
 		})
 
 		$urlRouterProvider.otherwise('/dashboard');
