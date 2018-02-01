@@ -619,6 +619,11 @@ angular.module('intercoton',['ui.router','ngFileUpload','angular-loading-bar','u
 		$scope.load_auditors($page_zone);
 
 		$scope.upload = function(auditor){
+			if(auditor.account.hasOwnProperty("account_avatar_candidate")){
+			  if(auditor.account.account_avatar_candidate == "")
+				delete auditor.account.account_avatar_candidate;
+		    }
+
 			$scope.is_loading = 'is-loading';
 			Upload.upload({
 				url: '/auditors/create',
