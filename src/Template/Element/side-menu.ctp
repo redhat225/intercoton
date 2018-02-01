@@ -114,14 +114,14 @@
 				  </div>
 			</div>
 		</div>
-		<div class="menu-item-wrapper has-text-left is-pad-top-10 is-pad-bot-10"  ui-sref-active="is-active">
+<!-- 		<div class="menu-item-wrapper has-text-left is-pad-top-10 is-pad-bot-10"  ui-sref-active="is-active">
 			<a class="menu-item is-pad-lft-25" ui-sref="admins.archives">
 				<span class="icon is-ft-sz-20">
 					<i class="fa fa-archive menu-icon"></i>
 				</span>
 				<span class="has-weight-semibold is-pad-lft-15 menu-text">Archives</span>	
 			</a>
-		</div>
+		</div> -->
 	<?php endif; ?>
 		<div class="menu-item-wrapper has-text-left is-pad-top-10 is-pad-bot-10" ui-sref-active="is-active">
 			<a class="menu-item is-pad-lft-25" href="/admins/logout" target="_self">
