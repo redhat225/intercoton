@@ -22,7 +22,6 @@ class ReportShell extends Shell
   public function initialize()
   {
         parent::initialize();
-        $this->loadModel('Reports');
   }
 
   public function listen()
@@ -99,6 +98,7 @@ class ReportShell extends Shell
                                                             $link = $response_2_data['url'];
                                                             $pattern = "/dl=0/";
                                                             $link_main_photo_candidate = preg_replace($pattern, "dl=1", $link);
+                                                            $this->loadModel('Reports');
 
                                                             $indexed_report = $this->Reports->get($payload['report_id']);
                                                             $report_content = json_decode($indexed_report->report_content);
@@ -188,6 +188,7 @@ class ReportShell extends Shell
                                                 $deleted = false;
 
                                             if($deleted){
+                                              $this->loadModel('Reports');
                                                     $indexed_report = $this->Reports->get($payload['report_id']);
                                                     $report_content = json_decode($indexed_report->report_content);
                                                     foreach ($report_content as $y => $z){
