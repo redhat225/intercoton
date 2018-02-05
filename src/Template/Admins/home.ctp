@@ -2,7 +2,7 @@
 <?= $this->element('navbar') ?>
 
 <div class="columns is-mar-bot-0">
-	<div class="column is-2 is-pad-rgt-0" style="position:relative;">
+	<div class="column is-2 is-pad-rgt-0 is-pad-bot-150" style="position:relative;">
 		<?= $this->element('side-menu') ?>
 		<?= $this->element('about-me') ?>
 
