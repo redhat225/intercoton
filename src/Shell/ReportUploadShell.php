@@ -91,7 +91,6 @@ class ReportUploadShell extends Shell
                                                             $link = $response_2_data['url'];
                                                             $pattern = "/dl=0/";
                                                             $link_main_photo_candidate = preg_replace($pattern, "dl=1", $link);
-                                                            $this->loadModel('Reports');
 
                                                             $indexed_report = $this->Reports->get($payload['report_id']);
                                                             $report_content = json_decode($indexed_report->report_content);
@@ -101,10 +100,21 @@ class ReportUploadShell extends Shell
                                                                 $z->evidences->$a = $link_main_photo_candidate;
                                                               }
                                                             }
-                                                            $indexed_report->report_content = json_encode($report_content);
-                                                            $indexed_report->dirty('report_content',true);
-                                                            if(!$this->Reports->save($indexed_report))
-                                                              $upload = false;
+
+                                                            $save_upload_payload = [
+                                                              'payload' => json_encode($report_content),
+                                                              'id_report' => $payload['report_id']
+                                                            ];
+                                                            
+                                                            $pheanstalk_save = new Pheanstalk('127.0.0.1');
+                                                            $pheanstalk_save->useTube('ReportSaveUploadTube');
+                                                            $pheanstalk_save->put(json_encode($save_upload_payload));
+
+
+                                                            // $indexed_report->report_content = json_encode($report_content);
+                                                            // $indexed_report->dirty('report_content',true);
+                                                            // if(!$this->Reports->save($indexed_report))
+                                                            //   $upload = false;
                                                         }else
                                                           $upload = false;
 
