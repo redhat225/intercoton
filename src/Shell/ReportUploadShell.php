@@ -101,20 +101,14 @@ class ReportUploadShell extends Shell
                                                               }
                                                             }
 
-                                                            $save_upload_payload = [
-                                                              'payload' => json_encode($report_content),
-                                                              'id_report' => $payload['report_id']
-                                                            ];
-                                                            
-                                                            $pheanstalk_save = new Pheanstalk('127.0.0.1');
-                                                            $pheanstalk_save->useTube('ReportSaveUploadTube');
-                                                            $pheanstalk_save->put(json_encode($save_upload_payload));
+                                                            // $save_upload_payload = [
+                                                            //   'payload' => json_encode($report_content),
+                                                            //   'id_report' => $payload['report_id']
+                                                            // ];
 
-
-                                                            // $indexed_report->report_content = json_encode($report_content);
-                                                            // $indexed_report->dirty('report_content',true);
-                                                            // if(!$this->Reports->save($indexed_report))
-                                                            //   $upload = false;
+                                                            // $pheanstalk_save = new Pheanstalk('127.0.0.1');
+                                                            // $pheanstalk_save->useTube('ReportSaveUploadTube');
+                                                            // $pheanstalk_save->put(json_encode($save_upload_payload));
                                                         }else
                                                           $upload = false;
 
