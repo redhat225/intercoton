@@ -93,7 +93,6 @@ class ReportUploadShell extends Shell
                                                             $link_main_photo_candidate = preg_replace($pattern, "dl=1", $link);
 
                                                             $this->loadModel('Reports');
-
                                                             $indexed_report = $this->Reports->get($payload['report_id']);
                                                             $report_content = json_decode($indexed_report->report_content);
 
@@ -110,9 +109,8 @@ class ReportUploadShell extends Shell
                                                             ];
 
                                                             $pheanstalk_save = new Pheanstalk('127.0.0.1');
-                                                            $this->out($pheanstalk_save->listTubesWatched());
-                                                            // $pheanstalk_save->useTube('ReportSaveUploadTube');
-                                                            // $pheanstalk_save->put(json_encode($save_upload_payload));
+                                                            $pheanstalk_save->useTube('ReportSaveUploadTube');
+                                                            $pheanstalk_save->put(json_encode($save_upload_payload));
                                                         }else
                                                           $upload = false;
 
