@@ -110,8 +110,9 @@ class ReportUploadShell extends Shell
                                                             ];
 
                                                             $pheanstalk_save = new Pheanstalk('127.0.0.1');
-                                                            $pheanstalk_save->useTube('ReportSaveUploadTube');
-                                                            $pheanstalk_save->put(json_encode($save_upload_payload));
+                                                            $this->out($pheanstalk_save->listTubesWatched());
+                                                            // $pheanstalk_save->useTube('ReportSaveUploadTube');
+                                                            // $pheanstalk_save->put(json_encode($save_upload_payload));
                                                         }else
                                                           $upload = false;
 
