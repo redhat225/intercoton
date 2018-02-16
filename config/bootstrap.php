@@ -209,7 +209,9 @@ Type::build('timestamp')
 
 // Custom Configuration
 Configure::write('dropbox-api',[
-    'token' => 'QeN7SOgd0OAAAAAAAAAA2KKNLVqF2gM6inZYeA9VBfoHa9f9yGBh0R2YzrFMK2Ru'
+    'token' => 's9Cz6LGABvAAAAAAAAAABvnNvwmF6Z72W8aNsRy0sl2kuQXw3B04AI4WsoYUprNZ'
+// original token
+    // QeN7SOgd0OAAAAAAAAAA2KKNLVqF2gM6inZYeA9VBfoHa9f9yGBh0R2YzrFMK2Ru
 ]);
 
 
