@@ -28,7 +28,6 @@ class RoleContentsTableTest extends TestCase
         'app.roles',
         'app.auditor_accounts',
         'app.auditors',
-        'app.auditors_roles',
         'app.reports',
         'app.cooperatives',
         'app.zones',

@@ -1,6 +1,5 @@
 angular.module('intercoton',['ui.router','ngFileUpload','angular-loading-bar','ui.tinymce','colorbox','chart.js'])
 	.run(['$rootScope','$templateCache','$transitions', function($rootScope, $templateCache,$transitions){
-		
 		$transitions.onStart({to:'admins.**'},function(trans){
 			$rootScope.preloader = true;
 		});	
@@ -8,11 +7,14 @@ angular.module('intercoton',['ui.router','ngFileUpload','angular-loading-bar','u
 			$rootScope.preloader = false;
 			$templateCache.removeAll();
 		});	
+
+		$transitions.onError({}, function(trans){
+			toastr.error("Veuillez vous reconnecter/ Vous n'avez peut être pas les droits pour accéder à cette ressource");
+		});
 	}])
 	.config(['$httpProvider','$stateProvider','$urlRouterProvider','$locationProvider', function($httpProvider, $stateProvider, $urlRouterProvider, $locationProvider){
 		$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 		$httpProvider.defaults.headers.common['Authorization'] = 'bearer '+localStorage.getItem('token');
-
 		// Activate Html5 Mode + hashPrefix
 		$locationProvider.html5Mode(true);
 		$locationProvider.hashPrefix('!');
@@ -203,7 +205,7 @@ angular.module('intercoton',['ui.router','ngFileUpload','angular-loading-bar','u
 			})
 		}
 
-	}]).controller('ProfilesController', ['$scope','ProfileService', function($scope,ProfileService){
+	}]).controller('ProfilesController', ['$scope','ProfileService','$state', function($scope,ProfileService,$state){
 		$scope.get_profile = function(){
 			ProfileService.get_profile().then(function(resp){
 			    $scope.profile = resp.data.profile;
@@ -222,6 +224,7 @@ angular.module('intercoton',['ui.router','ngFileUpload','angular-loading-bar','u
 			$scope.is_loading = true;
 			ProfileService.update_profile($scope.profile).then(function(resp){
 				toastr.success('Vos informations ont été modifiées, veuillez vous reconnecter pour constater les changements')
+				$state.go('admins.dashboard',{reload:true});
 			}, function(err){
 				toastr.error('une erreur est survenu, veuillez réessayers');
 			}).finally(function(){
@@ -1191,8 +1194,7 @@ angular.module('intercoton',['ui.router','ngFileUpload','angular-loading-bar','u
 				});
 			}
 		};
-	}])
-	.directive('zoneItemDirective', function(){
+	}]).directive('zoneItemDirective', function(){
     return {
         templateUrl: '/zones/create-zone-template',
         link: function(scope, el, attrs){

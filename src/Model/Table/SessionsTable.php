@@ -106,6 +106,7 @@ class SessionsTable extends Table
 
                         try{
                                 $now_date = new \DateTime('NOW');
+                                $now_date_format = $now_date->format('Y-m-d');
                                 $begin_date = new \DateTime($data['session_begin_date']);
                                 $begin_format = $begin_date->format('Y-m-d');
                                 $data['session_begin_date'] = $begin_format;
@@ -120,22 +121,24 @@ class SessionsTable extends Table
 
                         if($valid){
 
-                               if(($begin_date) < ($now_date))
-                               {
-                                    throw new Exception\BadRequestException(__('error'));
-                               }
-                                else
+                            $valid_date = true;
+
+                                if($begin_date<$now_date)
                                 {
-                                    if($begin_date>$end_date)
-                                        throw new Exception\BadRequestException(__('error'));
-                                    else
-                                    {
-                                        // Session Code
-                                        $session_code ='S-'.$now_date->format('Y-m-d').Text::uuid();
-                                        $data['session_code'] = $session_code;
-                                    } 
-                                }
-                            
+                                    if($begin_format != $now_date_format)
+                                      $valid_date = false;
+                                } 
+
+                                if($begin_date>$end_date)
+                                      $valid_date = false;
+
+                                if($valid_date)
+                                {
+                                   // Session Code
+                                   $session_code ='S-'.$now_date->format('Y-m-d').Text::uuid();
+                                   $data['session_code'] = $session_code;
+                                }else
+                                    throw new Exception\BadRequestException(__('Error'));
 
                         }else
                             throw new Exception\BadRequestException(__('error'));
@@ -146,7 +149,7 @@ class SessionsTable extends Table
 
                         try{
                                 $now_date = new \DateTime('NOW');
-
+                                $now_date_format = $now_date->format('Y-m-d');
                                 $begin_date = new \DateTime($data['session_begin_date']);
                                 $begin_format = $begin_date->format('Y-m-d');
                                 $data['session_begin_date'] = $begin_format;
@@ -160,7 +163,19 @@ class SessionsTable extends Table
                         }
 
                         if($valid){
+
+                            $valid_date = true;
+
+                                if($begin_date<$now_date)
+                                {
+                                    if($begin_format != $now_date_format)
+                                      $valid_date = false;
+                                } 
+
                                 if($begin_date>$end_date)
+                                      $valid_date = false;
+
+                                if(!$valid_date)
                                    throw new Exception\BadRequestException(__('error'));
                         }else
                             throw new Exception\BadRequestException(__('error3'));

@@ -77,14 +77,28 @@ class AppController extends Controller
                 $authorization_header = $this->request->env('HTTP_AUTHORIZATION');
                 $evaluation_jwt = preg_split("/\s/", $authorization_header);
                 $jwt = $evaluation_jwt[1];
-              
                 $decoded_jwt = $this->checking($jwt);
 
                 if($decoded_jwt == false)
                   throw new Exception\ForbiddenException(__('forbidden'));
                 else
                 {
-                    return true;
+                    $role_denomination = $decoded_jwt->data->role->role_denomination;
+                    switch($role_denomination){
+                        case 'auditor':
+                            $role_contents = $decoded_jwt->data->role->role_contents;
+                            $matched_route = $this->request->params['_matchedRoute'];
+
+                            if(in_array($matched_route, $role_contents))
+                               throw new Exception\ForbiddenException(__('Unauthorized'));
+                            else
+                                return true;
+                        break;
+
+                        default:
+                            return true;
+                        break;
+                    }
                 }
         }else
          return true;

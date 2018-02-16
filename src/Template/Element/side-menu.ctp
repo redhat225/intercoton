@@ -27,7 +27,7 @@
 				<span class="icon is-ft-sz-17">
 					<i class="fa fa-binoculars menu-icon"></i>
 				</span>
-				<span class="has-weight-semibold is-pad-lft-15 menu-text">Enquêtes</span>	
+				<span class="has-weight-semibold is-pad-lft-15 menu-text">Sessions</span>	
 			</a>
 		</div>
 
@@ -89,7 +89,6 @@
 				<span class="has-weight-semibold is-pad-lft-15 menu-text" >Paramètres</span>	
 			</a>
 		</div>
-		<?php if($role_denomination != "auditor"): ?>
 		<div class="menu-item-wrapper has-text-left is-pad-top-10 is-pad-bot-10" ui-sref-active="is-active">
 			<div class="dropdown is-hoverable">
 				<a class="dropdown-trigger menu-item is-pad-lft-25">
@@ -122,7 +121,6 @@
 				<span class="has-weight-semibold is-pad-lft-15 menu-text">Archives</span>	
 			</a>
 		</div> -->
-	<?php endif; ?>
 		<div class="menu-item-wrapper has-text-left is-pad-top-10 is-pad-bot-10" ui-sref-active="is-active">
 			<a class="menu-item is-pad-lft-25" href="/admins/logout" target="_self">
 				<span class="icon is-ft-sz-20">

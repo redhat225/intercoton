@@ -1,4 +1,4 @@
-angular.module('login',[])
+	angular.module('login',[])
 	.controller('MainCtrl', ['$scope', function($scope){
 		var self = this;
 	}])

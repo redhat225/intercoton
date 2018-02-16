@@ -4,7 +4,7 @@
 					<nav class="breadcrumb" aria-label="breadcrumbs">
 					  <ul>
 					    <li><a ui-sref="admins.dashboard">Dashboard</a></li>
-					    <li class="is-active"><a >Enquêtes</a></li>
+					    <li class="is-active"><a >Sessions</a></li>
 					  </ul>
 					</nav>
 				</div>

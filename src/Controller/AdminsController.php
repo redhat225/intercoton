@@ -121,11 +121,23 @@ class  AdminsController extends AppController
                 $auth = $this->Auth->identify($user);
 
                     if($auth){
+                        //generate forbidden routes for auditor only
+                        $unauthorized_routes = [];
+
+                        if(count($auth['role']['role_contents'])>0)
+                        {
+                            foreach ($auth['role']['role_contents'] as $key => $value) {
+                                array_push($unauthorized_routes, $value['content_route']);
+                            }
+                            $auth['role']['role_contents'] = $unauthorized_routes;
+                        }
+
                         $this->Auth->setUser($auth);
                         $this->RequestHandler->renderAs($this, 'json');
                         //generate JWT
                         $key = Security::salt();
                         $iat = time();
+
                         $token = [
                             "iss" => $this->request->env('SERVER_NAME'),
                             "iat" =>  $iat,
