@@ -72,7 +72,7 @@
 											  <div class="dropdown-trigger">
 											    <button class="button">
 											      <span class="icon is-small">
-													<i class="fa fa-sun-o"></i>
+													<i class="fas fa-cogs menu-icon"></i>
 											      </span>
 											    </button>
 											  </div>

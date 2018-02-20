@@ -134,7 +134,7 @@
 											  <div class="dropdown-trigger">
 											    <button class="button">
 											      <span class="icon is-small">
-													<i class="fa fa-sun-o"></i>
+													<i class="fas fa-cogs menu-icon"></i>
 											      </span>
 											    </button>
 											  </div>
@@ -143,13 +143,6 @@
 													 <a ui-sref="admins.cooperatives.edit({cooperative_id:cooperative.id,page_id:1})" class="dropdown-item">
 											            	Modifier la coopérative
 													 </a>
-
-											         <a ng-show="cooperative.deleted==null" ng-click="turn_off_cooperative(cooperative)" class="dropdown-item">
-															<abbr title="Cette action masquera cette zone dans la liste de sélecttion lors de la création d'une coopérative ou dans le cas d'une modification">Masquer la coopérative</abbr> 
-												    </a>
-											        <a ng-show="cooperative.deleted!==null" ng-click="turn_on_cooperative(cooperative)" class="dropdown-item">
-																<abbr title="Cette action réaffichera cette zone dans la liste de sélecttion lors de la création d'une coopérative ou dans le cas d'une modification">Rendre visible la coopérative</abbr> 
-													</a>
 											    </div>
 											  </div>
 											</div>

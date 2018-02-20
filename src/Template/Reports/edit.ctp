@@ -108,7 +108,7 @@
 				</div>
 			</div>
 		</div>
-			<h3 class="subtitle has-text-weight-semibold hero is-intercoton-skygreen is-mar-bot-1 is-pad-bot-20 is-pad-top-20 has-text-intercoton-green" id="report_title">Fiche Technique Intervention</h3>
+			<h3 class="is-paf-lft-10 subtitle has-text-weight-semibold hero is-intercoton-skygreen is-mar-bot-1 is-pad-bot-20 is-pad-top-20 has-text-intercoton-green" id="report_title">Fiche Technique Intervention</h3>
 		<div class="tabs is-toggle is-fullwidth">
 		  <ul>
 		    <li class="item_bar_report is-active">
@@ -2905,7 +2905,7 @@
 									</div>
 								</div>
 						   </div>
-						    <div class="field is-horizontal is-mar-top-30">
+						    <div class="field is-horizontal is-mar-top-50">
 								<div class="field-body">
 									<div class="field">
 										<div class="control is-grouped">

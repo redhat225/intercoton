@@ -70,7 +70,7 @@
 	<div class="report_item">
 
 	<form name="createReportForm" ng-submit="no_submit()">
-	    <h3 class="subtitle has-text-weight-semibold hero is-intercoton-skygreen is-mar-bot-1 is-pad-bot-20 is-pad-top-20 has-text-intercoton-green" id="report_title">Fiche Technique Intervention</h3>
+	    <h3 class="is-pad-lft-10 subtitle has-text-weight-semibold hero is-intercoton-skygreen is-mar-bot-1 is-pad-bot-20 is-pad-top-20 has-text-intercoton-green" id="report_title">Fiche Technique Intervention</h3>
 		<div class="tabs is-toggle is-fullwidth">
 		  <ul>
 		    <li class="item_bar_report is-active">
@@ -2859,7 +2859,7 @@
 								<div class="level is-mobile">
 										<div class="level-left">
 											<div class="level-item" ng-repeat="(key,value) in evidences">
-												<img ng-src="/img/tmp_report_evidences/{{value}}" class="img-group-{{$parent.$index}} hover" alt="" colorboxable="{height:'75%', width:'75%', opacity:0.7, rel:'img-group-{{$parent.$index}}',slideshow:false, open:false}" width="180px">  
+												<img ng-src="{{value}}" class="img-group-{{$parent.$index}} hover" alt="" colorboxable="{height:'75%', width:'75%', opacity:0.7, rel:'img-group-{{$parent.$index}}',slideshow:false, open:false}" width="180px">  
 											</div>
 
 										</div>

@@ -99,7 +99,7 @@
 								  <div class="dropdown-trigger">
 								    <button class="button">
 								      <span class="icon is-small">
-										<i class="fa fa-sun-o"></i>
+										<i class="fas fa-cogs menu-icon"></i>
 								      </span>
 								    </button>
 								  </div>
@@ -109,12 +109,7 @@
 								            	Modifier la zone
 										 </a>
 
-								         <a ng-show="zone.deleted==null" ng-click="turn_off_zone(zone.id)" class="dropdown-item">
-												<abbr title="Cette action masquera cette zone dans la liste de sélecttion lors de la création d'une coopérative ou dans le cas d'une modification">Désactiver la zone</abbr> 
-									    </a>
-								        <a ng-show="zone.deleted!==null" ng-click="turn_on_zone(zone.id)" class="dropdown-item">
-													<abbr title="Cette action réaffichera cette zone dans la liste de sélecttion lors de la création d'une coopérative ou dans le cas d'une modification">Réactiver la zone</abbr> 
-										</a>
+
 								    </div>
 								  </div>
 								</div>
