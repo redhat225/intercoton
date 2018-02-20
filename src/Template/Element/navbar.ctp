@@ -2,7 +2,7 @@
 <nav class="navbar is-pad-top-5 is-pad-bot-5" style="border-bottom:2px solid #e5e5e5;">
 	<div class="navbar-brand">
 		<a ui-sref="admins.dashboard" class="navbar-item">
-			<img src="/img/assets/logo/intercoton3.png" alt="Intercoton" width="280px" style="max-height: 100%;">
+			<img src="/img/assets/logo/intercoton4.png" alt="Intercoton" width="280px" style="max-height: 100%;">
 		</a>
 		<a class="is-hidden-mobile navbar-item side-menu-trigger">
 			<span class="icon">

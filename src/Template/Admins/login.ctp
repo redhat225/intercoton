@@ -13,7 +13,7 @@
 		<div class="section is-medium is-pad-top-50">
                 
                <div class="has-text-centered">
-				<img src="/img/assets/logo/intercoton3.png" width="350px" alt="">
+				<img src="/img/assets/logo/intercoton4.png" width="350px" alt="">
                	
                </div>
 						<form ng-submit="logincontroller.login(logincontroller.credentials)" name="loginBlogForm">
