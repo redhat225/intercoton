@@ -54,13 +54,6 @@ class CooperativesTable extends Table
         ]);
     }
 
-    /**
-     * Default validation rules.
-     *
-     * @param \Cake\Validation\Validator $validator Validator instance.
-     * @return \Cake\Validation\Validator
-     */
-
 
     public function beforeMarshal(Event $event, ArrayObject $data, ArrayObject $options){
         switch($data['action'])
@@ -73,6 +66,9 @@ class CooperativesTable extends Table
                 //convert some string to uppercase
                 $data['cooperative_sigle'] = strtoupper($data['cooperative_sigle']);
                 $data['cooperative_localisation'] = strtoupper($data['cooperative_localisation']);
+                $data['cooperative_manager'] = strtoupper($data['cooperative_manager']);
+                $data['cooperative_operator'] = strtoupper($data['cooperative_operator']);
+
                 if(isset($data['cooperative_sub_prefecture']))
                             $data['cooperative_sub_prefecture'] = strtoupper($data['cooperative_sub_prefecture']);
 
@@ -80,11 +76,9 @@ class CooperativesTable extends Table
                 //create a zone if not Exist
                 if(isset($data['zone_unavailable']))
                 {
-                  if($data['zone_unavailable'] == false)
-                  {
+                  if($data['zone_unavailable'] == true){
                       $zones = TableRegistry::get('Zones');
                           $zone_data =['zone_denomination'=>strtoupper($data['zone_denomination']),'created_by'=>$data['created_by']];
-
                             try{
                                  $zone = $zones->newEntity($zone_data);
                                 if($zones->save($zone))
@@ -95,7 +89,7 @@ class CooperativesTable extends Table
                             }catch(MainException $e){
                                 throw new Exception\BadRequestException(__('error2'));
                         }
-                  }
+                   }
 
                 }
             break;
@@ -105,6 +99,8 @@ class CooperativesTable extends Table
                 $data['cooperative_denomination'] = strtoupper($data['cooperative_denomination']);
                 $data['cooperative_sigle'] = strtoupper($data['cooperative_sigle']);
                 $data['cooperative_localisation'] = strtoupper($data['cooperative_localisation']);
+                $data['cooperative_manager'] = strtoupper($data['cooperative_manager']);
+                $data['cooperative_operator'] = strtoupper($data['cooperative_operator']);
 
                 if($data['cooperative_sub_prefecture']!='null')
                 {
@@ -118,7 +114,12 @@ class CooperativesTable extends Table
         return $data;
     }
 
-
+    /**
+     * Default validation rules.
+     *
+     * @param \Cake\Validation\Validator $validator Validator instance.
+     * @return \Cake\Validation\Validator
+     */
     public function validationDefault(Validator $validator)
     {
         $validator
@@ -130,6 +131,23 @@ class CooperativesTable extends Table
             ->maxLength('cooperative_denomination', 300)
             ->requirePresence('cooperative_denomination', 'create')
             ->notEmpty('cooperative_denomination');
+
+        $validator
+            ->scalar('cooperative_manager')
+            ->maxLength('cooperative_manager', 100)
+            ->requirePresence('cooperative_manager', 'create')
+            ->notEmpty('cooperative_manager');
+
+        $validator
+            ->scalar('cooperative_operator')
+            ->maxLength('cooperative_operator', 100)
+            ->requirePresence('cooperative_operator', 'create')
+            ->notEmpty('cooperative_operator');
+
+        $validator
+            ->scalar('cooperative_contact')
+            ->maxLength('cooperative_contact', 8)
+            ->allowEmpty('cooperative_contact');
 
         $validator
             ->scalar('cooperative_sigle')
@@ -184,6 +202,8 @@ class CooperativesTable extends Table
                     return (!empty($context['data']['main_photo_candidate']) && $context['data']['main_photo_candidate']!='null');
                 }
             ]);
+
+
 
         return $validator;
     }

@@ -103,14 +103,15 @@
 	<div ng-switch="currenTab">
 		<div ng-switch-when="tabular">
 				<!-- Tabular view -->
-				<table class=" table is-fullwidth is-hoverable is-striped">
+				<table class="table is-hoverable is-striped">
 					<thead>
 						<tr class="intercoton-skygreen-b">
 							<th>Dénomination</th>
 							<th>Sigle</th>
 							<th>Localisation</th>
 							<th>Zone</th>
-							<th><abbr title="Sous-préfecture">S/P</abbr></th>
+							<th>Gerant</th>
+							<th>Opérateur</th>
 							<th>Date création</th>
 							<th>Dernière modification</th>
 							<th>Date Suppression</th>
@@ -123,8 +124,8 @@
 							<td>{{cooperative.cooperative_sigle}}</td>
 							<td>{{cooperative.cooperative_localisation}}</td>
 							<td>{{cooperative.zone.zone_denomination}}</td>
-							<td ng-if="cooperative.cooperative_sub_prefecture">{{cooperative.cooperative_sub_prefecture}}</td>
-							<td ng-if="!cooperative.cooperative_sub_prefecture">non spécifié</td>
+							<td>{{cooperative.cooperative_manager}}</td>
+							<td>{{cooperative.cooperative_operator}}</td>
 							<td>{{cooperative.created | date:'dd/MM/yyyy HH:mm:ss' }}</td>
 							<td>{{cooperative.modified | date:'dd/MM/yyyy HH:mm:ss' }}</td>
 							<td>{{cooperative.deleted | date:'dd/MM/yyyy HH:mm:ss' }}</td>

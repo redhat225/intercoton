@@ -82,6 +82,51 @@
 
 		<div class="field is-horizontal">
 			<div class="field-label">
+				<label for="" class="label">Coopérative</label>
+			</div>
+			<div class="field-body">
+				<!-- Manager -->
+				<div class="field">
+					<div class="control has-icons-left has-icons-right">
+						<input type="text" name="cooperative_manager" class="input is-uppercase" required ng-model="opa.cooperative_manager" ng-maxlength="100" placeholder="Gérant">
+						<span class="icon is-small is-right" ng-show="createOpaForm.cooperative_manager.$valid">
+							<i class="fa fa-check has-text-intercoton-green"></i>
+						</span>
+						<span class="icon is-small is-left">
+							<i class="fa fa-user"></i>
+						</span>
+					</div>
+				</div>
+				<!-- Operator -->
+				<div class="field">
+					<div class="control has-icons-left has-icons-right">
+						<input type="text" name="cooperative_operator" class="input is-uppercase" required ng-model="opa.cooperative_operator" ng-maxlength="100" placeholder="Opérateur de Saisie">
+						<span class="icon is-small is-right" ng-show="createOpaForm.cooperative_operator.$valid">
+							<i class="fa fa-check has-text-intercoton-green"></i>
+						</span>
+						<span class="icon is-small is-left">
+							<i class="fa fa-user"></i>
+						</span>
+					</div>
+				</div>
+				<!-- Contact -->
+				<div class="field">
+					<div class="control has-icons-left has-icons-right">
+						<input type="text" name="cooperative_contact" class="input" ng-model="opa.cooperative_contact" ng-minlength="8" ng-pattern="/^[0-9]{8}$/" ng-maxlength="8" ng-required="opa.cooperative_contact" placeholder="Tel/cel cooperative">
+						<span class="icon is-small is-right" ng-show="createOpaForm.cooperative_contact.$valid">
+							<i class="fa fa-check has-text-intercoton-green"></i>
+						</span>
+						<span class="icon is-small is-left">
+							<i class="fa fa-phone"></i>
+						</span>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="field is-horizontal">
+			<div class="field-label">
 				<label for="" class="label">Coordonnées GPS</label>
 			</div>
 			<div class="field-body">

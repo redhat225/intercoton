@@ -59,7 +59,6 @@ class  CooperativesController extends AppController
 
                     $cooperative = $this->Cooperatives->newEntity($data['cooperative']);
                     // upload images first
-
                     try{
                         $upload = true;
                         $main_image_candidate_path = "/cooperatives"."/".Text::uuid().".".strtolower(pathinfo($data['cooperative']['main_photo_candidate']['name'],PATHINFO_EXTENSION));
@@ -144,14 +143,12 @@ class  CooperativesController extends AppController
             if($this->request->is('get')){
                 if(isset($this->request->query['action']))
                 {
-
                     if(isset($this->request->query['page'])){
                         $page = $this->request->query['page'];
                         $cooperatives = $this->Cooperatives->find()
                                                            ->contain(['Zones'])
                                                            ->limit(30)
                                                            ->page($page);
-
                     }else
                     {
                          $cooperatives = $this->Cooperatives->find()

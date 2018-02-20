@@ -16,8 +16,8 @@
 	<div class="menu-wrapper">
 		<div ui-sref="admins.dashboard" ui-sref-active="is-active" class="menu-item-wrapper has-text-left is-pad-top-10 is-pad-bot-10">
 			<a  class="menu-item is-pad-lft-25">
-				<span class="icon is-ft-sz-17">
-					<i class="fa fa-television menu-icon"></i>
+				<span class="icon is-ft-sz-17"> 
+					<i class="fab fa-dyalog menu-icon"></i>
 				</span>
 				<span class="has-weight-semibold is-pad-lft-15 menu-text">Dashboard</span>	
 			</a>
@@ -35,7 +35,7 @@
 			<div class="dropdown is-hoverable">
 				<a class="dropdown-trigger menu-item is-pad-lft-25">
 					<span class="icon is-ft-sz-17">
-						<i class="fa fa-bank menu-icon"></i>
+						<i class="fas fa-home menu-icon"></i>
 					</span>
 					<span class="has-weight-semibold is-pad-lft-15 menu-text">Cooperatives</span>	
 					<span class="icon is-ft-sz-17 is-pad-lft-15">
@@ -84,7 +84,7 @@
 		<div class="menu-item-wrapper has-text-left is-pad-top-10 is-pad-bot-10" ui-sref="admins.profile" ui-sref-active="is-active">
 			<a class="menu-item is-pad-lft-25">
 				<span class="icon is-ft-sz-17">
-					<i class="fa fa-sun-o menu-icon"></i>
+					<i class="fas fa-cogs menu-icon"></i>
 				</span>
 				<span class="has-weight-semibold is-pad-lft-15 menu-text" >Paramètres</span>	
 			</a>

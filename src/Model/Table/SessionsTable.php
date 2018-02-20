@@ -122,13 +122,7 @@ class SessionsTable extends Table
                         if($valid){
 
                             $valid_date = true;
-
-                                if($begin_date<$now_date)
-                                {
-                                    if($begin_format != $now_date_format)
-                                      $valid_date = false;
-                                } 
-
+                            
                                 if($begin_date>$end_date)
                                       $valid_date = false;
 
@@ -165,12 +159,6 @@ class SessionsTable extends Table
                         if($valid){
 
                             $valid_date = true;
-
-                                if($begin_date<$now_date)
-                                {
-                                    if($begin_format != $now_date_format)
-                                      $valid_date = false;
-                                } 
 
                                 if($begin_date>$end_date)
                                       $valid_date = false;

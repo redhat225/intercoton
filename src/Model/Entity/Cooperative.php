@@ -8,6 +8,9 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property string $cooperative_denomination
+ * @property string $cooperative_manager
+ * @property string $cooperative_operator
+ * @property string $cooperative_contact
  * @property string $cooperative_sigle
  * @property string $cooperative_geoloc
  * @property int $cooperative_nbre_personnel
@@ -37,9 +40,12 @@ class Cooperative extends Entity
      */
     protected $_accessible = [
         'cooperative_denomination' => true,
+        'cooperative_manager' => true,
+        'cooperative_operator' => true,
+        'cooperative_contact' => true,
+        'main_photo_candidate' => true, 
         'cooperative_sigle' => true,
         'cooperative_geoloc' => true,
-        'main_photo_candidate' => true, 
         'cooperative_nbre_personnel' => true,
         'cooperative_localisation' => true,
         'cooperative_sub_prefecture' => true,

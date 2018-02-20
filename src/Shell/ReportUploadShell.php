@@ -96,11 +96,9 @@ class ReportUploadShell extends Shell
                                                             $indexed_report = $this->Reports->get($payload['report_id']);
                                                             $report_content = json_decode($indexed_report->report_content);
 
-                                                            foreach ($report_content as $y => $z) {
-                                                              foreach($z->evidences as $a => $b){
-                                                                if($z->evidences->$a == $value)
-                                                                $z->evidences->$a = $link_main_photo_candidate;
-                                                              }
+                                                            foreach ($report_content->evidences as $y => $z) {
+                                                                if($report_content->evidences->$y == $value)
+                                                                $report_content->evidences->$y = $link_main_photo_candidate;
                                                             }
                                                             
                                                             $save_upload_payload = [

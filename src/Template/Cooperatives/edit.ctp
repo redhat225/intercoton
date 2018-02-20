@@ -114,6 +114,55 @@
 			</div>
 		</div>
 
+
+		<div class="field is-horizontal">
+			<div class="field-label">
+				<label for="" class="label">Cooperative</label>
+			</div>
+			<div class="field-body">
+				<!-- manager -->
+				<div class="field">
+					<div class="control has-icons-left has-icons-right">
+						<input type="text" name="cooperative_manager" class="input is-uppercase" required ng-model="opa_edit.cooperative_manager" ng-maxlength="100" placeholder="Localisation">
+						<span class="icon is-small is-right" ng-show="editOpaForm.cooperative_manager.$valid">
+							<i class="fa fa-check has-text-intercoton-green"></i>
+						</span>
+						<span class="icon is-small is-left">
+							<i class="fa fa-map"></i>
+						</span>
+					</div>
+				</div>
+				<!-- Opérateur de saisie -->
+				<div class="field">
+					<div class="control has-icons-left has-icons-right">
+						<input type="text" name="opa_edit_cooperative_sub_prefecture" class="input is-uppercase" ng-model="opa_edit.cooperative_operator" ng-maxlength="100" placeholder="Opérateur de saisie" required>
+						<span class="icon is-small is-right" ng-show="editOpaForm.cooperative_operator.$valid">
+							<i class="fa fa-check has-text-intercoton-green"></i>
+						</span>
+						<span class="icon is-small is-left">
+							<i class="fa fa-map-o"></i>
+						</span>
+					</div>
+				</div>
+				<!-- Contact cooperative -->
+				<div class="field">
+					<div class="control has-icons-left has-icons-right">
+						<input type="text" ng-pattern="/^[0-9]{8}$/" name="opa_edit_cooperative_contact" class="input is-uppercase" ng-model="opa_edit.cooperative_contact" ng-maxlength="100" placeholder="Opérateur de saisie" required>
+						<span class="icon is-small is-right" ng-show="editOpaForm.opa_edit_cooperative_contact.$valid">
+							<i class="fa fa-check has-text-intercoton-green"></i>
+						</span>
+						<span class="icon is-small is-left">
+							<i class="fa fa-map-o"></i>
+						</span>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
+
+
 		<div class="field is-horizontal">
 			<div class="field-label">
 				<label for="" class="label">Coordonnées GPS</label>

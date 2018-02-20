@@ -28642,6 +28642,9 @@
 .is-none-border {
   border: none !important; }
 
+.is-display-none {
+  display: none; }
+
 .is-none-radius {
   border-radius: 0px !important; }
 

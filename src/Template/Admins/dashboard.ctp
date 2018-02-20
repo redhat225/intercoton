@@ -3,14 +3,14 @@
 		<div class="level-left">
 			<div class="level-item">
 				<span class="icon">
-					<i class="fa fa-television fa-2x has-text-intercoton-green"></i>
+					<i class="fab fa-dyalog fa-2x has-text-intercoton-green"></i>
 				</span>
 				<span class="has-text-intercoton-green has-text-weight-semibold is-pad-lft-20">Dashboard</span> 	
 			</div>
 		</div>
 		<div class="level-right">
 			<span class="icon">
-				<i class="fa fa-sort-numeric-asc  has-text-intercoton-green"></i>
+				<i class="fas fa-sort-numeric-up has-text-intercoton-green"></i>
 			</span>
 			<span class="level-item has-text-weight-semibold has-text-intercoton-green">Statistiques Brèves</span>
 		</div>
@@ -44,8 +44,8 @@
 				<div class="tile is-child box  hero is-intercoton-skygreen">
 					<div class="media">
 						<div class="media-left">
-							<span class="icon">
-								<i class="fa fa-bank fa-2x has-text-intercoton-green"></i>
+							<span class="icon">	
+								<i class="fas fa-home fa-2x has-text-intercoton-green"></i>
 							</span>
 							 <span class=""></span>
 						</div>
@@ -177,7 +177,7 @@
 					<div class="panel-heading intercoton-skygreen-b is-pad-rgt-0 is-pad-rgt-0">
 						<div>
 							<span class="icon">
-								<i class="fa fa-area-chart fa-2x has-text-intercoton-green"></i>
+								<i class="fas fa-chart-area fa-2x has-text-intercoton-green"></i>
 							</span>
 							<span class="has-text-intercoton-green has-text-weight-semibold is-pad-lft-20 is-size-6">Statistiques des rapports rédigés/mois</span> 
 						</div>
@@ -200,7 +200,7 @@
 					<div class="panel-heading intercoton-skygreen-b is-pad-rgt-0">
 						<div>
 							<span class="icon">
-								<i class="fa fa-pie-chart fa-2x has-text-intercoton-green"></i>
+								<i class="fas fa-chart-pie fa-2x has-text-intercoton-green"></i>
 							</span>
 							<span class="has-text-intercoton-green has-text-weight-semibold is-pad-lft-20 is-size-6">les répartitions régions/coopératives</span> 	
 						</div>

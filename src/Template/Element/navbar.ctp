@@ -4,6 +4,11 @@
 		<a ui-sref="admins.dashboard" class="navbar-item">
 			<img src="/img/assets/logo/intercoton3.png" alt="Intercoton" width="280px" style="max-height: 100%;">
 		</a>
+		<a class="is-hidden-mobile navbar-item side-menu-trigger">
+			<span class="icon">
+				<i class="fas fa-bars has-text-intercoton-green fa-2x"></i>				
+			</span>
+		</a>
 	    <button class="button navbar-burger">
 	      <span></span>
 	      <span></span>
@@ -15,7 +20,7 @@
 			<a  class="navbar-item" href="/admins/logout" target="_self">
 				<button class="button is-intercoton-green" ui-sref="admins.dashboard">
 					<span class="icon">
-						<i class="fa fa-television"></i>
+						<i class="fab fa-dyalog"></i>
 					</span>
 					<span>
 						Dashboard
@@ -32,7 +37,7 @@
 			<?php if($role_denomination != "auditor"): ?>
 					<a class="navbar-item" ui-sref="admins.cooperatives({page_id:1})">
 						<span class="icon has-text-intercoton-green">
-							<i class="fa fa-bank" aria-hidden="true"></i>
+							<i class="fas fa-home" aria-hidden="true"></i>
 							<b class="is-mar-lft-5">{{$root.brief_stats.cooperatives_count}}</b>
 						</span>
 					</a>

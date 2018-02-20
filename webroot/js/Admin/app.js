@@ -346,8 +346,8 @@ angular.module('intercoton',['ui.router','ngFileUpload','angular-loading-bar','u
 				CooperativeService.edit($stateParams.cooperative_id).then(function(resp){
 				$scope.opa_edit = resp.data.cooperative;
 				let geoloc = JSON.parse($scope.opa_edit.cooperative_geoloc);
-				$scope.opa_edit.cooperative_latitude = parseInt(geoloc.latitude);
-				$scope.opa_edit.cooperative_longitude = parseInt(geoloc.longitude);
+				$scope.opa_edit.cooperative_latitude = geoloc.latitude;
+				$scope.opa_edit.cooperative_longitude = geoloc.longitude;
 	 
 			}, function(err){
 				toastr.error('Une erreur est survenue, veuillez réessayer');
@@ -771,16 +771,7 @@ angular.module('intercoton',['ui.router','ngFileUpload','angular-loading-bar','u
 					return 'Recommandations';
 			};
 
-		    $scope.load_report = function(report_id){
-				ReportService.get(report_id).then(function(resp){
-					$scope.report = resp.data.report;
-					$scope.report.report_content = JSON.parse($scope.report.report_content);
-					$scope.report.reports = {};
-					$scope.report.deleted = [];
-				}, function(err){
-					toastr.error('Une erreur est survenue, veuillez réessayer');
-				})
-			};
+
 
 
 		if($state_url === '/create')
@@ -808,20 +799,32 @@ angular.module('intercoton',['ui.router','ngFileUpload','angular-loading-bar','u
 			};
 
 			$scope.create = function(){
-				ReportService.create($scope.report).then(function(resp){
-					toastr.success('Rapport enregistré avec succès');
-					$state.go('admins.reports',{session_id:$scope.report.session_id},{reload:true});
-				}, function(err){
-					switch(err){
-						case 403:
-							toastr.warning("Vous ne pouvez créer de rapport après la date de cloture d'une session");
-						break;
+				var r = confirm("Etes-vous sûre de vouloir créer ce rapport?");
+				if (r == true) {
+					$scope.is_loading = true;
+					ReportService.create($scope.report).then(function(resp){
+						toastr.success('Rapport enregistré avec succès');
+						$state.go('admins.reports',{session_id:$scope.report.session_id},{reload:true});
+					}, function(err){
+						switch(err){
+							case 403:
+								toastr.warning("Vous ne pouvez créer de rapport après la date de cloture d'une session");
+							break;
 
-						default:
-							toastr.error('Une erreur est survenue, veuillez réessayer');
-						break;
-					}
-				});
+							default:
+								toastr.error('Une erreur est survenue, veuillez réessayer');
+							break;
+						}
+					}).finally(function(){
+						$scope.is_loading = false;
+					});
+				}
+
+			};
+
+
+			$scope.next_stage = function(){
+
 			};
 
 			$scope.tinymceOptions = {
@@ -830,6 +833,9 @@ angular.module('intercoton',['ui.router','ngFileUpload','angular-loading-bar','u
 				    'undo redo numlist bullist| styleselect | bold italic | link image alignleft aligncenter alignright forecolor',
 				  ]
 			};
+
+
+			$scope.reporTab = 'first';
 
 		}
 
@@ -859,20 +865,35 @@ angular.module('intercoton',['ui.router','ngFileUpload','angular-loading-bar','u
 		}
 
 		if($state_url ==="/edit/:report_id"){
+			$scope.reporTab = "first";
+		    $scope.load_report = function(report_id){
+				ReportService.get(report_id).then(function(resp){
+					$scope.report = resp.data.report;
+					$scope.report.report_content = JSON.parse($scope.report.report_content);
+					$scope.report.reports = {};
+					$scope.report.deleted = [];
+				}, function(err){
+					toastr.error('Une erreur est survenue, veuillez réessayer');
+				})
+			};
 			$scope.report_id = $stateParams.report_id;
 			$scope.load_report($scope.report_id);
 			$scope.tinymceOptions = {
 			};
 			$scope.update_report = function(){
-				$scope.is_loading = true;
-				ReportService.update($scope.report).then(function(resp){
-					toastr.success('modification réalisé avec succès');
-					$state.go('admins.reports',{session_id:$scope.report.session_id},{reload:true});
-				}, function(err){
-					toastr.error('Une erreur est survenue, veuillez réessayer');
-				}).finally(function(){
-					$scope.is_loading = false;
-				});
+				var r = confirm("Etes-vous sûre de vouloir modifier ce rapport?");
+				if(r==true){
+					$scope.is_loading = true;
+					ReportService.update($scope.report).then(function(resp){
+						toastr.success('modification réalisé avec succès');
+						$state.go('admins.reports',{session_id:$scope.report.session_id},{reload:true});
+					}, function(err){
+						toastr.error('Une erreur est survenue, veuillez réessayer');
+					}).finally(function(){
+						$scope.is_loading = false;
+					});
+				}
+
 			}
 			$scope.addItemReport = function(){
 				  childScope = $scope.$new();
@@ -913,6 +934,19 @@ angular.module('intercoton',['ui.router','ngFileUpload','angular-loading-bar','u
 		}
 
 		if($state_url === "/view/:report_id"){
+			$scope.load_report = function(report_id){
+				ReportService.get(report_id).then(function(resp){
+					$scope.report = resp.data.report;
+					$scope.report.report_content = JSON.parse($scope.report.report_content);
+					$scope.report_content = $scope.report.report_content;
+					$scope.evidences = $scope.report.report_content.evidences;
+					console.log($scope.evidences);
+					$scope.report.reports = {};
+					$scope.report.deleted = [];
+				}, function(err){
+					toastr.error('Une erreur est survenue, veuillez réessayer');
+				})
+			};
 			$scope.report_id = $stateParams.report_id;
 			$scope.load_report($scope.report_id);
 			$scope.tinymceOptions = {
@@ -922,6 +956,10 @@ angular.module('intercoton',['ui.router','ngFileUpload','angular-loading-bar','u
 				statusbar: false,
   				plugins: "noneditable"
 			};
+			$scope.no_submit = function(){
+
+			};
+			$scope.reporTab = 'first';
 		}
 
 		$scope.reinit_reports = function(){

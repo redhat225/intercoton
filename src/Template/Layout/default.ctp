@@ -26,7 +26,8 @@ $pageDescription = 'Intercoton: Organisation interprofessionnelle agricole de la
     </title>
     <?= $this->Html->meta('favicon.png','/img/favicon.png',['type'=>'icon']) ?>
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+
     <?= $this->fetch('meta') ?>
     <?= $this->Html->css('../node_modules/bulma/custom-bulma') ?>
     <?= $this->Html->css('main') ?>
