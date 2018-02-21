@@ -164,7 +164,7 @@
 					    <div class="media">
 					      <div class="media-left">
 							<span class="icon is-medium">
-								<i class="fa fa-bank fa-2x has-text-intercoton-green"></i>
+								<i class="fas fa-home" aria-hidden="true"></i>
 							</span>
 					      </div>
 					      <div class="media-content">

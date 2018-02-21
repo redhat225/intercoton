@@ -72,7 +72,7 @@
 				      <a ui-sref="admins.zones({page_id:1})" class="dropdown-item">
 				        Vue d'ensemble
 				      </a>
-				      <a ui-sref="admins.zones.create"  class="dropdown-item">
+				      <a ui-sref="admins.zones.create({page_id:1})"  class="dropdown-item">
 				        créer une zone
 				      </a>
 				    </div>
