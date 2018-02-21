@@ -152,94 +152,94 @@ class  ReportsController extends AppController
             }
     }
 
-    public function create(){
-        if($this->request->is('ajax')){
-            if($this->request->is('post')){
-                $data = $this->request->data;
-                //verify if session expired
-                $this->loadModel('Sessions');
-                $session = $this->Sessions->get($data['session_id']);
-                $now_date = new \DateTime('NOW');
-                $session_date = new \DateTime($session->session_end_date);
+    // public function create(){
+    //     if($this->request->is('ajax')){
+    //         if($this->request->is('post')){
+    //             $data = $this->request->data;
+    //             //verify if session expired
+    //             $this->loadModel('Sessions');
+    //             $session = $this->Sessions->get($data['session_id']);
+    //             $now_date = new \DateTime('NOW');
+    //             $session_date = new \DateTime($session->session_end_date);
 
-                //checking if session expired
-                if($session_date < $now_date) 
-                    throw new Exception\ForbiddenException(__('error'));
-                else{
-                        $all_images_uploaded = true;
-                        $saved_images = [];
-                        foreach ($data['reports']['evidences'] as $key => $value){
-                            // if(isset($value['tmp_name'])){
-                                //save involved assets
-                                                 $evidence_path = Text::uuid().".".strtolower(pathinfo($value['name'],PATHINFO_EXTENSION));
+    //             //checking if session expired
+    //             if($session_date < $now_date) 
+    //                 throw new Exception\ForbiddenException(__('error'));
+    //             else{
+    //                     $all_images_uploaded = true;
+    //                     $saved_images = [];
+    //                     foreach ($data['reports']['evidences'] as $key => $value){
+    //                         if(isset($value['tmp_name'])){
+    //                             save involved assets
+    //                                              $evidence_path = Text::uuid().".".strtolower(pathinfo($value['name'],PATHINFO_EXTENSION));
 
-                                                 if(!move_uploaded_file($value['tmp_name'], WWW_ROOT.'img/tmp_report_evidences/'.$evidence_path))
-                                                 {
-                                                   $all_images_uploaded = false;
-                                                 }
-                                                 else
-                                                 {
-                                                    $data['reports']['evidences'][$key] = $evidence_path;
-                                                    array_push($saved_images, [ $key => $evidence_path ]);
-                                                 }
-                            // }else{
-                            //     unset($data['reports']['evidences'][$key]);
-                            // }
-                        }
+    //                                              if(!move_uploaded_file($value['tmp_name'], WWW_ROOT.'img/tmp_report_evidences/'.$evidence_path))
+    //                                              {
+    //                                                $all_images_uploaded = false;
+    //                                              }
+    //                                              else
+    //                                              {
+    //                                                 $data['reports']['evidences'][$key] = $evidence_path;
+    //                                                 array_push($saved_images, [ $key => $evidence_path ]);
+    //                                              }
+    //                         }else{
+    //                             unset($data['reports']['evidences'][$key]);
+    //                         }
+    //                     }
 
-                        if(!$all_images_uploaded)
-                        {
-                            //open suppression pipe with array elements ($saved_images)
-                            $this->deleteLocalAssets($saved_images);
-                            throw new Exception\BadRequestException(__('error'));
-                        }
-                        else
-                        {
-                            $report = $this->Reports->newEntity($data);
-                            $now = new \DateTime('NOW');
-                            $report->report_content = json_encode($data['reports']);
-                            $report->report_code = 'R-'.$now->format('Y-m-d').Text::uuid();
-                            $report->auditor_account_id = $this->request->session()->read('Auth.User.id');
-                             //save images before opening pipeline job
-                            if(!$report->errors()){
-                                if($this->Reports->save($report))
-                                {
-                                    //open pipe wih array_images
-                                    if(count($saved_images)>0)
-                                    {
-                                        foreach ($saved_images as $key => $value) {
-                                            foreach($value as $item=>$item_desc){
-                                                $payload = [
-                                                    'image'=> [
-                                                       $item => $item_desc,
-                                                    ],
-                                                    'report_id' => $report->id,
-                                                    'session_id' => $report->session_id
-                                                ];
-                                                $pheanstalk = new Pheanstalk('127.0.0.1');
-                                                $pheanstalk->useTube('ReportTube');
-                                                $pheanstalk->put(json_encode($payload)); 
-                                            }
-                                        }
-                                    }
+    //                     if(!$all_images_uploaded)
+    //                     {
+    //                         //open suppression pipe with array elements ($saved_images)
+    //                         $this->deleteLocalAssets($saved_images);
+    //                         throw new Exception\BadRequestException(__('error'));
+    //                     }
+    //                     else
+    //                     {
+    //                         $report = $this->Reports->newEntity($data);
+    //                         $now = new \DateTime('NOW');
+    //                         $report->report_content = json_encode($data['reports']);
+    //                         $report->report_code = 'R-'.$now->format('Y-m-d').Text::uuid();
+    //                         $report->auditor_account_id = $this->request->session()->read('Auth.User.id');
+    //                          //save images before opening pipeline job
+    //                         if(!$report->errors()){
+    //                             if($this->Reports->save($report))
+    //                             {
+    //                                 //open pipe wih array_images
+    //                                 if(count($saved_images)>0)
+    //                                 {
+    //                                     foreach ($saved_images as $key => $value) {
+    //                                         foreach($value as $item=>$item_desc){
+    //                                             $payload = [
+    //                                                 'image'=> [
+    //                                                    $item => $item_desc,
+    //                                                 ],
+    //                                                 'report_id' => $report->id,
+    //                                                 'session_id' => $report->session_id
+    //                                             ];
+    //                                             $pheanstalk = new Pheanstalk('127.0.0.1');
+    //                                             $pheanstalk->useTube('ReportTube');
+    //                                             $pheanstalk->put(json_encode($payload)); 
+    //                                         }
+    //                                     }
+    //                                 }
 
-                                    $response = ['message'=>'ok'];
-                                    $this->RequestHandler->renderAs($this, 'json');
-                                    $this->set(compact('response'));
-                                    $this->set('_serialize',['response']);
-                                }else
-                                  throw new Exception\BadRequestException(__('error'));
-                            }else
-                               throw new Exception\BadRequestException(__('error'));
-                        }
-                }
+    //                                 $response = ['message'=>'ok'];
+    //                                 $this->RequestHandler->renderAs($this, 'json');
+    //                                 $this->set(compact('response'));
+    //                                 $this->set('_serialize',['response']);
+    //                             }else
+    //                               throw new Exception\BadRequestException(__('error'));
+    //                         }else
+    //                            throw new Exception\BadRequestException(__('error'));
+    //                     }
+    //             }
 
-            }
-            if($this->request->is('get')){
+    //         }
+    //         if($this->request->is('get')){
 
-            }
-        }
-    }
+    //         }
+    //     }
+    // }
 
     private function deleteLocalAssets($saved_images){
                             //open pipe wih array_images
