@@ -2835,7 +2835,7 @@
 								
 	   	   	  </ng-form>		
 	   	   </div>
-
+<!-- hu -->
 	   	   <div ng-switch-when="eight">
 	   	   	    <ng-form name="evidence">
 	   	   	    	    <h1 class="subtitle has-text-weight-semibold has-text-intercoton-green">Prises de vue (chacune des images ne peut excéder 5MB)</h1>
