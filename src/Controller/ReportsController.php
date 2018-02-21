@@ -582,7 +582,7 @@ class  ReportsController extends AppController
                         $saved_images = [];
 
                         foreach ($data['reports']['evidences'] as $key => $value){
-                            if(isset($value['tmp_name'])){
+                            // if(isset($value['tmp_name'])){
                                 //save involved assets
                                                  $evidence_path = Text::uuid().".".strtolower(pathinfo($value['name'],PATHINFO_EXTENSION));
 
@@ -595,9 +595,9 @@ class  ReportsController extends AppController
                                                     $data['reports']['evidences'][$key] = $evidence_path;
                                                     array_push($saved_images, [ $key => $evidence_path ]);
                                                  }
-                            }else{
-                                unset($data['reports']['evidences'][$key]);
-                            }
+                            // }else{
+                            //     unset($data['reports']['evidences'][$key]);
+                            // }
                         }
 
                         if(!$all_images_uploaded)
