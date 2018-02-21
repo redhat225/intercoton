@@ -170,7 +170,7 @@ class  ReportsController extends AppController
                         $saved_images = [];
                         foreach ($data['reports']['evidences'] as $key => $value){
                             if(isset($value['tmp_name'])){
-                                save involved assets
+                                // save involved assets
                                                  $evidence_path = Text::uuid().".".strtolower(pathinfo($value['name'],PATHINFO_EXTENSION));
 
                                                  if(!move_uploaded_file($value['tmp_name'], WWW_ROOT.'img/tmp_report_evidences/'.$evidence_path))
