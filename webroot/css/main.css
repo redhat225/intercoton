@@ -28669,4 +28669,12 @@ a.navbar-item:hover, a.navbar-item.is-active, a.navbar-link:hover, a.navbar-link
 .navbar-item.has-dropdown:hover .navbar-link {
   background-color: transparent !important; }
 
+li.item_bar_report {
+  background: #caebd5; }
+
+li.item_bar_report.is-active a {
+  background-color: #098a33 !important;
+  color: #fff !important;
+  border-color: #098a33 !important; }
+
 /*# sourceMappingURL=main.css.map */

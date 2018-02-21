@@ -1,0 +1,12 @@
+li.item_bar_report{
+	background: map-get($colors, 'intercoton-skygreen');
+}
+
+li.item_bar_report.is-active{
+	& a{
+			background-color: map-get($colors, 'intercoton-green') !important;
+			color: #fff !important;
+			border-color: map-get($colors, 'intercoton-green') !important;
+	}
+
+}

@@ -2838,7 +2838,7 @@
 
 	   	   <div ng-switch-when="eight">
 	   	   	    <ng-form name="evidence">
-	   	   	    	    <h1 class="subtitle has-text-weight-semibold has-text-intercoton-green">Prises de vue (chacune des images ne peut excéder 3MB)</h1>
+	   	   	    	    <h1 class="subtitle has-text-weight-semibold has-text-intercoton-green">Prises de vue (chacune des images ne peut excéder 5MB)</h1>
 						<div class="field">
 							<div class="control">
 								<div class="level is-mobile">
@@ -2846,7 +2846,7 @@
 										<?php $values=['a','b','c','d','e','f']; ?>
 										<?php foreach ($values as $value) :?>
 										   <div class="level-item">
-											     <div ng-if="!report.reports.evidences.evidence_<?= $value ?>" ngf-drop ngf-select ngf-max-size="3MB" ng-model="report.reports.evidences.evidence_<?= $value ?>" class="drop-box button is-hgt-130 is-wth-130">
+											     <div ng-if="!report.reports.evidences.evidence_<?= $value ?>" ngf-drop ngf-select ngf-max-size="5MB" ng-model="report.reports.evidences.evidence_<?= $value ?>" class="drop-box button is-hgt-130 is-wth-130">
 													<img src="/img/assets/forms/image_upload_drag_area.png" alt="">
 												</div>
 						  						<figure ng-if="report.reports.evidences.evidence_<?= $value ?>" class="image is-hgt-130 is-wth-130"> 
