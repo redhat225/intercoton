@@ -258,7 +258,7 @@
 						<div class="field is-horizontal">
 							<div class="field-label">
 								<label for="" class="label">
-									Est-il une communication (franche) entre les agents et le responsable de la coopérative ?
+									Existe t-il des problèmes liés à l’environnement  de travail ?
 								</label>
 							</div>
 							<div class="field-body">
@@ -1153,7 +1153,7 @@
 						<div class="field is-horizontal">
 							<div class="field-label">
 								<label for="" class="label">
-									 La modification des données est-elle possible?	
+									 Existe t-il une sauvegarde des données ?
 								</label>
 							</div>
 							<div class="field-body">
@@ -1487,7 +1487,7 @@
 						<div class="field is-horizontal">
 							<div class="field-label">
 								<label for="" class="label">
-									 La modification des données est-elle possible?	
+									 Existe t-il une sauvegarde des données ?	
 								</label>
 							</div>
 							<div class="field-body">
@@ -2615,7 +2615,7 @@
 						<div class="field is-horizontal">
 											<div class="field-label">
 												<label for="" class="label">
-													Avez –vous pu les résoudre par vous-même ? comment ?
+													Existe-t-il encore des problèmes techniques liés à l’utilisation de l’ordinateur ? Lesquels
 												</label>
 											</div>
 											<div class="field-body">
@@ -2651,7 +2651,7 @@
 							<div class="field is-horizontal">
 											<div class="field-label">
 												<label for="" class="label">
-													Avez-vous eu des problèmes techniques liés à l’utilisation des logiciels  GESSCOOP ET EASYCOMMPTA ?
+													Existe-t-il encore des problèmes techniques liés à l’utilisation de des logiciels GESCOOP et EASYCOMPTA? Lesquels
 												</label>
 											</div>
 											<div class="field-body">
