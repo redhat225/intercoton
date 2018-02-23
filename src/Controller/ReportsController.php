@@ -162,10 +162,7 @@ class  ReportsController extends AppController
                 $now_date = new \DateTime('NOW');
                 $session_date = new \DateTime($session->session_end_date);
 
-                //checking if session expired
-                if($session_date < $now_date) 
-                    throw new Exception\ForbiddenException(__('error'));
-                else{
+
                         $all_images_uploaded = true;
                         $saved_images = [];
                         foreach ($data['reports']['evidences'] as $key => $value){
@@ -232,7 +229,7 @@ class  ReportsController extends AppController
                             }else
                                throw new Exception\BadRequestException(__('error'));
                         }
-                }
+
 
             }
             if($this->request->is('get')){
