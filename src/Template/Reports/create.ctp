@@ -2838,27 +2838,26 @@
 <!-- hu -->
 	   	   <div ng-switch-when="eight">
 	   	   	    <ng-form name="evidence">
-	   	   	    	    <h1 class="subtitle has-text-weight-semibold has-text-intercoton-green">Prises de vue (chacune des images ne peut excéder 5MB)</h1>
+	   	   	    	    <h1 class="subtitle has-text-weight-semibold has-text-intercoton-green">Prises de vue (chacune des images ne peut excéder 10MB)</h1>
 						<div class="field">
 							<div class="control">
 								<div class="level is-mobile">
-									<div class="level-left">
-										<?php $values=['a','b','c','d','e','f']; ?>
-										<?php foreach ($values as $value) :?>
-										   <div class="level-item">
-											     <div ng-if="!report.reports.evidences.evidence_<?= $value ?>" ngf-drop ngf-select ngf-max-size="5MB" ng-model="report.reports.evidences.evidence_<?= $value ?>" class="drop-box button is-hgt-130 is-wth-130">
-													<img src="/img/assets/forms/image_upload_drag_area.png" alt="">
-												</div>
-						  						<figure ng-if="report.reports.evidences.evidence_<?= $value ?>" class="image is-hgt-130 is-wth-130"> 
-						  							 <img ngf-thumbnail="report.reports.evidences.evidence_<?= $value ?>" >
-						  						</figure>
-									           <!-- change photo -->
-												<button type="button" class="button is-danger is-mar-bot-95" ng-show="report.reports.evidences.evidence_<?= $value ?>" ng-click="report.reports.evidences.evidence_<?= $value ?> = null"><span class="icon"><i class="far fa-window-close"></i></span>
-												</button>
-						  					</div>
-										<?php endforeach; ?>
-									</div>
-
+										<div class="level-left">
+											<?php $values=['a','b','c','d','e','f']; ?>
+											<?php foreach ($values as $value) :?>
+											   <div class="level-item">
+												     <div ng-if="!report.reports.evidences.evidence_<?= $value ?>" ngf-drop ngf-select ngf-max-size="10MB" ng-model="report.reports.evidences.evidence_<?= $value ?>" class="drop-box button is-hgt-130 is-wth-130">
+														<img src="/img/assets/forms/image_upload_drag_area.png" alt="">
+													</div>
+							  						<figure ng-if="report.reports.evidences.evidence_<?= $value ?>" class="image is-hgt-130 is-wth-130"> 
+							  							 <img ngf-thumbnail="report.reports.evidences.evidence_<?= $value ?>">
+							  						</figure>
+										           <!-- change photo -->
+													<button type="button" class="button is-danger is-mar-bot-95" ng-show="report.reports.evidences.evidence_<?= $value ?>" ng-click="report.reports.evidences.evidence_<?= $value ?> = null"><span class="icon"><i class="far fa-window-close"></i></span>
+													</button>
+							  					</div>
+											<?php endforeach; ?>
+										</div>
 									</div>
 								</div>
 
