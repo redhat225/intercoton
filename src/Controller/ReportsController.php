@@ -109,10 +109,9 @@ class  ReportsController extends AppController
                 $report = $this->Reports->get($data['id']);
                 $role = $this->request->session()->read('Auth.User.role.role_denomination');
                 
-                if($role == "auditor"){
-                    if($report->auditor_account_id != $this->request->session()->read('Auth.User.id'))
+                if( ($role == "auditor") && ($report->auditor_account_id != $this->request->session()->read('Auth.User.id')) )
                        throw new Exception\ForbiddenException(__('error'));
-                }else
+                else
                 {
                     if(count($report)>0)
                     {

@@ -1241,7 +1241,6 @@ angular.module('intercoton',['ui.router','ngFileUpload','angular-loading-bar','u
 	            scope.$destroy();
 	            angular.element(zone_id).remove();
             }
-
         }
     }
 }).directive('photoOpaItemDirective', function(){
