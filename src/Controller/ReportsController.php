@@ -63,7 +63,9 @@ class  ReportsController extends AppController
                         //get reports
                         $reports = $this->Reports->find()
                                                  ->where(['Reports.session_id'=>$this->request->query['session_id']])
-                                                 ->contain(['Cooperatives','AuditorAccounts.Auditors','Sessions']);
+                                                 ->AndWhere(function($exp, $q){
+                                                    return $exp->isNull('Reports.deleted');
+                                                 })->contain(['Cooperatives','AuditorAccounts.Auditors','Sessions']);
                     }
 
                     if(!$reports->isEmpty()){
