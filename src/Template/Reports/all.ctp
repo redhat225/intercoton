@@ -85,7 +85,7 @@
 											         <a ui-sref="admins.reports.edit({report_id:report.id})" class="dropdown-item">
 															Modifier le rapport
 												    </a>
-											        <a ui-sref="delete_report(report.id)" class="dropdown-item">
+											        <a ng-click="delete_report(report.id)" class="dropdown-item">
 											        	Supprimer le rapport
 													</a>
 											    </div>

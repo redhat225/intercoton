@@ -57,6 +57,7 @@ Router::scope('/auditors', function (RouteBuilder $routes) {
 Router::scope('/reports', function (RouteBuilder $routes) {
     $routes->connect('/', ['controller' => 'Reports', 'action' => 'all']);
     $routes->connect('/create', ['controller' => 'Reports', 'action' => 'create']);
+    $routes->connect('/delete', ['controller' => 'Reports', 'action' => 'delete']);
     $routes->connect('/edit', ['controller' => 'Reports', 'action' => 'edit']);
     $routes->connect('/view', ['controller' => 'Reports', 'action' => 'view']);
     $routes->connect('/add-item-report', ['controller' => 'Reports', 'action' => 'addItemReport']);

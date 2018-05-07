@@ -758,7 +758,6 @@ angular.module('intercoton',['ui.router','ngFileUpload','angular-loading-bar','u
 	}])
 	.controller('ReportsController', ['$scope','ReportService','$stateParams','$state','CooperativeService','$compile','$templateCache','CooperativeService', function($scope,ReportService,$stateParams,$state,CooperativeService,$compile,$templateCache,CooperativeService){
 		var $state_url = $state.current.url;
-
 			$scope.go_to_reports = function(){
 				$state.go('admins.reports',{session_id:$scope.report.session_id},{reload:true});
 			};
@@ -863,6 +862,18 @@ angular.module('intercoton',['ui.router','ngFileUpload','angular-loading-bar','u
 				})
 			}
 			$scope.load_reports($scope.session_id);
+
+			$scope.delete_report = function(id_report){
+				var r = confirm('Etes-vous sûre de vouloir supprimer ce rapport?');
+				if(r == true){
+					ReportService.delete(id_report).then(function(resp){
+						toastr.success('Rapport supprimé');
+						$state.reload();
+					}, function(err){
+						toastr.err('Une erreur est survenue, veuillez réessayer');
+					});
+				}
+			};
 		}
 
 		if($state_url ==="/edit/:report_id"){
@@ -1015,6 +1026,13 @@ angular.module('intercoton',['ui.router','ngFileUpload','angular-loading-bar','u
 				}, function(err){
 					toastr.error('Une erreur est survenue, veuillez réessayer');
 				})			
+			},
+			delete: function(report_id){
+				return $http.post('/reports/delete',report_id).then(function(resp){
+					return resp;
+				}, function(err){
+					toastr.error('Une erreur est survenue, veuillez réessayer');
+				})		
 			}
 		}
 	}])

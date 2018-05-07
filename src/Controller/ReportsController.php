@@ -55,7 +55,9 @@ class  ReportsController extends AppController
                     if($role == "auditor"){
                         $reports = $this->Reports->find()
                                                  ->where(['Reports.session_id'=>$this->request->query['session_id'],'Reports.auditor_account_id' => $this->request->session()->read('Auth.User.id')])
-                                                 ->contain(['Cooperatives','AuditorAccounts.Auditors','Sessions']);
+                                                 ->AndWhere(function($exp, $q){
+                                                    return $exp->isNull('Reports.deleted');
+                                                 })->contain(['Cooperatives','AuditorAccounts.Auditors','Sessions']);
                     }else
                     {
                         //get reports
@@ -81,6 +83,29 @@ class  ReportsController extends AppController
         }
     }
 
+    public function delete(){
+        if($this->request->is('ajax')){
+            if($this->request->is('post')){
+                $id_report = $this->request->data[0];
+                $report = $this->Reports->get($id_report);
+
+                $role = $this->request->session()->read('Auth.User.role.role_denomination');
+                if( ($role == "auditor") && ($report->auditor_account_id != $this->request->session()->read('Auth.User.id')) ){
+                       throw new Exception\ForbiddenException(__('error'));                    
+                }else{
+                        $report->deleted = new \DateTime('NOW');
+                        if($this->Reports->save($report)){
+                            $this->RequestHandler->renderAs($this, 'json');
+                            $response = ['message' => 'ok'];
+                            $this->set(compact('response'));
+                            $this->set('_serialize',['response']);
+                        }else
+                          throw new Exception\BadRequestException(__('error request'));
+                }
+            }   
+        }     
+    }
+ 
     public function view(){
         if($this->request->is('ajax')){
             if($this->request->is('get')){
