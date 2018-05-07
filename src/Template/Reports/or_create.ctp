@@ -54,6 +54,58 @@
 			</div>
 		</div>
 			<h3 class="is-pad-lft-10 subtitle has-text-weight-semibold hero is-intercoton-skygreen is-mar-bot-1 is-pad-bot-20 is-pad-top-20 has-text-intercoton-green" id="report_title">Fiche Technique Intervention</h3>
+		<div class="tabs is-toggle is-fullwidth">
+		  <ul>
+		    <li class="item_bar_report is-active">
+		      <a ng-click="reporTab = 'first'">
+		        <span class="icon is-small"><i class="fas fa-image"></i></span>
+		        <span>Env.Travail</span>
+		      </a>
+		    </li>
+		    <li class="item_bar_report">
+		      <a ng-click="reporTab = 'second'">
+		        <span class="icon is-small"><i class="fas fa-calculator"></i></span>
+		        <span>Inventaire</span>
+		      </a>
+		    </li>
+		    <li class="item_bar_report">
+		      <a ng-click="reporTab = 'third'">
+		        <span class="icon is-small"><i class="far fa-hdd"></i></span>
+		        <span>Materiel informatique</span>
+		      </a>
+		    </li>
+		    <li class="item_bar_report">
+		      <a ng-click="reporTab = 'fourth'">
+		        <span class="icon is-small"><i class="fab fa-accusoft"></i></span>
+		        <span>Application</span>
+		      </a>
+		    </li>
+		    <li class="item_bar_report">
+		      <a ng-click="reporTab = 'fifth'">
+		        <span class="icon is-small"><i class="far fa-calendar"></i></span>
+		        <span>Formation</span>
+		      </a>
+		    </li>
+		    <li class="item_bar_report">
+		      <a ng-click="reporTab = 'sixth'">
+		        <span class="icon is-small"><i class="fas fa-book"></i></span>
+		        <span>Competence</span>
+		      </a>
+		    </li>
+		    <li class="item_bar_report">
+		      <a ng-click="reporTab ='seventh'">
+		        <span class="icon is-small"><i class="fas fa-th-list"></i></span>
+		        <span>Rapportage</span>
+		      </a>
+		    </li>
+		    <li class="item_bar_report">
+		      <a ng-click="reporTab = 'eight'">
+		        <span class="icon is-small"><i class="far fa-check-circle"></i></span>
+		        <span>Validation</span>
+		      </a>
+		    </li>
+		  </ul>
+		</div>
 	   <div ng-switch="reporTab">
 	   	   <div ng-switch-when="first">
 				<ng-form name="env">
@@ -2636,7 +2688,7 @@
 
 
 	   	   </div>
-	   	   <div ng-switch-when="seventh">
+	   	   <div ng-switch-when="seventh"
 	   	   	  <ng-form name="rapportage">
 	   	   	  	   <!-- Avez-vous été  assisté par l’entreprise CIGA ? -->
 					   <div class="field is-horizontal">
@@ -2793,19 +2845,6 @@
 										<div class="level-left">
 											<?php $values=['a','b','c','d','e','f']; ?>
 											<?php foreach ($values as $value) :?>
-												<?php if($value=='a') :?>
-											   <div class="level-item">
-												     <div ng-if="!report.reports.evidences.evidence_<?= $value ?>" required ngf-drop ngf-select ngf-max-size="10MB" ng-model="report.reports.evidences.evidence_<?= $value ?>" class="drop-box button is-hgt-130 is-wth-130">
-														<img src="/img/assets/forms/image_upload_drag_area.png" alt="">
-													</div>
-							  						<figure ng-if="report.reports.evidences.evidence_<?= $value ?>" class="image is-hgt-130 is-wth-130"> 
-							  							 <img ngf-thumbnail="report.reports.evidences.evidence_<?= $value ?>">
-							  						</figure>
-										           <!-- change photo -->
-													<button type="button" class="button is-danger is-mar-bot-95" ng-show="report.reports.evidences.evidence_<?= $value ?>" ng-click="report.reports.evidences.evidence_<?= $value ?> = null"><span class="icon"><i class="far fa-window-close"></i></span>
-													</button>
-							  					</div>
-												<?php else: ?>
 											   <div class="level-item">
 												     <div ng-if="!report.reports.evidences.evidence_<?= $value ?>" ngf-drop ngf-select ngf-max-size="10MB" ng-model="report.reports.evidences.evidence_<?= $value ?>" class="drop-box button is-hgt-130 is-wth-130">
 														<img src="/img/assets/forms/image_upload_drag_area.png" alt="">
@@ -2817,8 +2856,6 @@
 													<button type="button" class="button is-danger is-mar-bot-95" ng-show="report.reports.evidences.evidence_<?= $value ?>" ng-click="report.reports.evidences.evidence_<?= $value ?> = null"><span class="icon"><i class="far fa-window-close"></i></span>
 													</button>
 							  					</div>
-												<?php endif; ?>
-
 											<?php endforeach; ?>
 										</div>
 									</div>

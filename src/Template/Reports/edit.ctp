@@ -77,7 +77,7 @@
 			<div class="field-body">
 				<div class="field">
 					<div class="control has-icons-left has-icons-right">
-						<input type="text" name="report_title" class="input" ng-model="report.report_title" required ng-minlength="1" ng-maxlength="300">
+						<input type="text" name="report_title" class="input" ng-model="report.report_title"  ng-minlength="1" ng-maxlength="300">
 						<span class="icon is-small is-left">
 							<i class="fa fa-sticky-note"></i>
 						</span>
@@ -99,7 +99,7 @@
 				<div class="field">
 					<div class="control has-icons-left">
 						<div class="select">
-							<select required name="cooperative_id" id="cooperative_id" ng-options="c.id as c.cooperative_denomination for c in cooperatives" ng-model="report.cooperative_id"></select>
+							<select  name="cooperative_id" id="cooperative_id" ng-options="c.id as c.cooperative_denomination for c in cooperatives" ng-model="report.cooperative_id"></select>
 						</div>
 						<span class="icon is-small is-left">
 							<i class="fa fa-bank"></i>
@@ -165,6 +165,10 @@
 	   <div ng-switch="reporTab">
 	   	   <div ng-switch-when="first">
 				<ng-form name="env">
+					    <!-- Saved button -->
+					    <button class="has-text-weight-bold button is-intercoton-green is-mar-bot-30" ng-disabled="is_loading">
+												Enregistrer les modifications							
+						</button>
 					    <!-- locaux freezed  -->
 						<div class="field is-horizontal">
 							<div class="field-label">
@@ -176,11 +180,11 @@
 								<div class="field">
 									<div class="control">
 										<label class="radio">
-										   <input required type="radio" name="is_freezed" value="true" ng-model="report.report_content.env.is_freezed.answer">
+										   <input  type="radio" name="is_freezed" value="true" ng-model="report.report_content.env.is_freezed.answer">
 										   Oui
 										</label>
 										<label class="radio">
-										   <input required type="radio" name="is_freezed" value="false" ng-model="report.report_content.env.is_freezed.answer">
+										   <input  type="radio" name="is_freezed" value="false" ng-model="report.report_content.env.is_freezed.answer">
 										   Non
 										</label>
 									</div>
@@ -212,11 +216,11 @@
 								<div class="field">
 									<div class="control">
 										<label class="radio">
-										   <input required type="radio" name="is_ventilated" value="true" ng-model="report.report_content.env.is_ventilated.answer">
+										   <input  type="radio" name="is_ventilated" value="true" ng-model="report.report_content.env.is_ventilated.answer">
 										   Oui
 										</label>
 										<label class="radio">
-										   <input required type="radio" name="is_ventilated" value="false" ng-model="report.report_content.env.is_ventilated.answer">
+										   <input  type="radio" name="is_ventilated" value="false" ng-model="report.report_content.env.is_ventilated.answer">
 										   Non
 										</label>
 									</div>
@@ -248,11 +252,11 @@
 								<div class="field">
 									<div class="control">
 										<label class="radio">
-										   <input required type="radio" name="is_key_secured" value="true" ng-model="report.report_content.env.is_key_secured.answer">
+										   <input  type="radio" name="is_key_secured" value="true" ng-model="report.report_content.env.is_key_secured.answer">
 										   Oui
 										</label>
 										<label class="radio">
-										   <input required type="radio" name="is_key_secured" value="false" ng-model="report.report_content.env.is_key_secured.answer">
+										   <input  type="radio" name="is_key_secured" value="false" ng-model="report.report_content.env.is_key_secured.answer">
 										   Non
 										</label>
 									</div>
@@ -284,11 +288,11 @@
 								<div class="field">
 									<div class="control">
 										<label class="radio">
-										   <input required type="radio" name="is_communication_between_members" value="true" ng-model="report.report_content.env.is_communication_between_members.answer">
+										   <input  type="radio" name="is_communication_between_members" value="true" ng-model="report.report_content.env.is_communication_between_members.answer">
 										   Oui
 										</label>
 										<label class="radio">
-										   <input required type="radio" name="is_communication_between_members" value="false" ng-model="report.report_content.env.is_communication_between_members.answer">
+										   <input  type="radio" name="is_communication_between_members" value="false" ng-model="report.report_content.env.is_communication_between_members.answer">
 										   Non
 										</label>
 									</div>
@@ -320,11 +324,11 @@
 								<div class="field">
 									<div class="control">
 										<label class="radio">
-										   <input required type="radio" name="is_problems_workenv" value="true" ng-model="report.report_content.env.is_problems_workenv.answer">
+										   <input  type="radio" name="is_problems_workenv" value="true" ng-model="report.report_content.env.is_problems_workenv.answer">
 										   Oui
 										</label>
 										<label class="radio">
-										   <input required type="radio" name="is_problems_workenv" value="false" ng-model="report.report_content.env.is_problems_workenv.answer">
+										   <input  type="radio" name="is_problems_workenv" value="false" ng-model="report.report_content.env.is_problems_workenv.answer">
 										   Non
 										</label>
 									</div>
@@ -345,10 +349,16 @@
 								</div>
 							</div>
 						</div>
+						<button class="has-text-weight-bold button is-intercoton-green" ng-disabled="is_loading">
+												Enregistrer les modifications							
+						</button>
 				</ng-form>	
 	   	   </div>
 	   	   <div ng-switch-when="second">
 	   	   		<ng-form name="inventory">
+						<button class="has-text-weight-bold button is-intercoton-green is-mar-bot-30" ng-disabled="is_loading">
+												Enregistrer les modifications							
+						</button>
 	   	   			   <!-- Immatriculation -->
 						<div class="field is-horizontal">
 							<div class="field-label">
@@ -360,7 +370,7 @@
 								<div class="field">
 									<div class="control">
 										<div class="control">
-											<textarea name="immatriculation" required ng-model="report.report_content.inventory.immatriculation" cols="30" rows="1" placeholder="immatriculation" class="textarea"></textarea>
+											<textarea name="immatriculation"  ng-model="report.report_content.inventory.immatriculation" cols="30" rows="1" placeholder="immatriculation" class="textarea"></textarea>
 										</div>
 									</div>
 								</div>
@@ -378,7 +388,7 @@
 								<div class="field">
 									<div class="control">
 										<div class="control">
-											<textarea name="specifications_brand" required ng-model="report.report_content.inventory.specifications.brand" cols="30" rows="1" placeholder="Marque" class="textarea"></textarea>
+											<textarea name="specifications_brand"  ng-model="report.report_content.inventory.specifications.brand" cols="30" rows="1" placeholder="Marque" class="textarea"></textarea>
 										</div>
 									</div>
 								</div>
@@ -386,7 +396,7 @@
 								<div class="field">
 									<div class="control">
 										<div class="control">
-											<textarea name="specifications_power" required ng-model="report.report_content.inventory.specifications.power" cols="30" rows="1" placeholder="Vitesse Processeur" class="textarea"></textarea>
+											<textarea name="specifications_power"  ng-model="report.report_content.inventory.specifications.power" cols="30" rows="1" placeholder="Vitesse Processeur" class="textarea"></textarea>
 										</div>
 									</div>
 								</div>
@@ -394,7 +404,7 @@
 								<div class="field">
 									<div class="control">
 										<div class="control">
-											<textarea name="specifications_hdd" required ng-model="report.report_content.inventory.specifications.hdd" cols="30" rows="1" placeholder="HDD" class="textarea"></textarea>
+											<textarea name="specifications_hdd"  ng-model="report.report_content.inventory.specifications.hdd" cols="30" rows="1" placeholder="HDD" class="textarea"></textarea>
 										</div>
 									</div>
 								</div>
@@ -402,7 +412,7 @@
 								<div class="field">
 									<div class="control">
 										<div class="control">
-											<textarea name="specifications_ram" required ng-model="report.report_content.inventory.specifications.ram" cols="30" rows="1" placeholder="Ram" class="textarea"></textarea>
+											<textarea name="specifications_ram"  ng-model="report.report_content.inventory.specifications.ram" cols="30" rows="1" placeholder="Ram" class="textarea"></textarea>
 										</div>
 									</div>
 								</div>
@@ -410,17 +420,22 @@
 								<div class="field">
 									<div class="control">
 										<div class="control">
-											<textarea name="specifications_screen" required ng-model="report.report_content.inventory.specifications.screen" cols="30" rows="1" placeholder="Ecran" class="textarea"></textarea>
+											<textarea name="specifications_screen"  ng-model="report.report_content.inventory.specifications.screen" cols="30" rows="1" placeholder="Ecran" class="textarea"></textarea>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-
+						<button class="has-text-weight-bold button is-intercoton-green" ng-disabled="is_loading">
+												Enregistrer les modifications							
+						</button>
 	   	   		</ng-form>
 	   	   </div>
 	   	   <div ng-switch-when="third">
 				<ng-form name="hardware">
+						<button class="has-text-weight-bold button is-intercoton-green is-mar-bot-30" ng-disabled="is_loading">
+												Enregistrer les modifications							
+						</button>
 					    <!-- La Machine est elle fonctionnelle  -->
 						<div class="field is-horizontal">
 							<div class="field-label">
@@ -432,11 +447,11 @@
 								<div class="field">
 									<div class="control">
 										<label class="radio">
-										   <input required type="radio" name="is_hardware_work" value="true" ng-model="report.report_content.hardware.is_hardware_work.answer">
+										   <input  type="radio" name="is_hardware_work" value="true" ng-model="report.report_content.hardware.is_hardware_work.answer">
 										   Oui
 										</label>
 										<label class="radio">
-										   <input required type="radio" name="is_hardware_work" value="false" ng-model="report.report_content.hardware.is_hardware_work.answer">
+										   <input  type="radio" name="is_hardware_work" value="false" ng-model="report.report_content.hardware.is_hardware_work.answer">
 										   Non
 										</label>
 									</div>
@@ -469,11 +484,11 @@
 								<div class="field">
 									<div class="control">
 										<label class="radio">
-										   <input required type="radio" name="is_delivery_equipment" value="true" ng-model="report.report_content.hardware.is_delivery_equipment.answer">
+										   <input  type="radio" name="is_delivery_equipment" value="true" ng-model="report.report_content.hardware.is_delivery_equipment.answer">
 										   Oui
 										</label>
 										<label class="radio">
-										   <input required type="radio" name="is_delivery_equipment" value="false" ng-model="report.report_content.hardware.is_delivery_equipment.answer">
+										   <input  type="radio" name="is_delivery_equipment" value="false" ng-model="report.report_content.hardware.is_delivery_equipment.answer">
 										   Non
 										</label>
 									</div>
@@ -506,11 +521,11 @@
 								<div class="field">
 									<div class="control">
 										<label class="radio">
-										   <input required type="radio" name="is_os_authentic" value="true" ng-model="report.report_content.hardware.is_os_authentic.answer">
+										   <input  type="radio" name="is_os_authentic" value="true" ng-model="report.report_content.hardware.is_os_authentic.answer">
 										   Oui
 										</label>
 										<label class="radio">
-										   <input required type="radio" name="is_os_authentic" value="false" ng-model="report.report_content.hardware.is_os_authentic.answer">
+										   <input  type="radio" name="is_os_authentic" value="false" ng-model="report.report_content.hardware.is_os_authentic.answer">
 										   Non
 										</label>
 									</div>
@@ -543,11 +558,11 @@
 								<div class="field">
 									<div class="control">
 										<label class="radio">
-										   <input required type="radio" name="is_office_suite_authentic" value="true" ng-model="report.report_content.hardware.is_office_suite_authentic.answer">
+										   <input  type="radio" name="is_office_suite_authentic" value="true" ng-model="report.report_content.hardware.is_office_suite_authentic.answer">
 										   Oui
 										</label>
 										<label class="radio">
-										   <input required type="radio" name="is_office_suite_authentic" value="false" ng-model="report.report_content.hardware.is_office_suite_authentic.answer">
+										   <input  type="radio" name="is_office_suite_authentic" value="false" ng-model="report.report_content.hardware.is_office_suite_authentic.answer">
 										   Non
 										</label>
 									</div>
@@ -580,11 +595,11 @@
 								<div class="field">
 									<div class="control">
 										<label class="radio">
-										   <input required type="radio" name="is_antivirus_exist" value="true" ng-model="report.report_content.hardware.is_antivirus_exist.answer">
+										   <input  type="radio" name="is_antivirus_exist" value="true" ng-model="report.report_content.hardware.is_antivirus_exist.answer">
 										   Oui
 										</label>
 										<label class="radio">
-										   <input required type="radio" name="is_antivirus_exist" value="false" ng-model="report.report_content.hardware.is_antivirus_exist.answer">
+										   <input  type="radio" name="is_antivirus_exist" value="false" ng-model="report.report_content.hardware.is_antivirus_exist.answer">
 										   Non
 										</label>
 									</div>
@@ -617,11 +632,11 @@
 								<div class="field">
 									<div class="control">
 										<label class="radio">
-										   <input required type="radio" name="is_antivirus_authentic" value="true" ng-model="report.report_content.hardware.is_antivirus_authentic.answer">
+										   <input  type="radio" name="is_antivirus_authentic" value="true" ng-model="report.report_content.hardware.is_antivirus_authentic.answer">
 										   Oui
 										</label>
 										<label class="radio">
-										   <input required type="radio" name="is_antivirus_authentic" value="false" ng-model="report.report_content.hardware.is_antivirus_authentic.answer">
+										   <input  type="radio" name="is_antivirus_authentic" value="false" ng-model="report.report_content.hardware.is_antivirus_authentic.answer">
 										   Non
 										</label>
 									</div>
@@ -654,11 +669,11 @@
 								<div class="field">
 									<div class="control">
 										<label class="radio">
-										   <input required type="radio" name="is_hardware_shippment_genuine" value="true" ng-model="report.report_content.hardware.is_hardware_shippment_genuine.answer">
+										   <input  type="radio" name="is_hardware_shippment_genuine" value="true" ng-model="report.report_content.hardware.is_hardware_shippment_genuine.answer">
 										   Oui
 										</label>
 										<label class="radio">
-										   <input required type="radio" name="is_hardware_shippment_genuine" value="false" ng-model="report.report_content.hardware.is_hardware_shippment_genuine.answer">
+										   <input  type="radio" name="is_hardware_shippment_genuine" value="false" ng-model="report.report_content.hardware.is_hardware_shippment_genuine.answer">
 										   Non
 										</label>
 									</div>
@@ -691,11 +706,11 @@
 								<div class="field">
 									<div class="control">
 										<label class="radio">
-										   <input required type="radio" name="is_hardware_maintenance_exist" value="true" ng-model="report.report_content.hardware.is_hardware_maintenance_exist.answer">
+										   <input  type="radio" name="is_hardware_maintenance_exist" value="true" ng-model="report.report_content.hardware.is_hardware_maintenance_exist.answer">
 										   Oui
 										</label>
 										<label class="radio">
-										   <input required type="radio" name="is_hardware_maintenance_exist" value="false" ng-model="report.report_content.hardware.is_hardware_maintenance_exist.answer">
+										   <input  type="radio" name="is_hardware_maintenance_exist" value="false" ng-model="report.report_content.hardware.is_hardware_maintenance_exist.answer">
 										   Non
 										</label>
 									</div>
@@ -728,11 +743,11 @@
 								<div class="field">
 									<div class="control">
 										<label class="radio">
-										   <input required type="radio" name="is_backup_media_exist" value="true" ng-model="report.report_content.hardware.is_backup_media_exist.answer">
+										   <input  type="radio" name="is_backup_media_exist" value="true" ng-model="report.report_content.hardware.is_backup_media_exist.answer">
 										   Oui
 										</label>
 										<label class="radio">
-										   <input required type="radio" name="is_backup_media_exist" value="false" ng-model="report.report_content.hardware.is_backup_media_exist.answer">
+										   <input  type="radio" name="is_backup_media_exist" value="false" ng-model="report.report_content.hardware.is_backup_media_exist.answer">
 										   Non
 										</label>
 									</div>
@@ -765,11 +780,11 @@
 								<div class="field">
 									<div class="control">
 										<label class="radio">
-										   <input required type="radio" name="is_computer_personal_used" value="true" ng-model="report.report_content.hardware.is_computer_personal_used.answer">
+										   <input  type="radio" name="is_computer_personal_used" value="true" ng-model="report.report_content.hardware.is_computer_personal_used.answer">
 										   Oui
 										</label>
 										<label class="radio">
-										   <input required type="radio" name="is_computer_personal_used" value="false" ng-model="report.report_content.hardware.is_computer_personal_used.answer">
+										   <input  type="radio" name="is_computer_personal_used" value="false" ng-model="report.report_content.hardware.is_computer_personal_used.answer">
 										   Non
 										</label>
 									</div>
@@ -802,11 +817,11 @@
 								<div class="field">
 									<div class="control">
 										<label class="radio">
-										   <input required type="radio" name="is_computer_personal_used_others" value="true" ng-model="report.report_content.hardware.is_computer_personal_used_others.answer">
+										   <input  type="radio" name="is_computer_personal_used_others" value="true" ng-model="report.report_content.hardware.is_computer_personal_used_others.answer">
 										   Oui
 										</label>
 										<label class="radio">
-										   <input required type="radio" name="is_computer_personal_used_others" value="false" ng-model="report.report_content.hardware.is_computer_personal_used_others.answer">
+										   <input  type="radio" name="is_computer_personal_used_others" value="false" ng-model="report.report_content.hardware.is_computer_personal_used_others.answer">
 										   Non
 										</label>
 									</div>
@@ -839,11 +854,11 @@
 								<div class="field">
 									<div class="control">
 										<label class="radio">
-										   <input required type="radio" name="is_computer_auth_exist" value="true" ng-model="report.report_content.hardware.is_computer_auth_exist.answer">
+										   <input  type="radio" name="is_computer_auth_exist" value="true" ng-model="report.report_content.hardware.is_computer_auth_exist.answer">
 										   Oui
 										</label>
 										<label class="radio">
-										   <input required type="radio" name="is_computer_auth_exist" value="false" ng-model="report.report_content.hardware.is_computer_auth_exist.answer">
+										   <input  type="radio" name="is_computer_auth_exist" value="false" ng-model="report.report_content.hardware.is_computer_auth_exist.answer">
 										   Non
 										</label>
 									</div>
@@ -876,11 +891,11 @@
 								<div class="field">
 									<div class="control">
 										<label class="radio">
-										   <input required type="radio" name="is_computer_performing" value="true" ng-model="report.report_content.hardware.is_computer_performing.answer">
+										   <input  type="radio" name="is_computer_performing" value="true" ng-model="report.report_content.hardware.is_computer_performing.answer">
 										   Oui
 										</label>
 										<label class="radio">
-										   <input required type="radio" name="is_computer_performing" value="false" ng-model="report.report_content.hardware.is_computer_performing.answer">
+										   <input  type="radio" name="is_computer_performing" value="false" ng-model="report.report_content.hardware.is_computer_performing.answer">
 										   Non
 										</label>
 									</div>
@@ -901,11 +916,16 @@
 								</div>
 							</div>
 						</div>
-
+						<button class="has-text-weight-bold button is-intercoton-green" ng-disabled="is_loading">
+												Enregistrer les modifications							
+						</button>
 				</ng-form>	
 	   	   </div>
 	   	   <div ng-switch-when="fourth">
 	   	   	<ng-form name="applications">
+	   	   				<button class="has-text-weight-bold button is-intercoton-green is-mar-bot-30" ng-disabled="is_loading">
+												Enregistrer les modifications							
+						</button>
 	   	   		<!-- GESCOOP -->
 	   	   		  <h1 class="subtitle">GESCOOP</h1>
 					    <!-- Existe-il un cahier de charges ? A vérifier  -->
@@ -919,11 +939,11 @@
 								<div class="field">
 									<div class="control">
 										<label class="radio">
-										   <input required type="radio" name="gescoop_specifications" value="true" ng-model="report.report_content.applications.gescoop.specifications.answer">
+										   <input  type="radio" name="gescoop_specifications" value="true" ng-model="report.report_content.applications.gescoop.specifications.answer">
 										   Oui
 										</label>
 										<label class="radio">
-										   <input required type="radio" name="gescoop_specifications" value="false" ng-model="report.report_content.applications.gescoop.specifications.answer">
+										   <input  type="radio" name="gescoop_specifications" value="false" ng-model="report.report_content.applications.gescoop.specifications.answer">
 										   Non
 										</label>
 									</div>
@@ -956,11 +976,11 @@
 								<div class="field">
 									<div class="control">
 										<label class="radio">
-										   <input required type="radio" name="gescoop_specifications_assets" value="true" ng-model="report.report_content.applications.gescoop.media_assets.answer">
+										   <input  type="radio" name="gescoop_specifications_assets" value="true" ng-model="report.report_content.applications.gescoop.media_assets.answer">
 										   Oui
 										</label>
 										<label class="radio">
-										   <input required type="radio" name="gescoop_specifications_assets" value="false" ng-model="report.report_content.applications.gescoop.media_assets.answer">
+										   <input  type="radio" name="gescoop_specifications_assets" value="false" ng-model="report.report_content.applications.gescoop.media_assets.answer">
 										   Non
 										</label>
 									</div>
@@ -993,11 +1013,11 @@
 								<div class="field">
 									<div class="control">
 										<label class="radio">
-										   <input required type="radio" name="gescoop_specifications_applications" value="true" ng-model="report.report_content.applications.gescoop.media_applications.answer">
+										   <input  type="radio" name="gescoop_specifications_applications" value="true" ng-model="report.report_content.applications.gescoop.media_applications.answer">
 										   Oui
 										</label>
 										<label class="radio">
-										   <input required type="radio" name="gescoop_specifications_applications" value="false" ng-model="report.report_content.applications.gescoop.media_applications.answer">
+										   <input  type="radio" name="gescoop_specifications_applications" value="false" ng-model="report.report_content.applications.gescoop.media_applications.answer">
 										   Non
 										</label>
 									</div>
@@ -1030,11 +1050,11 @@
 								<div class="field">
 									<div class="control">
 										<label class="radio">
-										   <input required type="radio" name="gescoop_conformity" value="true" ng-model="report.report_content.applications.gescoop.conformity.answer">
+										   <input  type="radio" name="gescoop_conformity" value="true" ng-model="report.report_content.applications.gescoop.conformity.answer">
 										   Oui
 										</label>
 										<label class="radio">
-										   <input required type="radio" name="gescoop_conformity" value="false" ng-model="report.report_content.applications.gescoop.conformity.answer">
+										   <input  type="radio" name="gescoop_conformity" value="false" ng-model="report.report_content.applications.gescoop.conformity.answer">
 										   Non
 										</label>
 									</div>
@@ -1067,11 +1087,11 @@
 								<div class="field">
 									<div class="control">
 										<label class="radio">
-										   <input required type="radio" name="gescoop_bd_accessibility" value="true" ng-model="report.report_content.applications.gescoop.bd_accessibility.answer">
+										   <input  type="radio" name="gescoop_bd_accessibility" value="true" ng-model="report.report_content.applications.gescoop.bd_accessibility.answer">
 										   Oui
 										</label>
 										<label class="radio">
-										   <input required type="radio" name="gescoop_bd_accessibility" value="false" ng-model="report.report_content.applications.gescoop.bd_accessibility.answer">
+										   <input  type="radio" name="gescoop_bd_accessibility" value="false" ng-model="report.report_content.applications.gescoop.bd_accessibility.answer">
 										   Non
 										</label>
 									</div>
@@ -1104,11 +1124,11 @@
 								<div class="field">
 									<div class="control">
 										<label class="radio">
-										   <input required type="radio" name="gescoop_app_easy_executable" value="true" ng-model="report.report_content.applications.gescoop.app_easy_executable.answer">
+										   <input  type="radio" name="gescoop_app_easy_executable" value="true" ng-model="report.report_content.applications.gescoop.app_easy_executable.answer">
 										   Oui
 										</label>
 										<label class="radio">
-										   <input required type="radio" name="gescoop_app_easy_executable" value="false" ng-model="report.report_content.applications.gescoop.app_easy_executable.answer">
+										   <input  type="radio" name="gescoop_app_easy_executable" value="false" ng-model="report.report_content.applications.gescoop.app_easy_executable.answer">
 										   Non
 										</label>
 									</div>
@@ -1141,11 +1161,11 @@
 								<div class="field">
 									<div class="control">
 										<label class="radio">
-										   <input required type="radio" name="gescoop_auth_exist" value="true" ng-model="report.report_content.applications.gescoop.auth_exist.answer">
+										   <input  type="radio" name="gescoop_auth_exist" value="true" ng-model="report.report_content.applications.gescoop.auth_exist.answer">
 										   Oui
 										</label>
 										<label class="radio">
-										   <input required type="radio" name="gescoop_auth_exist" value="false" ng-model="report.report_content.applications.gescoop.auth_exist.answer">
+										   <input  type="radio" name="gescoop_auth_exist" value="false" ng-model="report.report_content.applications.gescoop.auth_exist.answer">
 										   Non
 										</label>
 									</div>
@@ -1178,11 +1198,11 @@
 								<div class="field">
 									<div class="control">
 										<label class="radio">
-										   <input required type="radio" name="gescoop_bd_is_alterable" value="true" ng-model="report.report_content.applications.gescoop.bd_is_alterable.answer">
+										   <input  type="radio" name="gescoop_bd_is_alterable" value="true" ng-model="report.report_content.applications.gescoop.bd_is_alterable.answer">
 										   Oui
 										</label>
 										<label class="radio">
-										   <input required type="radio" name="gescoop_bd_is_alterable" value="false" ng-model="report.report_content.applications.gescoop.bd_is_alterable.answer">
+										   <input  type="radio" name="gescoop_bd_is_alterable" value="false" ng-model="report.report_content.applications.gescoop.bd_is_alterable.answer">
 										   Non
 										</label>
 									</div>
@@ -1215,11 +1235,11 @@
 								<div class="field">
 									<div class="control">
 										<label class="radio">
-										   <input required type="radio" name="gescoop_bd_is_saved" value="true" ng-model="report.report_content.applications.gescoop.bd_is_saved.answer">
+										   <input  type="radio" name="gescoop_bd_is_saved" value="true" ng-model="report.report_content.applications.gescoop.bd_is_saved.answer">
 										   Oui
 										</label>
 										<label class="radio">
-										   <input required type="radio" name="gescoop_bd_is_saved" value="false" ng-model="report.report_content.applications.gescoop.bd_is_saved.answer">
+										   <input  type="radio" name="gescoop_bd_is_saved" value="false" ng-model="report.report_content.applications.gescoop.bd_is_saved.answer">
 										   Non
 										</label>
 									</div>
@@ -1253,11 +1273,11 @@
 								<div class="field">
 									<div class="control">
 										<label class="radio">
-										   <input required type="radio" name="easycompta_specifications" value="true" ng-model="report.report_content.applications.easycompta.specifications.answer">
+										   <input  type="radio" name="easycompta_specifications" value="true" ng-model="report.report_content.applications.easycompta.specifications.answer">
 										   Oui
 										</label>
 										<label class="radio">
-										   <input required type="radio" name="easycompta_specifications" value="false" ng-model="report.report_content.applications.easycompta.specifications.answer">
+										   <input  type="radio" name="easycompta_specifications" value="false" ng-model="report.report_content.applications.easycompta.specifications.answer">
 										   Non
 										</label>
 									</div>
@@ -1290,11 +1310,11 @@
 								<div class="field">
 									<div class="control">
 										<label class="radio">
-										   <input required type="radio" name="easycompta_specifications_assets" value="true" ng-model="report.report_content.applications.easycompta.media_assets.answer">
+										   <input  type="radio" name="easycompta_specifications_assets" value="true" ng-model="report.report_content.applications.easycompta.media_assets.answer">
 										   Oui
 										</label>
 										<label class="radio">
-										   <input required type="radio" name="easycompta_specifications_assets" value="false" ng-model="report.report_content.applications.easycompta.media_assets.answer">
+										   <input  type="radio" name="easycompta_specifications_assets" value="false" ng-model="report.report_content.applications.easycompta.media_assets.answer">
 										   Non
 										</label>
 									</div>
@@ -1327,11 +1347,11 @@
 								<div class="field">
 									<div class="control">
 										<label class="radio">
-										   <input required type="radio" name="easycompta_specifications_applications" value="true" ng-model="report.report_content.applications.easycompta.media_applications.answer">
+										   <input  type="radio" name="easycompta_specifications_applications" value="true" ng-model="report.report_content.applications.easycompta.media_applications.answer">
 										   Oui
 										</label>
 										<label class="radio">
-										   <input required type="radio" name="easycompta_specifications_applications" value="false" ng-model="report.report_content.applications.easycompta.media_applications.answer">
+										   <input  type="radio" name="easycompta_specifications_applications" value="false" ng-model="report.report_content.applications.easycompta.media_applications.answer">
 										   Non
 										</label>
 									</div>
@@ -1364,11 +1384,11 @@
 								<div class="field">
 									<div class="control">
 										<label class="radio">
-										   <input required type="radio" name="easycompta_conformity" value="true" ng-model="report.report_content.applications.easycompta.conformity.answer">
+										   <input  type="radio" name="easycompta_conformity" value="true" ng-model="report.report_content.applications.easycompta.conformity.answer">
 										   Oui
 										</label>
 										<label class="radio">
-										   <input required type="radio" name="easycompta_conformity" value="false" ng-model="report.report_content.applications.easycompta.conformity.answer">
+										   <input  type="radio" name="easycompta_conformity" value="false" ng-model="report.report_content.applications.easycompta.conformity.answer">
 										   Non
 										</label>
 									</div>
@@ -1401,11 +1421,11 @@
 								<div class="field">
 									<div class="control">
 										<label class="radio">
-										   <input required type="radio" name="easycompta_bd_accessibility" value="true" ng-model="report.report_content.applications.easycompta.bd_accessibility.answer">
+										   <input  type="radio" name="easycompta_bd_accessibility" value="true" ng-model="report.report_content.applications.easycompta.bd_accessibility.answer">
 										   Oui
 										</label>
 										<label class="radio">
-										   <input required type="radio" name="easycompta_bd_accessibility" value="false" ng-model="report.report_content.applications.easycompta.bd_accessibility.answer">
+										   <input  type="radio" name="easycompta_bd_accessibility" value="false" ng-model="report.report_content.applications.easycompta.bd_accessibility.answer">
 										   Non
 										</label>
 									</div>
@@ -1438,11 +1458,11 @@
 								<div class="field">
 									<div class="control">
 										<label class="radio">
-										   <input required type="radio" name="easycompta_app_easy_executable" value="true" ng-model="report.report_content.applications.easycompta.app_easy_executable.answer">
+										   <input  type="radio" name="easycompta_app_easy_executable" value="true" ng-model="report.report_content.applications.easycompta.app_easy_executable.answer">
 										   Oui
 										</label>
 										<label class="radio">
-										   <input required type="radio" name="easycompta_app_easy_executable" value="false" ng-model="report.report_content.applications.easycompta.app_easy_executable.answer">
+										   <input  type="radio" name="easycompta_app_easy_executable" value="false" ng-model="report.report_content.applications.easycompta.app_easy_executable.answer">
 										   Non
 										</label>
 									</div>
@@ -1475,11 +1495,11 @@
 								<div class="field">
 									<div class="control">
 										<label class="radio">
-										   <input required type="radio" name="easycompta_auth_exist" value="true" ng-model="report.report_content.applications.easycompta.auth_exist.answer">
+										   <input  type="radio" name="easycompta_auth_exist" value="true" ng-model="report.report_content.applications.easycompta.auth_exist.answer">
 										   Oui
 										</label>
 										<label class="radio">
-										   <input required type="radio" name="easycompta_auth_exist" value="false" ng-model="report.report_content.applications.easycompta.auth_exist.answer">
+										   <input  type="radio" name="easycompta_auth_exist" value="false" ng-model="report.report_content.applications.easycompta.auth_exist.answer">
 										   Non
 										</label>
 									</div>
@@ -1512,11 +1532,11 @@
 								<div class="field">
 									<div class="control">
 										<label class="radio">
-										   <input required type="radio" name="easycompta_bd_is_alterable" value="true" ng-model="report.report_content.applications.easycompta.bd_is_alterable.answer">
+										   <input  type="radio" name="easycompta_bd_is_alterable" value="true" ng-model="report.report_content.applications.easycompta.bd_is_alterable.answer">
 										   Oui
 										</label>
 										<label class="radio">
-										   <input required type="radio" name="easycompta_bd_is_alterable" value="false" ng-model="report.report_content.applications.easycompta.bd_is_alterable.answer">
+										   <input  type="radio" name="easycompta_bd_is_alterable" value="false" ng-model="report.report_content.applications.easycompta.bd_is_alterable.answer">
 										   Non
 										</label>
 									</div>
@@ -1549,11 +1569,11 @@
 								<div class="field">
 									<div class="control">
 										<label class="radio">
-										   <input required type="radio" name="easycompta_bd_is_saved" value="true" ng-model="report.report_content.applications.easycompta.bd_is_saved.answer">
+										   <input  type="radio" name="easycompta_bd_is_saved" value="true" ng-model="report.report_content.applications.easycompta.bd_is_saved.answer">
 										   Oui
 										</label>
 										<label class="radio">
-										   <input required type="radio" name="easycompta_bd_is_saved" value="false" ng-model="report.report_content.applications.easycompta.bd_is_saved.answer">
+										   <input  type="radio" name="easycompta_bd_is_saved" value="false" ng-model="report.report_content.applications.easycompta.bd_is_saved.answer">
 										   Non
 										</label>
 									</div>
@@ -1574,10 +1594,16 @@
 								</div>
 							</div>
 						</div>
+	   	   				<button class="has-text-weight-bold button is-intercoton-green" ng-disabled="is_loading">
+												Enregistrer les modifications							
+						</button>
 	   	   	</ng-form>
 	   	   </div>
 	        <div ng-switch-when="fifth">
 	        	<ng-form name="formations">
+	   	   				<button class="has-text-weight-bold button is-intercoton-green is-mar-bot-30" ng-disabled="is_loading">
+												Enregistrer les modifications							
+						</button>
 			          <!-- GESCOOP -->
 			          <h1 class="subtitle">GESCOOP</h1>
 						<!-- Avez-vous été formé ?  -->
@@ -1591,11 +1617,11 @@
 										<div class="field">
 											<div class="control">
 												<label class="radio">
-												   <input required type="radio" name="gescoop_teached" value="true" ng-model="report.report_content.formations.gescoop.teached.answer">
+												   <input  type="radio" name="gescoop_teached" value="true" ng-model="report.report_content.formations.gescoop.teached.answer">
 												   Oui
 												</label>
 												<label class="radio">
-												   <input required type="radio" name="gescoop_teached" value="false" ng-model="report.report_content.formations.gescoop.teached.answer">
+												   <input  type="radio" name="gescoop_teached" value="false" ng-model="report.report_content.formations.gescoop.teached.answer">
 												   Non
 												</label>
 											</div>
@@ -1628,11 +1654,11 @@
 										<div class="field">
 											<div class="control">
 												<label class="radio">
-												   <input required type="radio" name="gescoop_teached_time" value="true" ng-model="report.report_content.formations.gescoop.teached_time.answer">
+												   <input  type="radio" name="gescoop_teached_time" value="true" ng-model="report.report_content.formations.gescoop.teached_time.answer">
 												   Oui
 												</label>
 												<label class="radio">
-												   <input required type="radio" name="gescoop_teached_time" value="false" ng-model="report.report_content.formations.gescoop.teached_time.answer">
+												   <input  type="radio" name="gescoop_teached_time" value="false" ng-model="report.report_content.formations.gescoop.teached_time.answer">
 												   Non
 												</label>
 											</div>
@@ -1664,11 +1690,11 @@
 										<div class="field">
 											<div class="control">
 												<label class="radio">
-												   <input required type="radio" name="gescoop_teached_man" value="true" ng-model="report.report_content.formations.gescoop.teached_man.answer">
+												   <input  type="radio" name="gescoop_teached_man" value="true" ng-model="report.report_content.formations.gescoop.teached_man.answer">
 												   Oui
 												</label>
 												<label class="radio">
-												   <input required type="radio" name="gescoop_teached_man" value="false" ng-model="report.report_content.formations.gescoop.teached_man.answer">
+												   <input  type="radio" name="gescoop_teached_man" value="false" ng-model="report.report_content.formations.gescoop.teached_man.answer">
 												   Non
 												</label>
 											</div>
@@ -1701,11 +1727,11 @@
 										<div class="field">
 											<div class="control">
 												<label class="radio">
-												   <input required type="radio" name="gescoop_teached_is_good" value="true" ng-model="report.report_content.formations.gescoop.teached_is_good.answer">
+												   <input  type="radio" name="gescoop_teached_is_good" value="true" ng-model="report.report_content.formations.gescoop.teached_is_good.answer">
 												   Oui
 												</label>
 												<label class="radio">
-												   <input required type="radio" name="gescoop_teached_is_good" value="false" ng-model="report.report_content.formations.gescoop.teached_is_good.answer">
+												   <input  type="radio" name="gescoop_teached_is_good" value="false" ng-model="report.report_content.formations.gescoop.teached_is_good.answer">
 												   Non
 												</label>
 											</div>
@@ -1738,11 +1764,11 @@
 										<div class="field">
 											<div class="control">
 												<label class="radio">
-												   <input required type="radio" name="gescoop_teached_is_useful" value="true" ng-model="report.report_content.formations.gescoop.teached_is_useful.answer">
+												   <input  type="radio" name="gescoop_teached_is_useful" value="true" ng-model="report.report_content.formations.gescoop.teached_is_useful.answer">
 												   Oui
 												</label>
 												<label class="radio">
-												   <input required type="radio" name="gescoop_teached_is_useful" value="false" ng-model="report.report_content.formations.gescoop.teached_is_useful.answer">
+												   <input  type="radio" name="gescoop_teached_is_useful" value="false" ng-model="report.report_content.formations.gescoop.teached_is_useful.answer">
 												   Non
 												</label>
 											</div>
@@ -1774,11 +1800,11 @@
 										<div class="field">
 											<div class="control">
 												<label class="radio">
-												   <input required type="radio" name="gescoop_teached_facing_difficulties" value="true" ng-model="report.report_content.formations.gescoop.teached_facing_difficulties.answer">
+												   <input  type="radio" name="gescoop_teached_facing_difficulties" value="true" ng-model="report.report_content.formations.gescoop.teached_facing_difficulties.answer">
 												   Oui
 												</label>
 												<label class="radio">
-												   <input required type="radio" name="gescoop_teached_facing_difficulties" value="false" ng-model="report.report_content.formations.gescoop.teached_facing_difficulties.answer">
+												   <input  type="radio" name="gescoop_teached_facing_difficulties" value="false" ng-model="report.report_content.formations.gescoop.teached_facing_difficulties.answer">
 												   Non
 												</label>
 											</div>
@@ -1811,11 +1837,11 @@
 										<div class="field">
 											<div class="control">
 												<label class="radio">
-												   <input required type="radio" name="gescoop_teacher_knew_subject" value="true" ng-model="report.report_content.formations.gescoop.teacher_knew_subject.answer">
+												   <input  type="radio" name="gescoop_teacher_knew_subject" value="true" ng-model="report.report_content.formations.gescoop.teacher_knew_subject.answer">
 												   Oui
 												</label>
 												<label class="radio">
-												   <input required type="radio" name="gescoop_teacher_knew_subject" value="false" ng-model="report.report_content.formations.gescoop.teacher_knew_subject.answer">
+												   <input  type="radio" name="gescoop_teacher_knew_subject" value="false" ng-model="report.report_content.formations.gescoop.teacher_knew_subject.answer">
 												   Non
 												</label>
 											</div>
@@ -1848,11 +1874,11 @@
 											<div class="field">
 												<div class="control">
 													<label class="radio">
-													   <input required type="radio" name="gescoop_teacher_used_easy_language" value="true" ng-model="report.report_content.formations.gescoop.teacher_used_easy_language.answer">
+													   <input  type="radio" name="gescoop_teacher_used_easy_language" value="true" ng-model="report.report_content.formations.gescoop.teacher_used_easy_language.answer">
 													   Oui
 													</label>
 													<label class="radio">
-													   <input required type="radio" name="gescoop_teacher_used_easy_language" value="false" ng-model="report.report_content.formations.gescoop.teacher_used_easy_language.answer">
+													   <input  type="radio" name="gescoop_teacher_used_easy_language" value="false" ng-model="report.report_content.formations.gescoop.teacher_used_easy_language.answer">
 													   Non
 													</label>
 												</div>
@@ -1886,11 +1912,11 @@
 												<div class="field">
 													<div class="control">
 														<label class="radio">
-														   <input required type="radio" name="gescoop_teacher_was_opened" value="true" ng-model="report.report_content.formations.gescoop.teacher_was_opened.answer">
+														   <input  type="radio" name="gescoop_teacher_was_opened" value="true" ng-model="report.report_content.formations.gescoop.teacher_was_opened.answer">
 														   Oui
 														</label>
 														<label class="radio">
-														   <input required type="radio" name="gescoop_teacher_was_opened" value="false" ng-model="report.report_content.formations.gescoop.teacher_was_opened.answer">
+														   <input  type="radio" name="gescoop_teacher_was_opened" value="false" ng-model="report.report_content.formations.gescoop.teacher_was_opened.answer">
 														   Non
 														</label>
 													</div>
@@ -1948,11 +1974,11 @@
 												<div class="field">
 													<div class="control">
 														<label class="radio">
-														   <input required type="radio" name="gescoop_you_know_how" value="true" ng-model="report.report_content.formations.gescoop.you_know_how.answer">
+														   <input  type="radio" name="gescoop_you_know_how" value="true" ng-model="report.report_content.formations.gescoop.you_know_how.answer">
 														   Oui
 														</label>
 														<label class="radio">
-														   <input required type="radio" name="gescoop_you_know_how" value="false" ng-model="report.report_content.formations.gescoop.you_know_how.answer">
+														   <input  type="radio" name="gescoop_you_know_how" value="false" ng-model="report.report_content.formations.gescoop.you_know_how.answer">
 														   Non
 														</label>
 													</div>
@@ -1986,11 +2012,11 @@
 												<div class="field">
 													<div class="control">
 														<label class="radio">
-														   <input required type="radio" name="gescoop_software_is_useful" value="true" ng-model="report.report_content.formations.gescoop.software_is_useful.answer">
+														   <input  type="radio" name="gescoop_software_is_useful" value="true" ng-model="report.report_content.formations.gescoop.software_is_useful.answer">
 														   Oui
 														</label>
 														<label class="radio">
-														   <input required type="radio" name="gescoop_software_is_useful" value="false" ng-model="report.report_content.formations.gescoop.software_is_useful.answer">
+														   <input  type="radio" name="gescoop_software_is_useful" value="false" ng-model="report.report_content.formations.gescoop.software_is_useful.answer">
 														   Non
 														</label>
 													</div>
@@ -2024,11 +2050,11 @@
 								<div class="field">
 									<div class="control">
 										<label class="radio">
-										   <input required type="radio" name="easycompta_teached" value="true" ng-model="report.report_content.formations.easycompta.teached.answer">
+										   <input  type="radio" name="easycompta_teached" value="true" ng-model="report.report_content.formations.easycompta.teached.answer">
 										   Oui
 										</label>
 										<label class="radio">
-										   <input required type="radio" name="easycompta_teached" value="false" ng-model="report.report_content.formations.easycompta.teached.answer">
+										   <input  type="radio" name="easycompta_teached" value="false" ng-model="report.report_content.formations.easycompta.teached.answer">
 										   Non
 										</label>
 									</div>
@@ -2061,11 +2087,11 @@
 										<div class="field">
 											<div class="control">
 												<label class="radio">
-												   <input required type="radio" name="easycompta_teached_time" value="true" ng-model="report.report_content.formations.easycompta.teached_time.answer">
+												   <input  type="radio" name="easycompta_teached_time" value="true" ng-model="report.report_content.formations.easycompta.teached_time.answer">
 												   Oui
 												</label>
 												<label class="radio">
-												   <input required type="radio" name="easycompta_teached_time" value="false" ng-model="report.report_content.formations.easycompta.teached_time.answer">
+												   <input  type="radio" name="easycompta_teached_time" value="false" ng-model="report.report_content.formations.easycompta.teached_time.answer">
 												   Non
 												</label>
 											</div>
@@ -2097,11 +2123,11 @@
 										<div class="field">
 											<div class="control">
 												<label class="radio">
-												   <input required type="radio" name="easycompta_teached_man" value="true" ng-model="report.report_content.formations.easycompta.teached_man.answer">
+												   <input  type="radio" name="easycompta_teached_man" value="true" ng-model="report.report_content.formations.easycompta.teached_man.answer">
 												   Oui
 												</label>
 												<label class="radio">
-												   <input required type="radio" name="easycompta_teached_man" value="false" ng-model="report.report_content.formations.easycompta.teached_man.answer">
+												   <input  type="radio" name="easycompta_teached_man" value="false" ng-model="report.report_content.formations.easycompta.teached_man.answer">
 												   Non
 												</label>
 											</div>
@@ -2134,11 +2160,11 @@
 										<div class="field">
 											<div class="control">
 												<label class="radio">
-												   <input required type="radio" name="easycompta_teached_is_good" value="true" ng-model="report.report_content.formations.easycompta.teached_is_good.answer">
+												   <input  type="radio" name="easycompta_teached_is_good" value="true" ng-model="report.report_content.formations.easycompta.teached_is_good.answer">
 												   Oui
 												</label>
 												<label class="radio">
-												   <input required type="radio" name="easycompta_teached_is_good" value="false" ng-model="report.report_content.formations.easycompta.teached_is_good.answer">
+												   <input  type="radio" name="easycompta_teached_is_good" value="false" ng-model="report.report_content.formations.easycompta.teached_is_good.answer">
 												   Non
 												</label>
 											</div>
@@ -2171,11 +2197,11 @@
 										<div class="field">
 											<div class="control">
 												<label class="radio">
-												   <input required type="radio" name="easycompta_teached_is_useful" value="true" ng-model="report.report_content.formations.easycompta.teached_is_useful.answer">
+												   <input  type="radio" name="easycompta_teached_is_useful" value="true" ng-model="report.report_content.formations.easycompta.teached_is_useful.answer">
 												   Oui
 												</label>
 												<label class="radio">
-												   <input required type="radio" name="easycompta_teached_is_useful" value="false" ng-model="report.report_content.formations.easycompta.teached_is_useful.answer">
+												   <input  type="radio" name="easycompta_teached_is_useful" value="false" ng-model="report.report_content.formations.easycompta.teached_is_useful.answer">
 												   Non
 												</label>
 											</div>
@@ -2207,11 +2233,11 @@
 										<div class="field">
 											<div class="control">
 												<label class="radio">
-												   <input required type="radio" name="easycompta_teached_facing_difficulties" value="true" ng-model="report.report_content.formations.easycompta.teached_facing_difficulties.answer">
+												   <input  type="radio" name="easycompta_teached_facing_difficulties" value="true" ng-model="report.report_content.formations.easycompta.teached_facing_difficulties.answer">
 												   Oui
 												</label>
 												<label class="radio">
-												   <input required type="radio" name="easycompta_teached_facing_difficulties" value="false" ng-model="report.report_content.formations.easycompta.teached_facing_difficulties.answer">
+												   <input  type="radio" name="easycompta_teached_facing_difficulties" value="false" ng-model="report.report_content.formations.easycompta.teached_facing_difficulties.answer">
 												   Non
 												</label>
 											</div>
@@ -2244,11 +2270,11 @@
 										<div class="field">
 											<div class="control">
 												<label class="radio">
-												   <input required type="radio" name="easycompta_teacher_knew_subject" value="true" ng-model="report.report_content.formations.easycompta.teacher_knew_subject.answer">
+												   <input  type="radio" name="easycompta_teacher_knew_subject" value="true" ng-model="report.report_content.formations.easycompta.teacher_knew_subject.answer">
 												   Oui
 												</label>
 												<label class="radio">
-												   <input required type="radio" name="easycompta_teacher_knew_subject" value="false" ng-model="report.report_content.formations.easycompta.teacher_knew_subject.answer">
+												   <input  type="radio" name="easycompta_teacher_knew_subject" value="false" ng-model="report.report_content.formations.easycompta.teacher_knew_subject.answer">
 												   Non
 												</label>
 											</div>
@@ -2281,11 +2307,11 @@
 											<div class="field">
 												<div class="control">
 													<label class="radio">
-													   <input required type="radio" name="easycompta_teacher_used_easy_language" value="true" ng-model="report.report_content.formations.easycompta.teacher_used_easy_language.answer">
+													   <input  type="radio" name="easycompta_teacher_used_easy_language" value="true" ng-model="report.report_content.formations.easycompta.teacher_used_easy_language.answer">
 													   Oui
 													</label>
 													<label class="radio">
-													   <input required type="radio" name="easycompta_teacher_used_easy_language" value="false" ng-model="report.report_content.formations.easycompta.teacher_used_easy_language.answer">
+													   <input  type="radio" name="easycompta_teacher_used_easy_language" value="false" ng-model="report.report_content.formations.easycompta.teacher_used_easy_language.answer">
 													   Non
 													</label>
 												</div>
@@ -2319,11 +2345,11 @@
 												<div class="field">
 													<div class="control">
 														<label class="radio">
-														   <input required type="radio" name="easycompta_teacher_was_opened" value="true" ng-model="report.report_content.formations.easycompta.teacher_was_opened.answer">
+														   <input  type="radio" name="easycompta_teacher_was_opened" value="true" ng-model="report.report_content.formations.easycompta.teacher_was_opened.answer">
 														   Oui
 														</label>
 														<label class="radio">
-														   <input required type="radio" name="easycompta_teacher_was_opened" value="false" ng-model="report.report_content.formations.easycompta.teacher_was_opened.answer">
+														   <input  type="radio" name="easycompta_teacher_was_opened" value="false" ng-model="report.report_content.formations.easycompta.teacher_was_opened.answer">
 														   Non
 														</label>
 													</div>
@@ -2381,11 +2407,11 @@
 												<div class="field">
 													<div class="control">
 														<label class="radio">
-														   <input required type="radio" name="easycompta_you_know_how" value="true" ng-model="report.report_content.formations.easycompta.you_know_how.answer">
+														   <input  type="radio" name="easycompta_you_know_how" value="true" ng-model="report.report_content.formations.easycompta.you_know_how.answer">
 														   Oui
 														</label>
 														<label class="radio">
-														   <input required type="radio" name="easycompta_you_know_how" value="false" ng-model="report.report_content.formations.easycompta.you_know_how.answer">
+														   <input  type="radio" name="easycompta_you_know_how" value="false" ng-model="report.report_content.formations.easycompta.you_know_how.answer">
 														   Non
 														</label>
 													</div>
@@ -2419,11 +2445,11 @@
 												<div class="field">
 													<div class="control">
 														<label class="radio">
-														   <input required type="radio" name="easycompta_software_is_useful" value="true" ng-model="report.report_content.formations.easycompta.software_is_useful.answer">
+														   <input  type="radio" name="easycompta_software_is_useful" value="true" ng-model="report.report_content.formations.easycompta.software_is_useful.answer">
 														   Oui
 														</label>
 														<label class="radio">
-														   <input required type="radio" name="easycompta_software_is_useful" value="false" ng-model="report.report_content.formations.easycompta.software_is_useful.answer">
+														   <input  type="radio" name="easycompta_software_is_useful" value="false" ng-model="report.report_content.formations.easycompta.software_is_useful.answer">
 														   Non
 														</label>
 													</div>
@@ -2446,7 +2472,9 @@
 										</div>
 
 
-
+	   	   				<button class="has-text-weight-bold button is-intercoton-green" ng-disabled="is_loading">
+												Enregistrer les modifications							
+						</button>
 	        	</ng-form>	
 
 
@@ -2456,6 +2484,9 @@
 	   	   </div>
 	   	   <div ng-switch-when="sixth">
 	   	   	<ng-form name="level_operator">
+	   	   				<button class="has-text-weight-bold button is-intercoton-green  is-mar-bot-30" ng-disabled="is_loading">
+												Enregistrer les modifications							
+						</button>
 	   	   		<!-- Votre formation académique /Niveau d’étude		 -->
 	   	   				   <div class="field is-horizontal">
 									<div class="field-label">
@@ -2467,7 +2498,7 @@
 										<div class="field">
 											<div class="control">
 												<div class="control">
-													<textarea ng-minlength="1" required name="level_academic_details" ng-model="report.report_content.level_operator.level_academic.details" cols="30" rows="4" placeholder="Détails" class="textarea"></textarea>
+													<textarea ng-minlength="1"  name="level_academic_details" ng-model="report.report_content.level_operator.level_academic.details" cols="30" rows="4" placeholder="Détails" class="textarea"></textarea>
 												</div>
 											</div>
 										</div>
@@ -2492,11 +2523,11 @@
 												<div class="field">
 													<div class="control">
 														<label class="radio">
-														   <input required type="radio" name="is_computed_trained" value="true" ng-model="report.report_content.level_operator.is_computed_trained.answer">
+														   <input  type="radio" name="is_computed_trained" value="true" ng-model="report.report_content.level_operator.is_computed_trained.answer">
 														   Oui
 														</label>
 														<label class="radio">
-														   <input required type="radio" name="is_computed_trained" value="false" ng-model="report.report_content.level_operator.is_computed_trained.answer">
+														   <input  type="radio" name="is_computed_trained" value="false" ng-model="report.report_content.level_operator.is_computed_trained.answer">
 														   Non
 														</label>
 													</div>
@@ -2529,11 +2560,11 @@
 												<div class="field">
 													<div class="control">
 														<label class="radio">
-														   <input required type="radio" name="is_computed_used_problems" value="true" ng-model="report.report_content.level_operator.is_computed_used_problems.answer">
+														   <input  type="radio" name="is_computed_used_problems" value="true" ng-model="report.report_content.level_operator.is_computed_used_problems.answer">
 														   Oui
 														</label>
 														<label class="radio">
-														   <input required type="radio" name="is_computed_used_problems" value="false" ng-model="report.report_content.level_operator.is_computed_used_problems.answer">
+														   <input  type="radio" name="is_computed_used_problems" value="false" ng-model="report.report_content.level_operator.is_computed_used_problems.answer">
 														   Non
 														</label>
 													</div>
@@ -2566,11 +2597,11 @@
 												<div class="field">
 													<div class="control">
 														<label class="radio">
-														   <input required type="radio" name="is_computed_used_problems_selfsolved" value="true" ng-model="report.report_content.level_operator.is_computed_used_problems_selfsolved.answer">
+														   <input  type="radio" name="is_computed_used_problems_selfsolved" value="true" ng-model="report.report_content.level_operator.is_computed_used_problems_selfsolved.answer">
 														   Oui
 														</label>
 														<label class="radio">
-														   <input required type="radio" name="is_computed_used_problems_selfsolved" value="false" ng-model="report.report_content.level_operator.is_computed_used_problems_selfsolved.answer">
+														   <input  type="radio" name="is_computed_used_problems_selfsolved" value="false" ng-model="report.report_content.level_operator.is_computed_used_problems_selfsolved.answer">
 														   Non
 														</label>
 													</div>
@@ -2603,11 +2634,11 @@
 												<div class="field">
 													<div class="control">
 														<label class="radio">
-														   <input required type="radio" name="is_problem_applications_encountered" value="true" ng-model="report.report_content.level_operator.is_problem_applications_encountered.answer">
+														   <input  type="radio" name="is_problem_applications_encountered" value="true" ng-model="report.report_content.level_operator.is_problem_applications_encountered.answer">
 														   Oui
 														</label>
 														<label class="radio">
-														   <input required type="radio" name="is_problem_applications_encountered" value="false" ng-model="report.report_content.level_operator.is_problem_applications_encountered.answer">
+														   <input  type="radio" name="is_problem_applications_encountered" value="false" ng-model="report.report_content.level_operator.is_problem_applications_encountered.answer">
 														   Non
 														</label>
 													</div>
@@ -2640,11 +2671,11 @@
 												<div class="field">
 													<div class="control">
 														<label class="radio">
-														   <input required type="radio" name="is_problem_applications_encountered_selfsolved" value="true" ng-model="report.report_content.level_operator.is_problem_applications_encountered_selfsolved.answer">
+														   <input  type="radio" name="is_problem_applications_encountered_selfsolved" value="true" ng-model="report.report_content.level_operator.is_problem_applications_encountered_selfsolved.answer">
 														   Oui
 														</label>
 														<label class="radio">
-														   <input required type="radio" name="is_problem_applications_encountered_selfsolved" value="false" ng-model="report.report_content.level_operator.is_problem_applications_encountered_selfsolved.answer">
+														   <input  type="radio" name="is_problem_applications_encountered_selfsolved" value="false" ng-model="report.report_content.level_operator.is_problem_applications_encountered_selfsolved.answer">
 														   Non
 														</label>
 													</div>
@@ -2677,11 +2708,11 @@
 												<div class="field">
 													<div class="control">
 														<label class="radio">
-														   <input required type="radio" name="is_still_computer_used_problems" value="true" ng-model="report.report_content.level_operator.is_still_computer_used_problems.answer">
+														   <input  type="radio" name="is_still_computer_used_problems" value="true" ng-model="report.report_content.level_operator.is_still_computer_used_problems.answer">
 														   Oui
 														</label>
 														<label class="radio">
-														   <input required type="radio" name="is_still_computer_used_problems" value="false" ng-model="report.report_content.level_operator.is_still_computer_used_problems.answer">
+														   <input  type="radio" name="is_still_computer_used_problems" value="false" ng-model="report.report_content.level_operator.is_still_computer_used_problems.answer">
 														   Non
 														</label>
 													</div>
@@ -2713,11 +2744,11 @@
 												<div class="field">
 													<div class="control">
 														<label class="radio">
-														   <input required type="radio" name="is_still_problem_applications_encountered" value="true" ng-model="report.report_content.level_operator.is_still_problem_applications_encountered.answer">
+														   <input  type="radio" name="is_still_problem_applications_encountered" value="true" ng-model="report.report_content.level_operator.is_still_problem_applications_encountered.answer">
 														   Oui
 														</label>
 														<label class="radio">
-														   <input required type="radio" name="is_still_problem_applications_encountered" value="false" ng-model="report.report_content.level_operator.is_still_problem_applications_encountered.answer">
+														   <input  type="radio" name="is_still_problem_applications_encountered" value="false" ng-model="report.report_content.level_operator.is_still_problem_applications_encountered.answer">
 														   Non
 														</label>
 													</div>
@@ -2738,6 +2769,9 @@
 												</div>
 											</div>
 										</div>
+							   	   				<button class="has-text-weight-bold button is-intercoton-green" ng-disabled="is_loading">
+												Enregistrer les modifications							
+						</button>
 	   	   	</ng-form>
 
 
@@ -2745,6 +2779,9 @@
 	   	   </div>
 	   	   <div ng-switch-when="seventh">
 	   	   	  <ng-form name="rapportage">
+	   	   	  		   	   				<button class="has-text-weight-bold button is-intercoton-green  is-mar-bot-30" ng-disabled="is_loading">
+												Enregistrer les modifications							
+						</button>
 	   	   	  	   <!-- Avez-vous été  assisté par l’entreprise CIGA ? -->
 					   <div class="field is-horizontal">
 											<div class="field-label">
@@ -2756,11 +2793,11 @@
 												<div class="field">
 													<div class="control">
 														<label class="radio">
-														   <input required type="radio" name="get_ciga_assisted" value="true" ng-model="report.report_content.rapportage.get_ciga_assisted.answer">
+														   <input  type="radio" name="get_ciga_assisted" value="true" ng-model="report.report_content.rapportage.get_ciga_assisted.answer">
 														   Oui
 														</label>
 														<label class="radio">
-														   <input required type="radio" name="get_ciga_assisted" value="false" ng-model="report.report_content.rapportage.get_ciga_assisted.answer">
+														   <input  type="radio" name="get_ciga_assisted" value="false" ng-model="report.report_content.rapportage.get_ciga_assisted.answer">
 														   Non
 														</label>
 													</div>
@@ -2822,11 +2859,11 @@
 												<div class="field">
 													<div class="control">
 														<label class="radio">
-														   <input required type="radio" name="is_ciga_answered_problems" value="true" ng-model="report.report_content.rapportage.is_ciga_answered_problems.answer">
+														   <input  type="radio" name="is_ciga_answered_problems" value="true" ng-model="report.report_content.rapportage.is_ciga_answered_problems.answer">
 														   Oui
 														</label>
 														<label class="radio">
-														   <input required type="radio" name="is_ciga_answered_problems" value="false" ng-model="report.report_content.rapportage.is_ciga_answered_problems.answer">
+														   <input  type="radio" name="is_ciga_answered_problems" value="false" ng-model="report.report_content.rapportage.is_ciga_answered_problems.answer">
 														   Non
 														</label>
 													</div>
@@ -2861,11 +2898,11 @@
 												<div class="field">
 													<div class="control">
 														<label class="radio">
-														   <input required type="radio" name="is_assistance_solved_problems" value="true" ng-model="report.report_content.rapportage.is_assistance_solved_problems.answer">
+														   <input  type="radio" name="is_assistance_solved_problems" value="true" ng-model="report.report_content.rapportage.is_assistance_solved_problems.answer">
 														   Oui
 														</label>
 														<label class="radio">
-														   <input required type="radio" name="is_assistance_solved_problems" value="false" ng-model="report.report_content.rapportage.is_assistance_solved_problems.answer">
+														   <input  type="radio" name="is_assistance_solved_problems" value="false" ng-model="report.report_content.rapportage.is_assistance_solved_problems.answer">
 														   Non
 														</label>
 													</div>
@@ -2887,7 +2924,9 @@
 												</div>
 											</div>
 										</div>
-								
+							<button class="has-text-weight-bold button is-intercoton-green" ng-disabled="is_loading">
+												Enregistrer les modifications							
+						</button>
 	   	   	  </ng-form>		
 	   	   </div>
 
@@ -2905,18 +2944,18 @@
 									</div>
 								</div>
 						   </div>
-						    <div class="field is-horizontal is-mar-top-50">
+<!-- 						    <div class="field is-horizontal is-mar-top-50">
 								<div class="field-body">
 									<div class="field">
 										<div class="control is-grouped">
-											<button class="has-text-weight-bold button is-intercoton-green" ng-disabled="updateReportForm.$invalid || is_loading">
+											<button class="has-text-weight-bold button is-intercoton-green" ng-disabled="is_loading">
 												Modifier le rapport							
 											</button>
 											<button type="reset" ng-click="reinit_reports()" class="button is-warning has-text-weight-bold ">Annuler</button>
 										</div>
 									</div>
 								</div>
-							</div>
+							</div> -->
 	   	   	    </ng-form>	
 
 

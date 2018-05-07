@@ -219,7 +219,7 @@ class  ReportsController extends AppController
                                         }
                                     }
 
-                                    $response = ['message'=>'ok'];
+                                    $response = ['id'=>$report->id];
                                     $this->RequestHandler->renderAs($this, 'json');
                                     $this->set(compact('response'));
                                     $this->set('_serialize',['response']);

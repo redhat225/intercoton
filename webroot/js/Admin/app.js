@@ -9,7 +9,7 @@ angular.module('intercoton',['ui.router','ngFileUpload','angular-loading-bar','u
 		});	
 
 		$transitions.onError({}, function(trans){
-			toastr.error("Veuillez vous reconnecter/ Vous n'avez peut être pas les droits pour accéder à cette ressource");
+			// toastr.error("Veuillez vous reconnecter/ Vous n'avez peut être pas les droits pour accéder à cette ressource");
 		});
 	}])
 	.config(['$httpProvider','$stateProvider','$urlRouterProvider','$locationProvider', function($httpProvider, $stateProvider, $urlRouterProvider, $locationProvider){
@@ -804,7 +804,7 @@ angular.module('intercoton',['ui.router','ngFileUpload','angular-loading-bar','u
 					$scope.is_loading = true;
 					ReportService.create($scope.report).then(function(resp){
 						toastr.success('Rapport enregistré avec succès');
-						$state.go('admins.reports',{session_id:$scope.report.session_id},{reload:true});
+						$state.go('admins.reports.edit',{report_id:resp.data.response.id},{reload:true});
 					}, function(err){
 						switch(err){
 							case 403:
@@ -819,6 +819,7 @@ angular.module('intercoton',['ui.router','ngFileUpload','angular-loading-bar','u
 						$scope.is_loading = false;
 					});
 				}
+				// console.log($scope.report);
 
 			};
 
@@ -835,7 +836,7 @@ angular.module('intercoton',['ui.router','ngFileUpload','angular-loading-bar','u
 			};
 
 
-			$scope.reporTab = 'first';
+			$scope.reporTab = 'eight';
 
 		}
 
@@ -885,15 +886,14 @@ angular.module('intercoton',['ui.router','ngFileUpload','angular-loading-bar','u
 				if(r==true){
 					$scope.is_loading = true;
 					ReportService.update($scope.report).then(function(resp){
-						toastr.success('modification réalisé avec succès');
-						$state.go('admins.reports',{session_id:$scope.report.session_id},{reload:true});
+						toastr.success('Modifications enregistrées avec succès');
+						// $state.go('admins.reports',{session_id:$scope.report.session_id},{reload:true});
 					}, function(err){
 						toastr.error('Une erreur est survenue, veuillez réessayer');
 					}).finally(function(){
 						$scope.is_loading = false;
 					});
 				}
-
 			}
 			$scope.addItemReport = function(){
 				  childScope = $scope.$new();

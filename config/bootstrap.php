@@ -212,6 +212,11 @@ Configure::write('dropbox-api',[
     'token' => 's9Cz6LGABvAAAAAAAAAABvnNvwmF6Z72W8aNsRy0sl2kuQXw3B04AI4WsoYUprNZ'
 ]);
 
+// Tests Token
+// QeN7SOgd0OAAAAAAAAACVD_buKoYsXOVB89S9XV5xeCqW7maF6VsfmoKk0igb022
+
+// Intercoton token
+// s9Cz6LGABvAAAAAAAAAABvnNvwmF6Z72W8aNsRy0sl2kuQXw3B04AI4WsoYUprNZ
 
 /*
  * Only try to load DebugKit in development mode
